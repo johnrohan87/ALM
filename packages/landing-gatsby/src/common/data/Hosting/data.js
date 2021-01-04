@@ -99,7 +99,16 @@ export const SERVICES_DATA = [
     icon: `${IconSix}`,
   },
 ];
-
+{/**{
+    label: 'Service',
+    path: '#service_section',
+    offset: '70',
+  },
+  {
+    label: 'Testimonial',
+    path: '#testimonial_section',
+    offset: '70',
+  }, */}
 export const MENU_ITEMS = [
   {
     label: 'Home',
@@ -109,16 +118,6 @@ export const MENU_ITEMS = [
   {
     label: 'Feature',
     path: '#feature_section',
-    offset: '70',
-  },
-  {
-    label: 'Service',
-    path: '#service_section',
-    offset: '70',
-  },
-  {
-    label: 'Testimonial',
-    path: '#testimonial_section',
     offset: '70',
   },
   {
@@ -132,15 +131,19 @@ export const MENU_ITEMS = [
     offset: '70',
   },
 ];
-
+{/**{
+        url: '#',
+        text: 'Support Center',
+      },
+    {
+        url: '#',
+        text: 'Popular Campaign',
+      },
+    */}
 export const FOOTER_WIDGET = [
   {
     title: 'About Us',
     menuItems: [
-      {
-        url: '#',
-        text: 'Support Center',
-      },
       {
         url: '#',
         text: 'Customer Support',
@@ -152,10 +155,6 @@ export const FOOTER_WIDGET = [
       {
         url: '#',
         text: 'Copyright',
-      },
-      {
-        url: '#',
-        text: 'Popular Campaign',
       },
     ],
   },

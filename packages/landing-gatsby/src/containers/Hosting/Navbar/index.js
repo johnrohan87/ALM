@@ -68,9 +68,9 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
                 drawerClose={true}
                 offset={-100}
               />
-              <a className="navbar_drawer_button" href="#1">
+              {/*<a className="navbar_drawer_button" href="#1">
                 <Button {...button} title="BUY NOW" />
-              </a>
+          </a>*/}
             </Drawer>
           </Box>
         </Box>
