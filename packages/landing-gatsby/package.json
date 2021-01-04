@@ -1,7 +1,7 @@
 {
-  "name": "@superprops/gatsby",
+  "name": "affiliateleadmarketing.com",
   "private": true,
-  "description": "React Landing with Gatsby Static site generator.",
+  "description": "affiliateleadmarketing.com",
   "version": "8.0.0",
   "dependencies": {
     "@glidejs/glide": "^3.4.1",

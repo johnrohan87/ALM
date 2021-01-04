@@ -2,7 +2,7 @@
   "FEATURES_DATA": [
     {
       "title": "Domain Registration & Web Hosting",
-      "description": "We have support team for 24/7 operation. They provide help and ongoing assistance at any time.",
+      "description": "We provide brokering domain services and hosting solutions based on your needs.",
       "icon": "flaticon-trophy violate",
       "animation": true
     },
@@ -14,7 +14,7 @@
     },
     {
       "title": "Dedicated Server & Cloud Hosting",
-      "description": "LiteSpeed Web Server is a high-performance HTTP server and known for its high performance.",
+      "description": "Netlify DNS Web Server is a high-performance HTTPS server and known for its high performance and Cloud Support.",
       "icon": "flaticon-creative green",
       "animation": true
     }
@@ -23,19 +23,15 @@
     {
       "expend": true,
       "title": "How to contact with Customer Service?",
-      "description": "Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!. "
+      "description": "Email and Phone. We try to reply quickly, so you need not to wait too long for a response!. "
     },
     {
-      "title": "App installation failed, how to update system information?",
-      "description": "Please read the documentation carefully . We also have some online  video tutorials regarding this issue . If the problem remains, Please Open a ticket in the support forum . "
+      "title": "What do we use for Development?",
+      "description": "Gatsby allows us to build static sites that are Progressive Web Apps, follow the latest web standards, and are optimized to be highly performant. It makes use of the latest and popular technologies including ReactJS, Webpack, GraphQL, modern ES6+ JavaScript and CSS."
     },
     {
-      "title": "Website reponse taking time, how to improve?",
-      "description": "At first, Please check your internet connection . We also have some online  video tutorials regarding this issue . If the problem remains, Please Open a ticket in the support forum ."
-    },
-    {
-      "title": "New update fixed all bug and issues?",
-      "description": "We are giving the update of this theme continuously . You will receive an email Notification when we push an update. Always try to be updated with us ."
+      "title": "Website Security and Notifications",
+      "description": "Netlify provides free HTTPS Domain Encryption, Active DDoS mitigation, Penetration testing, and Datacenter security."
     }
   ],
   "SERVICES_DATA": [
@@ -70,6 +66,16 @@
       "icon": "../../assets/image/hosting/icon6.svg"
     }
   ],
+  "SavedMenuItems":[{
+    "label": "Service",
+    "path": "#service_section",
+    "offset": "70"
+  },
+  {
+    "label": "Testimonial",
+    "path": "#testimonial_section",
+    "offset": "70"
+  }],
   "MENU_ITEMS": [
     {
       "label": "Home",
@@ -79,16 +85,6 @@
     {
       "label": "Feature",
       "path": "#feature_section",
-      "offset": "70"
-    },
-    {
-      "label": "Service",
-      "path": "#service_section",
-      "offset": "70"
-    },
-    {
-      "label": "Testimonial",
-      "path": "#testimonial_section",
       "offset": "70"
     },
     {
@@ -102,14 +98,28 @@
       "offset": "70"
     }
   ],
+  "SavedFooterWidget":[
+        { 
+          "url": "#",
+          "text": "Support Center"
+        },
+        {
+          "url": "#",
+          "text": "Popular Campaign"
+        },
+        {
+          "url": "#",
+          "text": "Return Policy"
+        },
+        {
+          "url": "#",
+          "text": "Store Hours"
+        }
+      ],
   "FOOTER_WIDGET": [
     {
       "title": "About Us",
       "menuItems": [
-        {
-          "url": "#",
-          "text": "Support Center"
-        },
         {
           "url": "#",
           "text": "Customer Support"
@@ -121,20 +131,35 @@
         {
           "url": "#",
           "text": "Copyright"
-        },
-        {
-          "url": "#",
-          "text": "Popular Campaign"
         }
-      ]
+      ,
+    
+      {
+        "title": "Policy",
+        "menuItems": [
+          {
+            "url": "#",
+            "text": "Application security"
+          },
+          {
+            "url": "#",
+            "text": "Software principles"
+          },
+          {
+            "url": "#",
+            "text": "Unwanted software policy"
+          },
+          {
+            "url": "#",
+            "text": "Responsible supply chain"
+          }
+        ]
+      }]
     },
     {
       "title": "Our Information",
       "menuItems": [
-        {
-          "url": "#",
-          "text": "Return Policy"
-        },
+        
         {
           "url": "#",
           "text": "Privacy Policy"
@@ -146,58 +171,32 @@
         {
           "url": "#",
           "text": "Site Map"
-        },
-        {
-          "url": "#",
-          "text": "Store Hours"
         }
-      ]
-    },
-    {
-      "title": "My Account",
-      "menuItems": [
-        {
-          "url": "#",
-          "text": "Press inquiries"
-        },
-        {
-          "url": "#",
-          "text": "Social media directories"
-        },
-        {
-          "url": "#",
-          "text": "Images & B-roll"
-        },
-        {
-          "url": "#",
-          "text": "Permissions"
-        },
-        {
-          "url": "#",
-          "text": "Speaker requests"
-        }
-      ]
-    },
-    {
-      "title": "Policy",
-      "menuItems": [
-        {
-          "url": "#",
-          "text": "Application security"
-        },
-        {
-          "url": "#",
-          "text": "Software principles"
-        },
-        {
-          "url": "#",
-          "text": "Unwanted software policy"
-        },
-        {
-          "url": "#",
-          "text": "Responsible supply chain"
-        }
-      ]
+      ,{
+        "title": "My Account",
+        "menuItems": [
+          {
+            "url": "#",
+            "text": "Press inquiries"
+          },
+          {
+            "url": "#",
+            "text": "Social media directories"
+          },
+          {
+            "url": "#",
+            "text": "Images & B-roll"
+          },
+          {
+            "url": "#",
+            "text": "Permissions"
+          },
+          {
+            "url": "#",
+            "text": "Speaker requests"
+          }
+        ]
+      }]
     }
   ],
   "MONTHLY_PRICING_TABLE": [

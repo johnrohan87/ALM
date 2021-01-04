@@ -50,7 +50,7 @@ const BannerSection = ({
       <Container className="banner_container">
         <Box {...row}>
           <Box {...textArea}>
-            <DiscountWrapper>
+            {/**<DiscountWrapper>
               <DiscountLabel>
                 <Text {...discountAmount} content="25% Discount" />
                 <Text
@@ -58,17 +58,18 @@ const BannerSection = ({
                   content="on every first annual purchase"
                 />
               </DiscountLabel>
-            </DiscountWrapper>
+            </DiscountWrapper> */}
+            
             <Heading
               {...title}
-              content="The best webhosting starting at $12.98/month"
+              content="Your website development company"
             />
             <Text
               {...description}
-              content=" For Enhanced performance we use LiteSpeed Web Server, HTTP/2, PHP7. We make your website faster, which will help you to increase search ranking!"
+              content=" We develop React with Gatsby SEO optimized Web pages customized for you!"
             />
           </Box>
-          <Box {...searchArea}>
+          {/**<Box {...searchArea}>
             <SearchWrapper>
               <Input
                 inputType="text"
@@ -100,7 +101,8 @@ const BannerSection = ({
                 </li>
               ))}
             </List>
-          </Box>
+          </Box> */}
+          
         </Box>
       </Container>
     </BannerWrapper>

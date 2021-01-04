@@ -1,9 +1,9 @@
 {
-  "name": "superprops",
-  "description": "Modern Multipurpose Landing Pages Template Using React, Next, Styled Components and so on. It also support Gatsby Static site generator ",
+  "name": "affiliateleadmarketing.com",
+  "description": "AffiliateLeadMarketing.com",
   "version": "8.0.0",
   "private": true,
-  "author": "RedQ, Inc",
+  "author": "JohnRRohan",
   "devDependencies": {
     "cross-env": "^7.0.2",
     "husky": "^4.3.0",

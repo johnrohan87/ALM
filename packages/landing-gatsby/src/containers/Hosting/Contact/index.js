@@ -44,7 +44,7 @@ const ContactSection = ({
             </ContactFromWrapper>
             <Text
               {...note}
-              content="Note: Please call us at 12pm to 8am. otherwise our customer supporter will not  available to reach your call, but you can drop mail anytime."
+              content="Email us anytime."
             />
           </Box>
         </Box>

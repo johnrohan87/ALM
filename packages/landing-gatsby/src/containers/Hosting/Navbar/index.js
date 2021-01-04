@@ -52,9 +52,9 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
               offset={-70}
             />
 
-            <a className="navbar_button" href="#1">
+            {/*<a className="navbar_button" href="#1">
               <Button {...button} title="BUY NOW" />
-            </a>
+            </a>*/}
             <Drawer
               width="420px"
               placement="right"

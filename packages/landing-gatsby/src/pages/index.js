@@ -39,13 +39,8 @@ export default () => {
 
           <BannerSection />
           <FeatureSection />
-          <InfoSection />
-          <PricingSection />
-          <DomainSection />
-          <ServicesSection />
-          <PaymentSection />
-          <TestimonialSection />
-          <GuaranteeSection />
+          {/**<InfoSection /> */}
+          {/*<PricingSection /> <DomainSection /> <ServicesSection /> <PaymentSection /> <TestimonialSection /> <GuaranteeSection /> */}
           <FaqSection />
           <ContactSection />
           <Footer />
