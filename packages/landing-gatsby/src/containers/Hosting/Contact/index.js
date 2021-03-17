@@ -49,7 +49,7 @@ const ContactSection = ({
                   className="email_input"
                   aria-label="email"
                 />
-                <Button type="submit" {...button} title="SEND MESSAGE" />
+                <Button type="submit" title="SEND MESSAGE" />
               
             </ContactFromWrapper>
             </form>

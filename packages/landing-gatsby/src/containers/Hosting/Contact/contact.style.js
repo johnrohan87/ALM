@@ -8,6 +8,17 @@ const ContactFromWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
+  button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+  
   @media (max-width: 575px) {
     flex-direction: column;
     align-items: center;
