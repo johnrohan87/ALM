@@ -9,7 +9,7 @@ import Heading from 'common/components/Heading';
 //import Input from 'common/components/Input';
 //import Select from 'common/components/Select';
 import Container from 'common/components/UI/Container';
-//import ParticlesComponent from '../../Hosting/Particle';
+import ParticlesComponent from '../../Hosting/Particle';
 import BannerWrapper, {
   SearchWrapper,
   List,
@@ -51,8 +51,10 @@ const AboutSection = ({
   return (
     <BannerWrapper id="about_section">
       <HeaderList className="about_container">
+        
         <Box {...row}>
           <Box {...textArea}>
+          <ParticlesComponent />
           <Heading
               {...title}
               content={Data.hostingJson.ABOUT_INFO[0].name}
