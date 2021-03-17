@@ -30,6 +30,7 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
           label
           path
           offset
+          linked
         }
       }
     }

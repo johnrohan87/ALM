@@ -116,6 +116,12 @@ export const MENU_ITEMS = [
     offset: '70',
   },
   {
+    label: 'About Us',
+    path: '/about#',
+    offset: '70',
+    linked: '/about'
+  },
+  {
     label: 'Feature',
     path: '#feature_section',
     offset: '70',

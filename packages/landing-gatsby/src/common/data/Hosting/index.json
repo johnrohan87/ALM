@@ -83,6 +83,12 @@
       "offset": "70"
     },
     {
+      "label": "About Us",
+      "path": "/about",
+      "offset": "70",
+      "linked": "/about"
+    },
+    {
       "label": "Feature",
       "path": "#feature_section",
       "offset": "70"
@@ -373,6 +379,17 @@
       "name": "Milly Cristiana",
       "designation": "Manager of Hp co.",
       "avatar": "../../assets/image/hosting/author-3.jpg"
+    }
+  ],
+  "ABOUT_INFO":[
+    {
+      "name": "John Rohan",
+      "job": "Freelance Fullstack Developer",
+      "email": "JohnRoahn@mail.com",
+      "address": "15820 sw 84 ave, Miami, FL, 33157, United States",
+      "phone": "(786) 217-4153",
+      "linkedin": "https://www.linkedin.com/in/johnrohan87/",
+      "github": "https://github.com/johnrohan87"
     }
   ],
   "DOMAIN_NAMES": [

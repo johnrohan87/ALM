@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import Sticky from 'react-stickynode';
 import { hostingTheme } from 'common/theme/hosting';

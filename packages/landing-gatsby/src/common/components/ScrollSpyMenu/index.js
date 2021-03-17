@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import Scrollspy from 'react-scrollspy';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+
 
 import { DrawerContext } from '../../contexts/DrawerContext';
 
@@ -40,7 +42,7 @@ const ScrollSpyMenu = ({ className, menuItems, drawerClose, ...props }) => {
       {menuItems.map((menu, index) => (
         <li key={`menu-item-${index}`}>
           {menu.staticLink ? (
-            <a href={menu.path}>{menu.label}</a>
+            <Link href={menu.path}>{menu.label}</Link>
           ) : (
             <>
               {drawerClose ? (
@@ -49,11 +51,13 @@ const ScrollSpyMenu = ({ className, menuItems, drawerClose, ...props }) => {
                   offset={menu.offset}
                   onClick={toggleDrawer}
                 >
-                  {menu.label}
+                  {/*menu.label*/}
+                  {menu.linked ? <Link to={menu.linked}>{menu.label}</Link> : menu.label}
                 </AnchorLink>
               ) : (
                 <AnchorLink href={menu.path} offset={menu.offset}>
-                  {menu.label}
+                  {/*menu.label*/}
+                  {menu.linked ? <Link to={menu.linked}>{menu.label}</Link> : menu.label}
                 </AnchorLink>
               )}
             </>
