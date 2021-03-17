@@ -78,8 +78,53 @@ const AboutSection = ({
             )
             })}
             <Expierence_Projects_Block>
-              <List>Text</List>
-              <List>Text</List>
+              <List><b>Professional Experience</b>
+              <br />
+              <br />
+<b><i>Freelance Web Developer</i></b>
+<br />
+<br />
+<b>2020 – present</b>
+<br />
+Creating and maintaining customer-specific websites with the most customer acquisition and highest organic search and SEO in mind.
+<br />
+<br />
+<b>Manager</b>
+<br />
+<br />
+<b>Batch Gastropub</b>
+<br />
+<b>2016 – present</b>
+<br />
+Brickell, United States
+<br />
+Coordinates schedules for FOH restaurant staff
+Ensures daily standards of restaurant grounds and personnel are upheld
+Directs the production of brand products necessary for daily operation
+Maintains store IT Equipment and all Maintenance needs
+Resolves guest concerns to ensure guest retention and satisfaction
+Provides staff critique and product knowledge to ensure growth</List>
+              <List>
+              <b>Projects</b>
+              <br />
+              <br />
+              <b>AKG Specialty Inc</b>
+<br />
+<br />
+<b>Current</b>
+<br />
+Setup and deploy a React.js and Gatsby Web application for a Miami-based Roofing Contractor.
+<br />
+Gather information from the client to develop content and images for the webpage.
+Manage all aspects of the project from DNS, Netlify Hosting, Backlinks, KeyWords, and SEO.
+<br />
+<br />
+<b>Affiliate Lead Marketing</b>
+<br />
+<br />
+<b>Current</b>
+<br />
+Develop and launch React.js with Gatsby Freelance Developer Project Web application to display current projects and connect with clients.</List>
             </Expierence_Projects_Block>
           </Box>
         </Box>
