@@ -31,17 +31,28 @@ const ContactSection = ({
         </Box>
         <Box {...row}>
           <Box {...contactForm}>
+          <form
+                    action="#"
+                    data-netlify="true"
+                    name="contact"
+                    method="post"
+                  >
             <ContactFromWrapper>
-              <Input
-                inputType="email"
-                placeholder="Email address"
-                iconPosition="right"
-                isMaterial={false}
-                className="email_input"
-                aria-label="email"
-              />
-              <Button {...button} title="SEND MESSAGE" />
+            
+                <input type="hidden" name="form-name" value="contact" />
+                <Input
+                  inputType="email"
+                  name="name"
+                  placeholder="Email address"
+                  iconPosition="right"
+                  isMaterial={false}
+                  className="email_input"
+                  aria-label="email"
+                />
+                <Button type="submit" {...button} title="SEND MESSAGE" />
+              
             </ContactFromWrapper>
+            </form>
             <Text
               {...note}
               content="Email us anytime."
