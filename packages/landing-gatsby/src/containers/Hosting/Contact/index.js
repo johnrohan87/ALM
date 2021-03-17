@@ -40,7 +40,7 @@ const ContactSection = ({
             <ContactFromWrapper>
             
                 <input type="hidden" name="form-name" value="contact" />
-                <Input
+                <input
                   inputType="email"
                   name="name"
                   placeholder="Email address"
