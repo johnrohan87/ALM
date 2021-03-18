@@ -381,13 +381,24 @@
       "avatar": "../../assets/image/hosting/author-3.jpg"
     }
   ],
-  "ABOUT_INFO":[
+  "ABOUTME_INFO":[
     {
       "name": "John Rohan",
       "job": "Freelance Fullstack Developer",
       "email": "JohnRoahn@mail.com",
-      "address": "15820 sw 84 ave, Miami, FL, 33157, United States",
-      "phone": "(786) 217-4153",
+      "address": "Miami, FL, 33157, United States",
+      "phone": "---",
+      "linkedin": "https://www.linkedin.com/in/johnrohan87/",
+      "github": "https://github.com/johnrohan87"
+    }
+  ],
+  "ABOUT_INFO":[
+    {
+      "name": "Affiliate Lead Marketing",
+      "job": "Proudly developed and operated by John Rohan",
+      "email": "---",
+      "address": "Miami, FL, 33157, United States",
+      "phone": "---",
       "linkedin": "https://www.linkedin.com/in/johnrohan87/",
       "github": "https://github.com/johnrohan87"
     }

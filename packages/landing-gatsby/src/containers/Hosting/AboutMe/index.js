@@ -21,7 +21,7 @@ import BannerWrapper, {
 
 //import { search } from 'react-icons-kit/feather/search';
 
-const AboutSection = ({
+const AboutMeSection = ({
   row,
   col,
   title,
@@ -35,7 +35,7 @@ const AboutSection = ({
   const Data = useStaticQuery(graphql`
     query {
       hostingJson {
-        ABOUT_INFO {
+        ABOUTME_INFO {
           name
           job
           email
@@ -57,15 +57,15 @@ const AboutSection = ({
           <ParticlesComponent />
           <Heading
               {...title}
-              content={Data.hostingJson.ABOUT_INFO[0].name}
+              content={Data.hostingJson.ABOUTME_INFO[0].name}
               as="h1"
             />
             <Text
               {...description}
-              content={Data.hostingJson.ABOUT_INFO[0].job}
+              content={Data.hostingJson.ABOUTME_INFO[0].job}
             />
 
-            {Data.hostingJson.ABOUT_INFO.map((info,index) => {
+            {Data.hostingJson.ABOUTME_INFO.map((info,index) => {
 
             return (
               //<text key={`test-index-${index}`}>{info.name}{info.address}</text>
@@ -121,7 +121,7 @@ const AboutSection = ({
   );
 };
 
-AboutSection.propTypes = {
+AboutMeSection.propTypes = {
   row: PropTypes.object,
   col: PropTypes.object,
   title: PropTypes.object,
@@ -132,7 +132,7 @@ AboutSection.propTypes = {
   discountText: PropTypes.object,
 };
 
-AboutSection.defaultProps = {
+AboutMeSection.defaultProps = {
   row: {
     flexBox: true,
     flexWrap: 'wrap',
@@ -196,4 +196,4 @@ AboutSection.defaultProps = {
   },
 };
 
-export default AboutSection;
+export default AboutMeSection;

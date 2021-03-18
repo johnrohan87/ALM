@@ -9,23 +9,23 @@ import { ResetCSS } from 'common/assets/css/style';
 //import Box from 'common/components/Box';
 //import Text from 'common/components/Text';
 //import Container from 'common/components/UI/Container';
-import AboutSection from 'containers/Hosting/About';
+import AboutMeSection from 'containers/Hosting/AboutMe';
 
 //import Layout from 'components/layout';
 //import { DrawerProvider } from 'common/contexts/DrawerContext';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import SEO from 'components/seo';
 
-const About = () => (
+const AboutMe = () => (
   <ThemeProvider theme={hostingTheme}>
     <ParallaxProvider>
       <ResetCSS />
       <GlobalStyle />
-      <SEO title="About Affiliate Lead Marketing" />
-      <AboutSection />
+      <SEO title="About John Rohan" />
+      <AboutMeSection />
       <Link to="/">Go back to the homepage</Link>
     </ParallaxProvider>
   </ThemeProvider>
 );
 
-export default About;
+export default AboutMe;

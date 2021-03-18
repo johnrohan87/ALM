@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import NavbarWrapper from 'common/components/Navbar';
 import Drawer from 'common/components/Drawer';
-import Button from 'common/components/Button';
+//import Button from 'common/components/Button';
 import Logo from 'common/components/UIElements/Logo';
 import Box from 'common/components/Box';
 import HamburgMenu from 'common/components/HamburgMenu';

@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
-import Icon from 'react-icons-kit';
+//import { useStaticQuery, graphql } from 'gatsby';
+//import Icon from 'react-icons-kit';
 import Box from 'common/components/Box';
 import Text from 'common/components/Text';
 import Heading from 'common/components/Heading';
-import Button from 'common/components/Button';
-import Input from 'common/components/Input';
-import Select from 'common/components/Select';
+//import Button from 'common/components/Button';
+//import Input from 'common/components/Input';
+//import Select from 'common/components/Select';
 import Container from 'common/components/UI/Container';
 import ParticlesComponent from '../../Hosting/Particle';
 import BannerWrapper, {
-  SearchWrapper,
-  List,
-  DiscountWrapper,
-  DiscountLabel,
+  //SearchWrapper,
+  //List,
+  //DiscountWrapper,
+  //DiscountLabel,
 } from './banner.style';
 
-import { search } from 'react-icons-kit/feather/search';
+//import { search } from 'react-icons-kit/feather/search';
 
 const BannerSection = ({
   row,
@@ -29,7 +29,7 @@ const BannerSection = ({
   discountAmount,
   discountText,
 }) => {
-  const Data = useStaticQuery(graphql`
+/**   const Data = useStaticQuery(graphql`
     query {
       hostingJson {
         DOMAIN_NAMES {
@@ -42,7 +42,7 @@ const BannerSection = ({
         }
       }
     }
-  `);
+  `);*/
 
   return (
     <BannerWrapper id="banner_section">
