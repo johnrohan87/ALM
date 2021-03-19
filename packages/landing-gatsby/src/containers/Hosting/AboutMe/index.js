@@ -39,9 +39,6 @@ const AboutMeSection = ({
         ABOUTME_INFO {
           name
           job
-          email
-          address
-          phone
           linkedin
           github
         }
@@ -109,7 +106,7 @@ const AboutMeSection = ({
               <List>
                 
               <h2><b>Projects</b></h2>
-              <a href="https://akgspecialtyinc.com/" ><h3><b>AKG Specialty Inc</b></h3></a>
+              <h3><b><a aria-label="AKG Specialty Inc" href="https://akgspecialtyinc.com/" >AKG Specialty Inc</a></b></h3>
               <b><i>Project Developer</i></b>
               <br />
               <b>Current</b>
@@ -120,7 +117,7 @@ const AboutMeSection = ({
               Manage all aspects of the project from DNS, Netlify Hosting, Backlinks, KeyWords, and SEO.
               <br />
               <br />
-              <Link to="/" ><h3><b>Affiliate Lead Marketing</b></h3></Link>
+              <h3><b><Link to="/" >Affiliate Lead Marketing</Link></b></h3>
               <b><i>Project Developer</i></b>
               <br />
               <br />

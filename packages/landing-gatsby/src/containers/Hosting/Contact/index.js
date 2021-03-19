@@ -4,7 +4,7 @@ import Box from 'common/components/Box';
 import Text from 'common/components/Text';
 import Heading from 'common/components/Heading';
 import Button from 'common/components/Button';
-//import Input from 'common/components/Input';
+import Input from 'common/components/Input';
 import Container from 'common/components/UI/Container';
 
 import ContactFromWrapper from './contact.style';
@@ -39,8 +39,8 @@ const ContactSection = ({
                   >
             <ContactFromWrapper>
             
-                <input type="hidden" name="form-name" value="contact" />
-                <input
+                <Input type="hidden" name="form-name" value="contact" />
+                <Input
                   inputType="email"
                   name="name"
                   placeholder="Email address"
