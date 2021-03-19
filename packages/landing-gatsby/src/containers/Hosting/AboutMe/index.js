@@ -106,13 +106,12 @@ const AboutMeSection = ({
               <List>
                 
               <h2><b>Projects</b></h2>
-              <h3><b><a aria-label="AKG Specialty Inc" href="https://akgspecialtyinc.com/" >AKG Specialty Inc</a></b></h3>
+              <h3><b><Link to="https://akgspecialtyinc.com/" >AKG Specialty Inc</Link></b></h3>
               <b><i>Project Developer</i></b>
               <br />
               <b>Current</b>
               <br />
               Setup and deploy a React.js and Gatsby Web application for a Miami-based Roofing Contractor.
-              <br />
               Gather information from the client to develop content and images for the webpage.
               Manage all aspects of the project from DNS, Netlify Hosting, Backlinks, KeyWords, and SEO.
               <br />
