@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 //import Icon from 'react-icons-kit';
@@ -62,6 +63,7 @@ const AboutMeSection = ({
             />
             <Text
               {...description}
+              //as="h2"
               content={Data.hostingJson.ABOUTME_INFO[0].job}
             />
 
@@ -80,8 +82,8 @@ const AboutMeSection = ({
             )
             })}
             <Expierence_Projects_Block>
-              <List><b>Professional Experience</b>
-              <br />
+              <List>
+              <h2><b>Professional Experience</b></h2>
               <br />
               <b><i>Freelance Web Developer</i></b>
               <br />
@@ -89,15 +91,26 @@ const AboutMeSection = ({
               <b>2020 – present</b>
               <br />
               Creating and maintaining customer-specific websites with the most customer acquisition and highest organic search and SEO in mind.
-              
+              <br />
+              <br />
+              <b><i>Manager</i></b>
+              <br />
+              <b>Batch Gastropub</b>
+              <br />
+              <br />
+              <b>2016 – present</b>
+              <br />
+              <b>Brickell, United States</b>
+              <br />
+              Coordinates schedules for FOH restaurant staff Ensures daily standards of restaurant grounds and personnel are upheld Directs the production of brand products necessary for daily operation Maintains store IT Equipment and all Maintenance needs Resolves guest concerns to ensure guest retention and satisfaction Provides staff critique and product knowledge to ensure growth.
+              <br />
+              <br />
               </List>
               <List>
                 
-              <b>Projects</b>
-              <br />
-              <br />
-              <b>AKG Specialty Inc</b>
-              <br />
+              <h2><b>Projects</b></h2>
+              <a href="https://akgspecialtyinc.com/" ><h3><b>AKG Specialty Inc</b></h3></a>
+              <b><i>Project Developer</i></b>
               <br />
               <b>Current</b>
               <br />
@@ -107,7 +120,8 @@ const AboutMeSection = ({
               Manage all aspects of the project from DNS, Netlify Hosting, Backlinks, KeyWords, and SEO.
               <br />
               <br />
-              <b>Affiliate Lead Marketing</b>
+              <Link to="/" ><h3><b>Affiliate Lead Marketing</b></h3></Link>
+              <b><i>Project Developer</i></b>
               <br />
               <br />
               <b>Current</b>
