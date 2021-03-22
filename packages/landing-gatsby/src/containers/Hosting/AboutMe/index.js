@@ -48,12 +48,11 @@ const AboutMeSection = ({
 
   return (
     <BannerWrapper id="about_section">
+      <ParticlesComponent />
       <HeaderList className="about_container">
-        
         <Box {...row}>
           <Box {...textArea}>
-          <ParticlesComponent />
-          <Heading
+            <Heading
               {...title}
               content={Data.hostingJson.ABOUTME_INFO[0].name}
               as="h1"
@@ -64,65 +63,99 @@ const AboutMeSection = ({
               content={Data.hostingJson.ABOUTME_INFO[0].job}
             />
 
-            {Data.hostingJson.ABOUTME_INFO.map((info,index) => {
-
-            return (
-              //<text key={`test-index-${index}`}>{info.name}{info.address}</text>
-              <ul>
-                {/*<List key={`test-index-${index}`} >{info.email}</List>
+            {Data.hostingJson.ABOUTME_INFO.map((info, index) => {
+              return (
+                //<text key={`test-index-${index}`}>{info.name}{info.address}</text>
+                <ul>
+                  {/*<List key={`test-index-${index}`} >{info.email}</List>
                 <List key={`test-index-${index}`} >{info.address}</List>
                 <List key={`test-index-${index}`} >{info.phone}</List>*/}
-                
-                <List key={`test-index-${index}`} ><a href={info.linkedin}>{info.linkedin}</a></List>
-                <List key={`test-index-${index}`} ><a href={info.github}>{info.github}</a></List>
-              </ul>
-            )
+
+                  <List key={`test-index-${index}`}>
+                    <a href={info.linkedin}>{info.linkedin}</a>
+                  </List>
+                  <List key={`test-index-${index}`}>
+                    <a href={info.github}>{info.github}</a>
+                  </List>
+                </ul>
+              );
             })}
             <Expierence_Projects_Block>
               <List>
-              <h2><b>Professional Experience</b></h2>
-              <br />
-              <b><i>Freelance Web Developer</i></b>
-              <br />
-              <br />
-              <b>2020 – present</b>
-              <br />
-              Creating and maintaining customer-specific websites with the most customer acquisition and highest organic search and SEO in mind.
-              <br />
-              <br />
-              <b><i>Manager</i></b>
-              <br />
-              <b>Batch Gastropub</b>
-              <br />
-              <br />
-              <b>2016 – present</b>
-              <br />
-              <b>Brickell, United States</b>
-              <br />
-              Coordinates schedules for FOH restaurant staff Ensures daily standards of restaurant grounds and personnel are upheld Directs the production of brand products necessary for daily operation Maintains store IT Equipment and all Maintenance needs Resolves guest concerns to ensure guest retention and satisfaction Provides staff critique and product knowledge to ensure growth.
-              <br />
-              <br />
+                <h2>
+                  <b>Professional Experience</b>
+                </h2>
+                <br />
+                <b>
+                  <i>Freelance Web Developer</i>
+                </b>
+                <br />
+                <br />
+                <b>2020 – present</b>
+                <br />
+                Creating and maintaining customer-specific websites with the
+                most customer acquisition and highest organic search and SEO in
+                mind.
+                <br />
+                <br />
+                <b>
+                  <i>Manager</i>
+                </b>
+                <br />
+                <b>Batch Gastropub</b>
+                <br />
+                <br />
+                <b>2016 – present</b>
+                <br />
+                <b>Brickell, United States</b>
+                <br />
+                Coordinates schedules for FOH restaurant staff Ensures daily
+                standards of restaurant grounds and personnel are upheld Directs
+                the production of brand products necessary for daily operation
+                Maintains store IT Equipment and all Maintenance needs Resolves
+                guest concerns to ensure guest retention and satisfaction
+                Provides staff critique and product knowledge to ensure growth.
+                <br />
+                <br />
               </List>
               <List>
-                
-              <h2><b>Projects</b></h2>
-              <h3><b><Link to="https://akgspecialtyinc.com/" >AKG Specialty Inc</Link></b></h3>
-              <b><i>Project Developer</i></b>
-              <br />
-              <b>Current</b>
-              <br />
-              Setup and deploy a React.js and Gatsby Web application for a Miami-based Roofing Contractor.
-              Gather information from the client to develop content and images for the webpage.
-              Manage all aspects of the project from DNS, Netlify Hosting, Backlinks, KeyWords, and SEO.
-              <br />
-              <br />
-              <h3><b><Link to="/" >Affiliate Lead Marketing</Link></b></h3>
-              <b><i>Project Developer</i></b>
-              <br />
-              <br />
-              <b>Current</b>
-              <br />
-              Develop and launch React.js with Gatsby Freelance Developer Project Web application to display current projects and connect with clients.</List>
+                <h2>
+                  <b>Projects</b>
+                </h2>
+                <h3>
+                  <b>
+                    <a href="https://akgspecialtyinc.com/">AKG Specialty Inc</a>
+                  </b>
+                </h3>
+                <b>
+                  <i>Project Developer</i>
+                </b>
+                <br />
+                <b>Current</b>
+                <br />
+                Setup and deploy a React.js and Gatsby Web application for a
+                Miami-based Roofing Contractor. Gather information from the
+                client to develop content and images for the webpage. Manage all
+                aspects of the project from DNS, Netlify Hosting, Backlinks,
+                KeyWords, and SEO.
+                <br />
+                <br />
+                <h3>
+                  <b>
+                    <Link to="/">Affiliate Lead Marketing</Link>
+                  </b>
+                </h3>
+                <b>
+                  <i>Project Developer</i>
+                </b>
+                <br />
+                <br />
+                <b>Current</b>
+                <br />
+                Develop and launch React.js with Gatsby Freelance Developer
+                Project Web application to display current projects and connect
+                with clients.
+              </List>
             </Expierence_Projects_Block>
           </Box>
         </Box>
@@ -150,7 +183,7 @@ AboutMeSection.defaultProps = {
     justifyContent: 'center',
   },
   col: {
-    display: "inline",
+    display: 'inline',
     pr: '15px',
     pl: '15px',
   },

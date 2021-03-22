@@ -4,7 +4,7 @@ import Box from 'common/components/Box';
 import Text from 'common/components/Text';
 import Heading from 'common/components/Heading';
 import Button from 'common/components/Button';
-import Input from 'common/components/Input';
+//import Input from 'common/components/Input';
 import Container from 'common/components/UI/Container';
 
 import ContactFromWrapper from './contact.style';
@@ -31,32 +31,21 @@ const ContactSection = ({
         </Box>
         <Box {...row}>
           <Box {...contactForm}>
-          <form
-                    action="#"
-                    data-netlify="true"
-                    name="contact"
-                    method="post"
-                  >
-            <ContactFromWrapper>
-            
-                <Input type="hidden" name="form-name" value="contact" />
-                <Input
+            <form action="#" data-netlify="true" name="contact" method="post">
+              <ContactFromWrapper>
+                <input type="hidden" name="form-email" value="contact" />
+                <input
+                  style={{ minHeight: '40px' }}
                   inputType="email"
                   name="name"
                   placeholder="Email address"
-                  iconPosition="right"
-                  isMaterial={false}
                   className="email_input"
                   aria-label="email"
                 />
                 <Button type="submit" title="SEND MESSAGE" />
-              
-            </ContactFromWrapper>
+              </ContactFromWrapper>
             </form>
-            <Text
-              {...note}
-              content="Email us anytime."
-            />
+            <Text {...note} content="Email us anytime." />
           </Box>
         </Box>
       </Container>

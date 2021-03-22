@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 //import Icon from 'react-icons-kit';
@@ -38,9 +39,6 @@ const AboutSection = ({
         ABOUT_INFO {
           name
           job
-          email
-          address
-          phone
           linkedin
           github
         }
@@ -50,12 +48,11 @@ const AboutSection = ({
 
   return (
     <BannerWrapper id="about_section">
+      <ParticlesComponent />
       <HeaderList className="about_container">
-        
         <Box {...row}>
           <Box {...textArea}>
-          <ParticlesComponent />
-          <Heading
+            <Heading
               {...title}
               content={Data.hostingJson.ABOUT_INFO[0].name}
               as="h1"
@@ -65,54 +62,49 @@ const AboutSection = ({
               content={Data.hostingJson.ABOUT_INFO[0].job}
             />
 
-            {Data.hostingJson.ABOUT_INFO.map((info,index) => {
-
-            return (
-              //<text key={`test-index-${index}`}>{info.name}{info.address}</text>
-              <ul>
-                {/*<List key={`test-index-${index}`} >{info.email}</List>
+            {Data.hostingJson.ABOUT_INFO.map((info, index) => {
+              return (
+                //<text key={`test-index-${index}`}>{info.name}{info.address}</text>
+                <ul>
+                  {/*<List key={`test-index-${index}`} >{info.email}</List>
                 <List key={`test-index-${index}`} >{info.address}</List>
                 <List key={`test-index-${index}`} >{info.phone}</List>*/}
-                
-                <List key={`test-index-${index}`} ><a href={info.linkedin}>{info.linkedin}</a></List>
-                <List key={`test-index-${index}`} ><a href={info.github}>{info.github}</a></List>
-              </ul>
-            )
+
+                  <List key={`test-index-${index}`}>
+                    <a href={info.linkedin}>{info.linkedin}</a>
+                  </List>
+                  <List key={`test-index-${index}`}>
+                    <a href={info.github}>{info.github}</a>
+                  </List>
+                </ul>
+              );
             })}
             <Expierence_Projects_Block>
-              <List><b>Professional Experience</b>
-              <br />
-              <br />
-              <b><i>Freelance Web Developer</i></b>
-              <br />
-              <br />
-              <b>2020 – present</b>
-              <br />
-              Creating and maintaining customer-specific websites with the most customer acquisition and highest organic search and SEO in mind.
-              
-              </List>
               <List>
-                
-              <b>Projects</b>
-              <br />
-              <br />
-              <b>AKG Specialty Inc</b>
-              <br />
-              <br />
-              <b>Current</b>
-              <br />
-              Setup and deploy a React.js and Gatsby Web application for a Miami-based Roofing Contractor.
-              <br />
-              Gather information from the client to develop content and images for the webpage.
-              Manage all aspects of the project from DNS, Netlify Hosting, Backlinks, KeyWords, and SEO.
-              <br />
-              <br />
-              <b>Affiliate Lead Marketing</b>
-              <br />
-              <br />
-              <b>Current</b>
-              <br />
-              Develop and launch React.js with Gatsby Freelance Developer Project Web application to display current projects and connect with clients.</List>
+                ALM is an up-and-coming web-development company that builds
+                Search Engine Optimized web pages using React and Gatsby. With
+                the use of Gatsby, the page load time is greatly reduced
+                therefore providing higher page rank on google. Our mission is
+                to provide our customers with the greatest visibility and most
+                customer acquisitions possible.
+                <h2>
+                  <b>Our Recent Projects</b>
+                </h2>
+                <h3>
+                  <b>
+                    <a href="https://akgspecialtyinc.com/">AKG Specialty Inc</a>
+                  </b>
+                </h3>
+                <br />
+                Setup and deploy a React.js and Gatsby Web application for a
+                Miami-based Roofing Contractor.
+                <br />
+                Gather information from the client to develop content and images
+                for the webpage. Manage all aspects of the project from DNS,
+                Netlify Hosting, Backlinks, KeyWords, and SEO.
+                <br />
+                <br />
+              </List>
             </Expierence_Projects_Block>
           </Box>
         </Box>
@@ -140,7 +132,7 @@ AboutSection.defaultProps = {
     justifyContent: 'center',
   },
   col: {
-    display: "inline",
+    display: 'inline',
     pr: '15px',
     pl: '15px',
   },

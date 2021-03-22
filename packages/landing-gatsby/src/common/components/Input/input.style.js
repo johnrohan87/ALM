@@ -179,6 +179,25 @@ const InputField = styled.div`
   }
 `;
 
+const InputStyle = styled.input`
+  font-size: 16px;
+  padding: 11px;
+  display: block;
+  width: 100%;
+  color: ${themeGet('colors.textColor', '#484848')};
+  box-shadow: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid ${themeGet('colors.inactiveIcon', '#ebebeb')};
+  transition: border-color 0.2s ease;
+  min-height: 60px;
+  padding-bottom: 0;
+  &:focus {
+    outline: none;
+    border-color: ${themeGet('colors.primary', '#028489')};
+  }
+`;
+
 const EyeButton = styled.button`
   width: 43px;
   height: 40px;
@@ -236,5 +255,6 @@ const EyeButton = styled.button`
 `;
 
 export { EyeButton };
+export { InputStyle };
 
 export default InputField;
