@@ -54,7 +54,7 @@ const AboutSection = ({
           <Box {...textArea}>
             <Heading
               {...title}
-              content={Data.hostingJson.ABOUT_INFO[0].name}
+              content={'About ' + Data.hostingJson.ABOUT_INFO[0].name}
               as="h1"
             />
             <Text
@@ -82,11 +82,22 @@ const AboutSection = ({
             <Expierence_Projects_Block>
               <List>
                 ALM is an up-and-coming web-development company that builds
-                Search Engine Optimized web pages using React and Gatsby. With
-                the use of Gatsby, the page load time is greatly reduced
-                therefore providing higher page rank on google. Our mission is
-                to provide our customers with the greatest visibility and most
-                customer acquisitions possible.
+                Search Engine Optimized web pages using React and Gatsby.
+                <br />
+                <br />
+                Our mission is to provide our customers with the greatest
+                visibility and the most customer acquisitions possible. To
+                ensure our customers domain positioning is secured we
+                continually monitor page rank, key words, and traffic analytics.
+                <br />
+                <br />
+                Gatsby loads only critical parts of the page, exactly when the
+                visitor needs it. Once loaded, Gatsby prefetches resources for
+                other pages so that clicking on the site feels smooth and
+                responsive. Everything is statically generated at runtime - so
+                your site loads as fast as possible.
+                <br />
+                <br />
                 <h2>
                   <b>Our Recent Projects</b>
                 </h2>
