@@ -26,7 +26,7 @@ export default () => {
   return (
     <ThemeProvider theme={hostingTheme}>
       <ParallaxProvider>
-        <SEO title="AffiliateLeadMarketing.com" />
+        <SEO title="Home Page" />
 
         <ResetCSS />
         <GlobalStyle />

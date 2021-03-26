@@ -2,19 +2,19 @@
   "FEATURES_DATA": [
     {
       "title": "Domain Registration & Web Hosting",
-      "description": "We provide brokering domain services and hosting solutions based on your needs.",
+      "description": "We provide domain registration and hosting solutions based on your needs. ",
       "icon": "flaticon-trophy violate",
       "animation": true
     },
     {
       "title": "Website Design & Development",
-      "description": "Transferring from another host? Our expert support team is standing by to transfer your site.",
+      "description": "Our expert support team is standing by to build or transfer your website. ",
       "icon": "flaticon-startup yellow",
       "animation": true
     },
     {
       "title": "Dedicated Server & Cloud Hosting",
-      "description": "Netlify DNS Web Server is a high-performance HTTPS server and known for its high performance and Cloud Support.",
+      "description": "Netlify DNS Web Server is a high-performance HTTPS server and known for its high performance and Cloud Support. ",
       "icon": "flaticon-creative green",
       "animation": true
     }
@@ -127,16 +127,8 @@
       "title": "About Us",
       "menuItems": [
         {
-          "url": "#",
-          "text": "Customer Support"
-        },
-        {
-          "url": "#",
+          "url": "/about",
           "text": "About Us"
-        },
-        {
-          "url": "#",
-          "text": "Copyright"
         }
       ,
     

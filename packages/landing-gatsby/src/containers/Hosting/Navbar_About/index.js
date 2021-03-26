@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react'; //, { useContext }
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
+//import { useStaticQuery, graphql } from 'gatsby';
 import NavbarWrapper from 'common/components/Navbar';
-import Drawer from 'common/components/Drawer';
+//import Drawer from 'common/components/Drawer';
 //import Button from 'common/components/Button';
 import Logo from 'common/components/UIElements/Logo';
 import Box from 'common/components/Box';
-import HamburgMenu from 'common/components/HamburgMenu';
+//import HamburgMenu from 'common/components/HamburgMenu';
 import Container from 'common/components/UI/Container';
-import { DrawerContext } from 'common/contexts/DrawerContext';
-import ScrollSpyMenu from 'common/components/ScrollSpyMenu';
+//import { DrawerContext } from 'common/contexts/DrawerContext';
+//import ScrollSpyMenu from 'common/components/ScrollSpyMenu';
 
 import LogoImage from 'common/assets/image/hosting/logo.png';
 
 const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
+  {
+    /** 
   const { state, dispatch } = useContext(DrawerContext);
 
   // Toggle drawer
@@ -35,6 +38,8 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
       }
     }
   `);
+*/
+  }
 
   return (
     <NavbarWrapper {...navbarStyle}>
@@ -47,16 +52,21 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
             logoStyle={logoStyle}
           />
           <Box {...menuWrapper}>
-            <ScrollSpyMenu
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            </ul>
+            {/*<ScrollSpyMenu
               className="main_menu"
               menuItems={Data.hostingJson.MENU_ITEMS}
               offset={-70}
-            />
+            />*/}
 
             {/*<a className="navbar_button" href="#1">
               <Button {...button} title="BUY NOW" />
             </a>*/}
-            <Drawer
+            {/*<Drawer
               width="420px"
               placement="right"
               drawerHandler={<HamburgMenu barColor="#eb4d4b" />}
@@ -68,11 +78,11 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
                 menuItems={Data.hostingJson.MENU_ITEMS}
                 drawerClose={true}
                 offset={-100}
-              />
-              {/*<a className="navbar_drawer_button" href="#1">
+            />*/}
+            {/*<a className="navbar_drawer_button" href="#1">
                 <Button {...button} title="BUY NOW" />
           </a>*/}
-            </Drawer>
+            {/*</Drawer>*/}
           </Box>
         </Box>
       </Container>

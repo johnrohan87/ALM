@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
+//import { useStaticQuery, graphql } from 'gatsby';
 import Box from 'common/components/Box';
 import Text from 'common/components/Text';
 import Heading from 'common/components/Heading';
@@ -19,6 +20,7 @@ const Footer = ({
   logoStyle,
   textStyle,
 }) => {
+  /** 
   const Data = useStaticQuery(graphql`
     query {
       hostingJson {
@@ -32,6 +34,7 @@ const Footer = ({
       }
     }
   `);
+  */
 
   return (
     <FooterWrapper>
@@ -49,7 +52,19 @@ const Footer = ({
           </Box>
           {/* End of footer logo column */}
           <Box {...colTwo}>
-            {Data.hostingJson.FOOTER_WIDGET.map((widget, index) => (
+            {
+              <Box className="col" {...col} key={`footer-widget-links`}>
+                <Heading content={'About Us'} {...titleStyle} />
+                <List>
+                  <ListItem key={`footer-list-item-link`}>
+                    <Link as="a" href={'/about'} className="ListItem">
+                      {'About Us'}
+                    </Link>
+                  </ListItem>
+                </List>
+              </Box>
+              /** 
+            Data.hostingJson.FOOTER_WIDGET.map((widget, index) => (
               <Box className="col" {...col} key={`footer-widget-${index}`}>
                 <Heading content={widget.title} {...titleStyle} />
                 <List>
@@ -62,7 +77,8 @@ const Footer = ({
                   ))}
                 </List>
               </Box>
-            ))}
+            ))*/
+            }
           </Box>
           {/* End of footer List column */}
         </Box>

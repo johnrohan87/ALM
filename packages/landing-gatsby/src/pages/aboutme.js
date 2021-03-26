@@ -3,9 +3,9 @@ import { Link } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 //import Sticky from 'react-stickynode';
 import { hostingTheme } from 'common/theme/hosting';
-import { GlobalStyle } from 'containers/Hosting/hosting.style';//, ContentWrapper
+import { GlobalStyle } from 'containers/Hosting/hosting.style'; //, ContentWrapper
 import { ResetCSS } from 'common/assets/css/style';
-//import Navbar from 'containers/Hosting/Navbar';
+import Navbar from 'containers/Hosting/Navbar_About';
 //import Box from 'common/components/Box';
 //import Text from 'common/components/Text';
 //import Container from 'common/components/UI/Container';
@@ -21,6 +21,7 @@ const AboutMe = () => (
     <ParallaxProvider>
       <ResetCSS />
       <GlobalStyle />
+      <Navbar />
       <SEO title="About John Rohan" />
       <AboutMeSection />
       <Link to="/">Go back to the homepage</Link>

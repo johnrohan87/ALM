@@ -99,7 +99,8 @@ export const SERVICES_DATA = [
     icon: `${IconSix}`,
   },
 ];
-{/**{
+{
+  /**{
     label: 'Service',
     path: '#service_section',
     offset: '70',
@@ -108,7 +109,8 @@ export const SERVICES_DATA = [
     label: 'Testimonial',
     path: '#testimonial_section',
     offset: '70',
-  }, */}
+  }, */
+}
 export const MENU_ITEMS = [
   {
     label: 'Home',
@@ -119,7 +121,7 @@ export const MENU_ITEMS = [
     label: 'About Us',
     path: '/about#',
     offset: '70',
-    linked: '/about'
+    linked: '/about',
   },
   {
     label: 'Feature',
@@ -137,7 +139,8 @@ export const MENU_ITEMS = [
     offset: '70',
   },
 ];
-{/**{
+{
+  /**{
         url: '#',
         text: 'Support Center',
       },
@@ -145,47 +148,15 @@ export const MENU_ITEMS = [
         url: '#',
         text: 'Popular Campaign',
       },
-    */}
+    */
+}
 export const FOOTER_WIDGET = [
   {
     title: 'About Us',
     menuItems: [
       {
         url: '#',
-        text: 'Customer Support',
-      },
-      {
-        url: '#',
         text: 'About Us',
-      },
-      {
-        url: '#',
-        text: 'Copyright',
-      },
-    ],
-  },
-  {
-    title: 'Our Information',
-    menuItems: [
-      {
-        url: '#',
-        text: 'Return Policy',
-      },
-      {
-        url: '#',
-        text: 'Privacy Policy',
-      },
-      {
-        url: '#',
-        text: 'Terms & Conditions',
-      },
-      {
-        url: '#',
-        text: 'Site Map',
-      },
-      {
-        url: '#',
-        text: 'Store Hours',
       },
     ],
   },
