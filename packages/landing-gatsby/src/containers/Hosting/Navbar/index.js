@@ -47,8 +47,6 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
             title="Agency"
             logoStyle={logoStyle}
           />
-          <Link to="/account">Go to your account</Link>
-          <Link to="/almlogin">Go to ALM Login</Link>
           <Box {...menuWrapper}>
             <ScrollSpyMenu
               className="main_menu"
