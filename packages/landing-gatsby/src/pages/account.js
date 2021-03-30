@@ -20,9 +20,9 @@ const Account = () => {
     login();
     return (
       <p>
-        Redirecting to login...{'domain - ' + process.env.AUTH0_DOMAIN}
-        {'client ID - ' + process.env.AUTH0_CLIENTID}
-        {'callback - ' + process.env.AUTH0_CALLBACK}
+        Redirecting to login...{'domain - ' + process.env.GATSBY_AUTH0_DOMAIN}
+        {'client ID - ' + process.env.GATSBY_AUTH0_CLIENTID}
+        {'callback - ' + process.env.GATSBY_AUTH0_CALLBACK}
       </p>
     );
   }
