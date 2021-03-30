@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import NavbarWrapper from 'common/components/Navbar';
@@ -46,6 +47,8 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
             title="Agency"
             logoStyle={logoStyle}
           />
+          <Link to="/account">Go to your account</Link>
+          <Link to="/almlogin">Go to ALM Login</Link>
           <Box {...menuWrapper}>
             <ScrollSpyMenu
               className="main_menu"

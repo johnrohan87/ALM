@@ -27,17 +27,14 @@ export default () => {
     <ThemeProvider theme={hostingTheme}>
       <ParallaxProvider>
         <SEO title="Home Page" />
-
         <ResetCSS />
         <GlobalStyle />
-
         <ContentWrapper>
           <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
             <DrawerProvider>
               <Navbar />
             </DrawerProvider>
           </Sticky>
-
           <BannerSection />
           <FeatureSection />
           {/**<InfoSection /> */}

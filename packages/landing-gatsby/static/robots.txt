@@ -1,3 +1,7 @@
 User-agent: *
 Disallow: /aboutme
 Disallow: /aboutme/
+Disallow: /account
+Disallow: /account/
+Disallow: /callback
+Disallow: /callback/
