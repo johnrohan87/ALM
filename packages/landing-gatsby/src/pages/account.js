@@ -18,7 +18,13 @@ const Billing = () => <p>Billing</p>;
 const Account = () => {
   if (!isAuthenticated()) {
     login();
-    return <p>Redirecting to login...</p>;
+    return (
+      <p>
+        Redirecting to login...{'domain - ' + process.env.AUTH0_DOMAIN}
+        {'client ID - ' + process.env.AUTH0_CLIENTID}
+        {'callback - ' + process.env.AUTH0_CALLBACK}
+      </p>
+    );
   }
 
   const user = getProfile();
