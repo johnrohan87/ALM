@@ -1,4 +1,4 @@
-// src/utils/auth.js ////push testing
+// src/utils/auth.js
 import auth0 from 'auth0-js';
 import { navigate } from 'gatsby';
 
