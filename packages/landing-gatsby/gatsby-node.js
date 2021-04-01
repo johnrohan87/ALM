@@ -23,9 +23,25 @@ exports.onCreatePage = async ({ page, actions }) => {
 };
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    },
-  });
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /auth0-js/,
+            use: loaders.null(),
+          },
+        ],
+      },
+      resolve: {
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      },
+    });
+  } else {
+    actions.setWebpackConfig({
+      resolve: {
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      },
+    });
+  }
 };
