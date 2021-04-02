@@ -9,6 +9,7 @@ const auth = isBrowser
       domain: process.env.GATSBY_AUTH0_DOMAIN,
       clientID: process.env.GATSBY_AUTH0_CLIENTID,
       redirectUri: process.env.GATSBY_AUTH0_CALLBACK,
+      audience: process.env.GATSBY_AUTH0_AUDIENCE,
       responseType: 'token id_token',
       scope: 'openid profile email',
     })
@@ -40,6 +41,7 @@ export const login = () => {
 
 const setSession = (cb = () => {}) => (err, authResult) => {
   if (err) {
+    console.log(err);
     navigate('/');
     cb();
     return;

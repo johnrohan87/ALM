@@ -5,3 +5,5 @@ Disallow: /account
 Disallow: /account/
 Disallow: /callback
 Disallow: /callback/
+Disallow: /api
+Disallow: /api/

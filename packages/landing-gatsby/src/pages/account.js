@@ -10,10 +10,27 @@ import {
 import { Link } from 'gatsby';
 
 const Home = ({ user }) => {
-  return <p>Hi, {user.name ? user.name : 'friend'}!</p>;
+  return (
+    <>
+      <p>Hi, {user.name ? user.name : 'friend'}!</p>
+      <ul>
+        {Object.entries(user).map(([key, val]) => (
+          <li key={key}>
+            {key}: {val}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };
 const Settings = () => <p>Settings</p>;
 const Billing = () => <p>Billing</p>;
+const Admin = ({ user }) => (
+  <>
+    <p>Admin Page</p>
+    <p>Info Here</p>
+  </>
+);
 
 const Account = () => {
   if (!isAuthenticated()) {
@@ -29,6 +46,7 @@ const Account = () => {
         <Link to="/account/">Account Home</Link>{' '}
         <Link to="/account/settings/">Settings</Link>{' '}
         <Link to="/account/billing/">Billing</Link>{' '}
+        <Link to="/account/admin/">Admin</Link>{' '}
         <a
           href="#logout"
           onClick={(e) => {
@@ -43,6 +61,7 @@ const Account = () => {
         <Home path="/account/" user={user} />
         <Settings path="/account/settings" />
         <Billing path="/account/billing" />
+        <Admin path="/account/admin" />
       </Router>
     </>
   );
