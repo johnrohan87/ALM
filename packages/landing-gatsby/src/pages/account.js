@@ -1,6 +1,9 @@
 // src/pages/account.js //test
 import React from 'react';
 import { Router } from '@reach/router';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStore } from '../common/utils/store/almSlice';
+
 import {
   login,
   logout,
@@ -12,7 +15,8 @@ import { Link } from 'gatsby';
 const Home = ({ user }) => {
   return (
     <>
-      <p>Hi, {user.name ? user.name : 'friend'}!</p>
+      <h1>Hi, {user.name ? user.name : 'friend'}!</h1>
+      <h2>Your current user info</h2>
       <ul>
         {Object.entries(user).map(([key, val]) => (
           <li key={key}>
@@ -25,12 +29,30 @@ const Home = ({ user }) => {
 };
 const Settings = () => <p>Settings</p>;
 const Billing = () => <p>Billing</p>;
-const Admin = ({ user }) => (
-  <>
-    <p>Admin Page</p>
-    <p>Info Here</p>
-  </>
-);
+const Admin = ({ user }) => {
+  const dispatch = useDispatch();
+  const tmpALMDBStore = useSelector((state) => state.alm_db.user);
+  if (user !== tmpALMDBStore) {
+    dispatch(updateStore(user));
+  }
+
+  return (
+    <>
+      <p>Admin Page</p>
+      <p>Info Here</p>
+
+      <h1>Hi, {user.name ? user.name : 'friend'}!</h1>
+      <h2>Your current user state</h2>
+      <ul>
+        {Object.entries(tmpALMDBStore).map(([key, val]) => (
+          <li key={key}>
+            {key}: {val}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
 
 const Account = () => {
   if (!isAuthenticated()) {
@@ -61,7 +83,7 @@ const Account = () => {
         <Home path="/account/" user={user} />
         <Settings path="/account/settings" />
         <Billing path="/account/billing" />
-        <Admin path="/account/admin" />
+        <Admin path="/account/admin" user={user} />
       </Router>
     </>
   );
