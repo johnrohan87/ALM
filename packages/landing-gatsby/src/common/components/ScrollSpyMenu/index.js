@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import Scrollspy from 'react-scrollspy';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 import { DrawerContext } from '../../contexts/DrawerContext';
 
@@ -41,8 +41,11 @@ const ScrollSpyMenu = ({ className, menuItems, drawerClose, ...props }) => {
     >
       {menuItems.map((menu, index) => (
         <li key={`menu-item-${index}`}>
+          {/*<Link to={menu.path}>{menu.label}</Link>
+          <AniLink cover bg="#663399" to={menu.link}>{menu.label}</AniLink>
+          */}
           {menu.staticLink ? (
-            <Link href={menu.path}>{menu.label}</Link>
+            <Link to={menu.path}>{menu.label}</Link>
           ) : (
             <>
               {drawerClose ? (
@@ -52,12 +55,20 @@ const ScrollSpyMenu = ({ className, menuItems, drawerClose, ...props }) => {
                   onClick={toggleDrawer}
                 >
                   {/*menu.label*/}
-                  {menu.linked ? <Link to={menu.linked}>{menu.label}</Link> : menu.label}
+                  {menu.linked ? (
+                    <Link to={menu.path}>{menu.label}</Link>
+                  ) : (
+                    menu.label
+                  )}
                 </AnchorLink>
               ) : (
                 <AnchorLink href={menu.path} offset={menu.offset}>
                   {/*menu.label*/}
-                  {menu.linked ? <Link to={menu.linked}>{menu.label}</Link> : menu.label}
+                  {menu.linked ? (
+                    <Link to={menu.path}>{menu.label}</Link>
+                  ) : (
+                    menu.label
+                  )}
                 </AnchorLink>
               )}
             </>
