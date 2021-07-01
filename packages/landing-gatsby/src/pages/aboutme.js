@@ -24,7 +24,7 @@ const AboutMe = () => (
       <Navbar />
       <SEO title="About John Rohan" />
       <AboutMeSection />
-      <Link to="/">Go back to the homepage</Link>
+      {/*<Link to="/">Go back to the homepage</Link>*/}
     </ParallaxProvider>
   </ThemeProvider>
 );

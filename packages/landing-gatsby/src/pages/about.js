@@ -24,7 +24,7 @@ const About = () => (
       <Navbar />
       <SEO title="About Affiliate Lead Marketing" />
       <AboutSection />
-      <Link to="/">Go back to the homepage</Link>
+      {/*<Link to="/">Go back to the homepage</Link>*/}
     </ParallaxProvider>
   </ThemeProvider>
 );

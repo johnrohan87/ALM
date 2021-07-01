@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import BannerBG from 'common/assets/image/hosting/banner-bg.jpg';
+//import BannerBG from 'common/assets/image/hosting/banner-bg.jpg';
+import BannerBG from 'common/assets/image/ALM_Background.jpg';
 
 const AboutWrapper = styled.section`
   padding-top: 100px;
