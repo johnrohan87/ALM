@@ -103,16 +103,35 @@ const AboutSection = ({
                 </h2>
                 <h3>
                   <b>
+                    <a href="https://ecsolutionsgroup.com/">
+                      EC Solutions Group
+                    </a>
+                  </b>
+                </h3>
+                <b>
+                  <i>Project Developer</i>
+                </b>
+                <br />
+                <b>Current</b>
+                <br />
+                Setup and deploy a React.js and Gatsby Web application for a
+                Miami-based Crisis Counseling Co. Gather information from the
+                client to develop content and images for the webpage. Manage all
+                aspects of the project from DNS, Netlify Hosting, Backlinks,
+                KeyWords, and SEO.
+                <br />
+                <br />
+                <h3>
+                  <b>
                     <a href="https://akgspecialtyinc.com/">AKG Specialty Inc</a>
                   </b>
                 </h3>
                 <br />
                 Setup and deploy a React.js and Gatsby Web application for a
-                Miami-based Roofing Contractor.
-                <br />
-                Gather information from the client to develop content and images
-                for the webpage. Manage all aspects of the project from DNS,
-                Netlify Hosting, Backlinks, KeyWords, and SEO.
+                Miami-based Roofing Contractor. Gather information from the
+                client to develop content and images for the webpage. Manage all
+                aspects of the project from DNS, Netlify Hosting, Backlinks,
+                KeyWords, and SEO.
                 <br />
                 <br />
               </List>

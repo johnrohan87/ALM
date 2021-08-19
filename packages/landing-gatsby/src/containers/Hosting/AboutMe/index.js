@@ -19,6 +19,7 @@ import BannerWrapper, {
   HeaderList,
   Expierence_Projects_Block,
 } from './about.style';
+//import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 //import { search } from 'react-icons-kit/feather/search';
 
@@ -122,6 +123,26 @@ const AboutMeSection = ({
                 <h2>
                   <b>Projects</b>
                 </h2>
+                <h3>
+                  <b>
+                    <a href="https://ecsolutionsgroup.com/">
+                      EC Solutions Group
+                    </a>
+                  </b>
+                </h3>
+                <b>
+                  <i>Project Developer</i>
+                </b>
+                <br />
+                <b>Current</b>
+                <br />
+                Setup and deploy a React.js and Gatsby Web application for a
+                Miami-based Crisis Counseling Co. Gather information from the
+                client to develop content and images for the webpage. Manage all
+                aspects of the project from DNS, Netlify Hosting, Backlinks,
+                KeyWords, and SEO.
+                <br />
+                <br />
                 <h3>
                   <b>
                     <a href="https://akgspecialtyinc.com/">AKG Specialty Inc</a>

@@ -11,6 +11,7 @@ import Box from 'common/components/Box';
 import Container from 'common/components/UI/Container';
 //import { DrawerContext } from 'common/contexts/DrawerContext';
 //import ScrollSpyMenu from 'common/components/ScrollSpyMenu';
+//import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 import LogoImage from 'common/assets/image/hosting/logo.png';
 
@@ -54,7 +55,9 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
           <Box {...menuWrapper}>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link fade to="/">
+                  Home
+                </Link>
               </li>
             </ul>
             {/*<ScrollSpyMenu
