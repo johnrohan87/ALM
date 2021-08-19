@@ -16,8 +16,8 @@ import Container from 'common/components/UI/Container';
 import LogoImage from 'common/assets/image/hosting/logo.png';
 
 const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
-  {
-    /** 
+  //  {
+  /** 
   const { state, dispatch } = useContext(DrawerContext);
 
   // Toggle drawer
@@ -40,7 +40,7 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
     }
   `);
 */
-  }
+  //  }
 
   return (
     <NavbarWrapper {...navbarStyle}>

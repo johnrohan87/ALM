@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import Scrollspy from 'react-scrollspy';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import AniLink from 'gatsby-plugin-transition-link/AniLink';
+//import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 import { DrawerContext } from '../../contexts/DrawerContext';
 

@@ -1,4 +1,5 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+//nanoid,
 import { client } from '../client';
 
 export const almSlice = createSlice({
