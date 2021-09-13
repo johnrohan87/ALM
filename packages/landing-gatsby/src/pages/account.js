@@ -39,6 +39,11 @@ const Admin = ({ user }) => {
   return (
     <>
       <p>Admin Page</p>
+      {user.name === 'johnrohan@mail.com' ? (
+        <p>Display admin info here</p>
+      ) : (
+        <p>No admin privileges</p>
+      )}
       <p>Info Here</p>
 
       <h1>Hi, {user.name ? user.name : 'friend'}!</h1>
