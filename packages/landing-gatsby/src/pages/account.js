@@ -39,7 +39,7 @@ const Admin = ({ user }) => {
   return (
     <>
       <p>Admin Page</p>
-      {user.name === 'johnrohan@mail.com' ? (
+      {user.name === process.env.GATSBY_ADMIN_EMAIL ? (
         <p>Display admin info here</p>
       ) : (
         <p>No admin privileges</p>
