@@ -11,14 +11,14 @@ const configHeaders = {
   Accept: 'application/json',
 };
 
-export async function getUser({ email, password }) {
+export async function verifyUser({ token }) {
   try {
     const response = await axios({
       method: 'get',
       url: process.env.GATSBY_HEROKU_BASEURL + '/protected',
       timeout: 5000,
       headers: configHeaders,
-      params: { email: email, password: password },
+      data: { token: token.token },
     });
     console.log(response);
   } catch (error) {
@@ -38,10 +38,7 @@ export async function getToken({ email, password }) {
     });
     console.log(response);
     if (response.data.access_token) {
-      localStorage.setItem(
-        'access_token',
-        JSON.stringify(response.data.access_token)
-      );
+      localStorage.setItem('user', JSON.stringify(response.data.access_token));
     }
   } catch (error) {
     console.error(error);

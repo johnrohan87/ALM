@@ -21,6 +21,10 @@ import Footer from 'containers/Hosting/Footer';
 import { DrawerProvider } from 'common/contexts/DrawerContext';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import SEO from 'components/seo';
+import { Router } from '@reach/router';
+import ALMlogin from './almlogin';
+import ALMaccount from './almaccount';
+import PrivateRoute from './privateroute';
 
 export default () => {
   return (
@@ -44,6 +48,10 @@ export default () => {
           <Footer />
         </ContentWrapper>
       </ParallaxProvider>
+      <Router>
+        <ALMlogin path="./almlogin" />
+        <PrivateRoute path="./almaccount" component={ALMaccount} />
+      </Router>
     </ThemeProvider>
   );
 };
