@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-/*const instance = axios.create({
-    baseURL: 'https://some-domain.com/api/',
-    timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar'}
-});*/
-
 let configHeaders = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -36,13 +30,13 @@ export async function getToken({ email, password }) {
       body: { email, password },
       data: { email: email.email, password: password.password },
     });
-    console.log(response);
+    //console.log(response);
     if (response.data) {
       localStorage.setItem('user', JSON.stringify(response.data));
     }
   } catch (error) {
     console.error(error);
-    console.log(error.response.request._response);
+    //console.log(error.response.request._response);
   }
 }
 
@@ -57,7 +51,7 @@ export async function getCurrentUser() {
       timeout: 5000,
       headers: configHeaders,
     });
-    console.log(response);
+    //console.log(response);
     localStorage.setItem('userinfo', JSON.stringify(response.data));
   } catch (error) {
     console.error(error);

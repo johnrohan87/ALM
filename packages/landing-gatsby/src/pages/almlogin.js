@@ -11,6 +11,7 @@ const Login = ({ user }) => {
 
   const handleClick = (email, password) => {
     getToken({ email: { email }, password: { password } });
+    //move this after page change.
     getCurrentUser();
   };
 
