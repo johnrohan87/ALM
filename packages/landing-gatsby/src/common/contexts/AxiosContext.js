@@ -6,7 +6,7 @@ import axios from 'axios';
     headers: {'X-Custom-Header': 'foobar'}
 });*/
 
-const configHeaders = {
+let configHeaders = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
 };
@@ -37,8 +37,8 @@ export async function getToken({ email, password }) {
       data: { email: email.email, password: password.password },
     });
     console.log(response);
-    if (response.data.access_token) {
-      localStorage.setItem('user', JSON.stringify(response.data.access_token));
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data));
     }
   } catch (error) {
     console.error(error);
@@ -47,5 +47,20 @@ export async function getToken({ email, password }) {
 }
 
 export async function getCurrentUser() {
-  return JSON.parse(localStorage.getItem('user'));
+  try {
+    let tmpDict = JSON.parse(localStorage.getItem('user'));
+    configHeaders['Authorization'] = 'Bearer ' + tmpDict['access_token'];
+
+    const response = await axios({
+      method: 'get',
+      url: process.env.GATSBY_HEROKU_BASEURL + '/protected',
+      timeout: 5000,
+      headers: configHeaders,
+    });
+    console.log(response);
+    localStorage.setItem('userinfo', JSON.stringify(response.data));
+  } catch (error) {
+    console.error(error);
+  }
+  //return JSON.parse(localStorage.getItem('user'));
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUser, getToken } from '../common/contexts/AxiosContext';
+import { getCurrentUser, getToken } from '../common/contexts/AxiosContext';
 //import { Router } from '@reach/router';
 //import { Link } from 'gatsby';
 
@@ -11,6 +11,7 @@ const Login = ({ user }) => {
 
   const handleClick = (email, password) => {
     getToken({ email: { email }, password: { password } });
+    getCurrentUser();
   };
 
   useEffect(() => {
