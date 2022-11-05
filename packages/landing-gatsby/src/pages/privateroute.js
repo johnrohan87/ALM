@@ -4,7 +4,7 @@ import { isLoggedIn } from '../common/services/auth';
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
   if (!isLoggedIn() && location.pathname !== `/almaccount`) {
-    navigate('/login');
+    navigate('/almlogin');
     return null;
   }
 

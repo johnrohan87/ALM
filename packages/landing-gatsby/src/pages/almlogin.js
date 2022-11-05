@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import { navigate } from 'gatsby';
+import React, { useState, useEffect, useContext } from 'react';
 import { getCurrentUser, getToken } from '../common/contexts/AxiosContext';
+import { getUser, isLoggedIn } from '../common/services/auth';
+import { ThemeContext } from '../common/contexts/GlobalContext';
 //import { Router } from '@reach/router';
-//import { Link } from 'gatsby';
 
 const Login = ({ user }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+  const { loggedIn, setLoggedIn } = useContext(ThemeContext);
 
   const handleClick = (email, password) => {
-    getToken({ email: { email }, password: { password } });
-    //move this after page change.
-    getCurrentUser();
+    if (getToken({ email: { email }, password: { password } })) {
+      navigate('/almaccount');
+    }
   };
 
   useEffect(() => {
-    setErrMsg('');
-  }, [email, password]);
+    if (loggedIn) {
+      navigate('/almaccount');
+    }
+  }, [loggedIn]);
 
   return (
     <>

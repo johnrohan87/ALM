@@ -5,3 +5,6 @@
  */
 
 // You can delete this file if you're not using it
+
+import { GlobalProvider } from './src/common/contexts/GlobalContext';
+export const wrapRootElement = GlobalProvider;

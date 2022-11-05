@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router } from '@reach/router';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
+import { getUser, isLoggedIn } from '../common/services/auth';
 
 const Account = ({ user }) => {
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      if (isLoggedIn()) {
+        navigate('/almlogin');
+      }
+    });
+  });
+
   const Home = ({ user }) => {
     return (
       <>
@@ -18,20 +27,25 @@ const Account = ({ user }) => {
 
   return (
     <>
-      <nav>
-        <Link to="/almlogin/:home">Account Home</Link>{' '}
-        <Link to="/almlogin:settings">Settings</Link>{' '}
-        <Link to="/almlogin:billing">Billing</Link>{' '}
-        <Link to="/almlogin:admin">Admin</Link>{' '}
-        <a
-          href="#logout"
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Log Out
-        </a>
-      </nav>
+      {!isLoggedIn() ? (
+        <nav>
+          <Link to="/almlogin/:home">Account Home</Link>{' '}
+          <Link to="/almlogin:settings">Settings</Link>{' '}
+          <Link to="/almlogin:billing">Billing</Link>{' '}
+          <Link to="/almlogin:admin">Admin</Link>{' '}
+          <a
+            href="#logout"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            Log Out
+          </a>
+        </nav>
+      ) : (
+        navigate('/almlogin')
+      )}
+
       <Router>
         <Home path="/almlogin/:home" component={Home} />
         <Settings path="/almlogin/:settings" component={Settings} />

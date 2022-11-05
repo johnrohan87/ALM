@@ -9595,6 +9595,14 @@ gatsby-page-utils@^0.3.0:
     lodash "^4.17.20"
     micromatch "^4.0.2"
 
+gatsby-plugin-global-context@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-global-context/-/gatsby-plugin-global-context-1.0.0.tgz#f3e9311418cda6335bb0553adf4455a75325537f"
+  integrity sha512-EHCgXwhzLgG1myVRmLOU2f1IZzckqBOo5ZF/CqYAHOrUXNZRF3ADag7u70LyyB6dYu9nZ+z14pKfQBR5nKZ84A==
+  dependencies:
+    invariant "^2.2.4"
+    is-object "^1.0.1"
+
 gatsby-plugin-google-gtag@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-2.8.0.tgz#234dc936dd32440f861a3c0308521864ae55c5aa"

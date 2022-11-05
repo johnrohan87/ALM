@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import axios from 'axios';
 
 let configHeaders = {
@@ -21,23 +22,33 @@ export async function verifyUser({ token }) {
 }
 
 export async function getToken({ email, password }) {
-  try {
-    const response = await axios({
-      method: 'post',
-      url: process.env.GATSBY_HEROKU_BASEURL + '/login',
-      timeout: 5000,
-      headers: configHeaders,
-      body: { email, password },
-      data: { email: email.email, password: password.password },
+  const response = await axios({
+    method: 'post',
+    url: process.env.GATSBY_HEROKU_BASEURL + '/login',
+    timeout: 5000,
+    headers: configHeaders,
+    body: { email, password },
+    data: { email: email.email, password: password.password },
+  })
+    .then((response) => {
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+        getCurrentUser();
+      }
+    })
+    .finally(
+      () => {
+        console.log('finally', localStorage.getItem('user'));
+      },
+      () => {
+        return true;
+      }
+    )
+    .catch((error) => {
+      console.error(error);
+      return false;
+      //console.log(error.response.request._response);
     });
-    //console.log(response);
-    if (response.data) {
-      localStorage.setItem('user', JSON.stringify(response.data));
-    }
-  } catch (error) {
-    console.error(error);
-    //console.log(error.response.request._response);
-  }
 }
 
 export async function getCurrentUser() {

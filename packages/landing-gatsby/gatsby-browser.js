@@ -12,6 +12,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '@popperjs/core/dist/umd/popper.min.js';
 
+import React from 'react';
+
+import { GlobalProvider } from './src/common/contexts/GlobalContext';
+export const wrapRootElement = GlobalProvider;
 /*
 import React from 'react';
 import { silentAuth } from './src/common/utils/auth';
