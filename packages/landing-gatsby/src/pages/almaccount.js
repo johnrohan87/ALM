@@ -12,12 +12,17 @@ const Account = ({ user }) => {
     });
   });
 
-  const Home = ({ user }) => {
+  const Home = () => {
+    let userInfo = localStorage.getItem('userinfo');
+    console.log('userInfo', userInfo);
     return (
       <>
-        <h1>Hi, {user.name ? user.name : 'friend'}!</h1>
+        <h1>Hi, {userInfo.email ? userInfo.email : 'friend'}!</h1>
         <h2>Your current user info</h2>
         <ul>add user info here</ul>
+        <p>{userInfo.id}</p>
+        <p>{userInfo.roles}</p>
+        <p>{userInfo.logged_in_as}</p>
       </>
     );
   };
@@ -29,10 +34,10 @@ const Account = ({ user }) => {
     <>
       {!isLoggedIn() ? (
         <nav>
-          <Link to="/almlogin/:home">Account Home</Link>{' '}
-          <Link to="/almlogin:settings">Settings</Link>{' '}
-          <Link to="/almlogin:billing">Billing</Link>{' '}
-          <Link to="/almlogin:admin">Admin</Link>{' '}
+          <Link to="/almaccount/:home">Account Home</Link>{' '}
+          <Link to="/almaccount:settings">Settings</Link>{' '}
+          <Link to="/almaccount:billing">Billing</Link>{' '}
+          <Link to="/almaccount:admin">Admin</Link>{' '}
           <a
             href="#logout"
             onClick={(e) => {
@@ -47,10 +52,10 @@ const Account = ({ user }) => {
       )}
 
       <Router>
-        <Home path="/almlogin/:home" component={Home} />
-        <Settings path="/almlogin/:settings" component={Settings} />
-        <Billing path="/almlogin/:billing" component={Billing} />
-        <Admin path="/almlogin/:admin" component={Admin} />
+        <Home path="/almaccount/:home" component={Home} />
+        <Settings path="/almaccount/:settings" component={Settings} />
+        <Billing path="/almaccount/:billing" component={Billing} />
+        <Admin path="/almaccount/:admin" component={Admin} />
       </Router>
     </>
   );
