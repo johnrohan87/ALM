@@ -1,5 +1,11 @@
-import { useContext } from 'react';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  toggle_logged_in,
+  set_logged_in_as,
+  set_email,
+  return_logged_in,
+} from '../services/userSlice';
 
 let configHeaders = {
   'Content-Type': 'application/json',
@@ -34,15 +40,21 @@ export async function getToken({ email, password }) {
       if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data));
         getCurrentUser();
+        return response.data;
       }
     })
     .finally(
-      () => {
-        console.log('finally', localStorage.getItem('user'));
-      },
-      () => {
-        return true;
-      }
+      (response) => {
+        console.log(
+          'finally',
+          localStorage.getItem('user'),
+          'response',
+          response
+        );
+      } //,
+      //() => {
+      //  return true;
+      //}
     )
     .catch((error) => {
       console.error(error);

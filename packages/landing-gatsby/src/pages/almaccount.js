@@ -5,11 +5,9 @@ import { getUser, isLoggedIn } from '../common/services/auth';
 
 const Account = ({ user }) => {
   useEffect(() => {
-    window.addEventListener('storage', () => {
-      if (isLoggedIn()) {
-        navigate('/almlogin');
-      }
-    });
+    if (!isLoggedIn()) {
+      navigate('/almlogin');
+    }
   });
 
   const Home = () => {

@@ -23,7 +23,7 @@ export const handleLogin = ({ username, password }) => {
 export const isLoggedIn = () => {
   const user = getUser();
 
-  return !!user.username;
+  return !!user.access_token;
 };
 
 export const logout = (callback) => {
