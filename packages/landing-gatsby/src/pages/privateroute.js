@@ -3,7 +3,11 @@ import { navigate } from 'gatsby';
 import { isLoggedIn } from '../common/services/auth';
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
-  if (!isLoggedIn() && location.pathname !== `/almaccount`) {
+  if (
+    !isLoggedIn() &&
+    location.pathname !== `/almaccount` &&
+    typeof window !== 'undefined'
+  ) {
     navigate('/almlogin');
     return null;
   }
