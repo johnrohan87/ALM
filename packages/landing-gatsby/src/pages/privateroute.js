@@ -10,6 +10,8 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
     }
 
     return <Component {...rest} />;
+  } else {
+    return <></>;
   }
 };
 
