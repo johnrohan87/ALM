@@ -2,61 +2,69 @@ import React, { useEffect } from 'react';
 import { Router } from '@reach/router';
 import { Link, navigate } from 'gatsby';
 import { getUser, isLoggedIn } from '../common/services/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
+import store from '../common/services/store';
+import { getUserState } from '../common/services/userSlice';
 
-const Account = ({ user }) => {
-  useEffect(() => {
-    if (!isLoggedIn()) {
-      navigate('/almlogin');
-    }
-  });
+class Account extends React.Component {
+  /*
+  constructor(props) {
+    super(props);
+    this.state = {'user': user};
+    }*/
+  render() {
+    //const user = useSelector((state) => state.user);
 
-  const Home = () => {
-    let userInfo = localStorage.getItem('userinfo');
-    console.log('userInfo', userInfo);
+    const Home = () => {
+      //console.log('user Info', user);
+      return (
+        <>
+          <h1>Hi, {/*user.email ? user.email : 'friend'*/}!</h1>
+          <h2>Your current user info</h2>
+          <ul>User info here</ul>
+          <ul>user token {/*user.token*/}</ul>
+          <ul>logged in {/*JSON.stringify(user.logged_in)*/}</ul>
+          <ul>logged in as {/*user.logged_in_as*/}</ul>
+        </>
+      );
+    };
+    const Settings = () => <p>Settings</p>;
+    const Billing = () => <p>Billing</p>;
+    const Admin = () => <p>Admin</p>;
+
     return (
       <>
-        <h1>Hi, {userInfo.email ? userInfo.email : 'friend'}!</h1>
-        <h2>Your current user info</h2>
-        <ul>add user info here</ul>
-        <p>{userInfo.id}</p>
-        <p>{userInfo.roles}</p>
-        <p>{userInfo.logged_in_as}</p>
+        <Provider store={store}>
+          {!isLoggedIn() ? (
+            <nav>
+              <Link to="/almaccount/:home">Account Home</Link>{' '}
+              <Link to="/almaccount/:settings">Settings</Link>{' '}
+              <Link to="/almaccount/:billing">Billing</Link>{' '}
+              <Link to="/almaccount/:admin">Admin</Link>{' '}
+              <a
+                href="#logout"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                Log Out
+              </a>
+            </nav>
+          ) : (
+            <></>
+          )}
+
+          <Router>
+            <Home path="/almaccount/:home" component={Home} />
+            <Settings path="/almaccount/:settings" component={Settings} />
+            <Billing path="/almaccount/:billing" component={Billing} />
+            <Admin path="/almaccount/:admin" component={Admin} />
+          </Router>
+        </Provider>
       </>
     );
-  };
-  const Settings = () => <p>Settings</p>;
-  const Billing = () => <p>Billing</p>;
-  const Admin = () => <p>Admin</p>;
-
-  return (
-    <>
-      {!isLoggedIn() ? (
-        <nav>
-          <Link to="/almaccount/:home">Account Home</Link>{' '}
-          <Link to="/almaccount:settings">Settings</Link>{' '}
-          <Link to="/almaccount:billing">Billing</Link>{' '}
-          <Link to="/almaccount:admin">Admin</Link>{' '}
-          <a
-            href="#logout"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            Log Out
-          </a>
-        </nav>
-      ) : (
-        navigate('/almlogin')
-      )}
-
-      <Router>
-        <Home path="/almaccount/:home" component={Home} />
-        <Settings path="/almaccount/:settings" component={Settings} />
-        <Billing path="/almaccount/:billing" component={Billing} />
-        <Admin path="/almaccount/:admin" component={Admin} />
-      </Router>
-    </>
-  );
-};
+  }
+}
 
 export default Account;

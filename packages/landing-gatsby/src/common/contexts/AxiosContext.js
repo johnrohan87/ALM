@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { resolveConfig } from 'prettier';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   toggle_logged_in,
@@ -31,33 +32,34 @@ export async function getToken({ email, password }) {
   const response = await axios({
     method: 'post',
     url: process.env.GATSBY_HEROKU_BASEURL + '/login',
-    timeout: 5000,
+    timeout: 10000,
     headers: configHeaders,
     body: { email, password },
-    data: { email: email.email, password: password.password },
+    data: { email: email, password: password },
   })
     .then((response) => {
       if (response.data) {
+        console.log('axios response - ', response);
         localStorage.setItem('user', JSON.stringify(response.data));
-        getCurrentUser();
-        return response.data;
       }
     })
-    .finally(
-      (response) => {
-        console.log(
-          'finally',
-          localStorage.getItem('user'),
-          'response',
-          response
-        );
-      } //,
-      //() => {
-      //  return true;
-      //}
-    )
+    //Promise.resolve
+    //.finally(
+    //(response) => {
+    //console.log(
+    //'finally',
+    //localStorage.getItem('user'),
+    //'response',
+    //response
+    //);
+    //} //,
+    //() => {
+    //  return true;
+    //}
+    //)
     .catch((error) => {
-      console.error(error);
+      //console.error("axios response error - ",error);
+      //console.error("axios response data - ",email,password);
       return false;
       //console.log(error.response.request._response);
     });
@@ -76,6 +78,7 @@ export async function getCurrentUser() {
     });
     //console.log(response);
     localStorage.setItem('userinfo', JSON.stringify(response.data));
+    return response.data;
   } catch (error) {
     console.error(error);
   }

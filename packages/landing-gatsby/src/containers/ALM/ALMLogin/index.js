@@ -5,15 +5,20 @@ import {
   getToken,
 } from '../../../common/contexts/AxiosContext';
 import { getUser, isLoggedIn } from '../../../common/services/auth';
-import { useSelector, useDispatch } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'react-redux';
 import {
   toggle_logged_in,
+  toggle_loading,
   set_logged_in_as,
   set_email,
   return_logged_in,
+  return_loading,
+  fetchLoginData,
+  fetchUserData,
+  set_userinfo,
 } from '../../../common/services/userSlice';
-import { Provider } from 'react-redux';
 import store from '../../../common/services/store';
+import thunk from 'redux-thunk';
 
 const ALMLogin = ({ state }) => {
   const [email, setEmail] = useState('');
@@ -21,19 +26,43 @@ const ALMLogin = ({ state }) => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(user.loading ? user.loading : false);
+  const [loggedIn, setLoggedIn] = useState(
+    user.logged_in ? user.logged_in : false
+  );
 
-  const handleClick = (email, password) => {
-    let result = getToken({ email: { email }, password: { password } });
-    //dispatch({ type: 'toggle_logged_in'})
-    if (result) {
-      console.log(result);
-      dispatch(toggle_logged_in(), []);
-      navigate('/almaccount');
+  const FetchToken = async ({ email, password }) => {
+    await dispatch(fetchLoginData({ email, password }));
+    if (isLoggedIn()) {
+      await dispatch(fetchUserData());
+      navigate('/almaccount/:home');
     }
   };
+
+  const handleClick = (email, password) => {
+    {
+      /**
+    if (dispatch(fetchLoginData({email,password}))){
+      if (isLoggedIn()){
+        console.log(dispatch(return_logged_in))
+        dispatch(toggle_logged_in)
+        console.log('navigating')
+        navigate('/almaccount/:home');
+      }
+      else {
+        LoginFunction({email,password})
+        console.log('user = ',user)
+      }
+    } */
+    }
+    FetchToken({ email, password });
+  };
+
   useEffect(() => {
-    console.log(user);
-  });
+    if (isLoggedIn()) {
+      navigate('/almaccount/:home');
+    }
+  }, [loggedIn]);
 
   return (
     <>
