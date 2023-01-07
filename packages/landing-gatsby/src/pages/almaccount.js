@@ -31,29 +31,27 @@ const Account = ({ user }) => {
   );
 
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        {!isLoggedIn() ? (
-          <></>
-        ) : (
-          <nav>
-            <Link to="/almaccount/home">Account Home</Link>{' '}
-            <Link to="/almaccount/settings">Settings</Link>{' '}
-            <Link to="/almaccount/billing">Billing</Link>{' '}
-            <Link to="/almaccount/admin">Admin</Link>{' '}
-            <Link to="/almaccount/pullfeed">PullFeed</Link>{' '}
-            <a
-              href="#logout"
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-            >
-              Log Out
-            </a>
-          </nav>
-        )}
-      </Provider>
-    </BrowserRouter>
+    <>
+      {!isLoggedIn() ? (
+        <></>
+      ) : (
+        <nav>
+          <Link to="/almaccount/home">Account Home</Link>{' '}
+          <Link to="/almaccount/settings">Settings</Link>{' '}
+          <Link to="/almaccount/billing">Billing</Link>{' '}
+          <Link to="/almaccount/admin">Admin</Link>{' '}
+          <Link to="/almaccount/pullfeed">PullFeed</Link>{' '}
+          <a
+            href="#logout"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            Log Out
+          </a>
+        </nav>
+      )}
+    </>
   );
 };
 
