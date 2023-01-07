@@ -24,6 +24,9 @@ class Account extends React.Component {
   }
 
   componentDidMount() {
+    if (typeof window !== 'undefined') {
+      return null;
+    }
     if (!isLoggedIn()) {
       this.props.navigateFunction.navigate('/almlogin');
     }
