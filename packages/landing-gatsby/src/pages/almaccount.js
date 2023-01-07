@@ -24,7 +24,7 @@ class Account extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof window !== 'undefined') {
+    if (typeof window === 'undefined') {
       return null;
     }
     if (!isLoggedIn()) {
@@ -35,7 +35,7 @@ class Account extends React.Component {
   render() {
     const Home = () => {
       console.log(this.state);
-      if (typeof window !== 'undefined') {
+      if (typeof window === 'undefined') {
         return null;
       }
       return (
