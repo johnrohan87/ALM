@@ -2,3 +2,5 @@
   from = "#"
   to = "https://affiliateleadmarketing.com"
   status = 200
+  [[plugins]]
+  package = "@netlify/plugin-gatsby"
