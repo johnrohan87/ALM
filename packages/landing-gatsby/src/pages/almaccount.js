@@ -46,12 +46,18 @@ const Account = ({ data }) => {
       <text></text>
     </>
   );
+  const Redirect = () => (
+    <>
+      Redirecting...
+      {isLoggedIn() ? navigate('/almaccount/home') : navigate('/')}
+    </>
+  );
 
   return (
     <BrowserRouter>
       <Provider store={store}>
         {!isLoggedIn() ? (
-          <></>
+          <>{navigate('/')}</>
         ) : (
           <nav>
             <Link to="/almaccount/home">Account Home</Link>{' '}
@@ -76,6 +82,8 @@ const Account = ({ data }) => {
           <Route path="/almaccount/billing" element={<Billing />} />
           <Route path="/almaccount/admin" element={<Admin />} />
           <Route path="/almaccount/pullfeed" element={<PullFeed />} />
+          <Route exact path="/almaccount" element={<Redirect />} />
+          <Route path="*" element={() => navigate('/')} />
         </Routes>
       </Provider>
     </BrowserRouter>
