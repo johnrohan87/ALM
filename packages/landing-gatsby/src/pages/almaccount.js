@@ -12,11 +12,11 @@ class Account extends React.Component {
     super(props);
     this.state = {
       token:
-        typeof window !== undefined
+        typeof window !== 'undefined'
           ? JSON.parse(localStorage.getItem('user')) || ''
           : null,
       user:
-        typeof window !== undefined
+        typeof window !== 'undefined'
           ? JSON.parse(localStorage.getItem('userinfo')) || {}
           : null,
       redirect: false,
