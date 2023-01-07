@@ -52,14 +52,6 @@ const Account = ({ user }) => {
             </a>
           </nav>
         )}
-
-        <Routes>
-          <Route index path="/almaccount/:home" element={<Home />} />
-          <Route path="/almaccount/settings" element={<Settings />} />
-          <Route path="/almaccount/billing" element={<Billing />} />
-          <Route path="/almaccount/admin" element={<Admin />} />
-          <Route path="/almaccount/pullfeed" element={<PullFeed />} />
-        </Routes>
       </Provider>
     </BrowserRouter>
   );
