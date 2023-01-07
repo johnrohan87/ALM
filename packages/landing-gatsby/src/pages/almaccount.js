@@ -9,6 +9,10 @@ import store from '../common/services/store';
 import { getUserState } from '../common/services/userSlice';
 
 const Account = ({ data }) => {
+  if (!isLoggedIn()) {
+    navigate('/');
+    return null;
+  }
   let userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const Home = () => {
