@@ -9,7 +9,6 @@ import { getUserState } from '../common/services/userSlice';
 
 const Account = ({ user }) => {
   const Home = () => {
-    console.log(this.state);
     return (
       <>
         <h1>Hi, {'friend'}!</h1>
