@@ -10,25 +10,14 @@ import { getUserState } from '../common/services/userSlice';
 const Account = ({ user }) => {
   const Home = () => {
     console.log(this.state);
-    if (typeof window === 'undefined') {
-      return null;
-    }
     return (
       <>
-        <h1>Hi, {this.state.user.email ? this.state.user.email : 'friend'}!</h1>
+        <h1>Hi, {'friend'}!</h1>
         <h2>Your current user info</h2>
         <ul>User info here</ul>
-        <ul>
-          user token{' '}
-          {this.state.token.access_token
-            ? this.state.token.access_token
-            : 'none found'}
-        </ul>
-        <ul>ID {this.state.user.id ? this.state.user.id : 'none found'}</ul>
-        <ul>
-          logged in as{' '}
-          {this.state.user.roles ? this.state.user.roles : 'none found'}
-        </ul>
+        <ul>user token {'none found'}</ul>
+        <ul>ID {'none found'}</ul>
+        <ul>logged in as {'none found'}</ul>
       </>
     );
   };
