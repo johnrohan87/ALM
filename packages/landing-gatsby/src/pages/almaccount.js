@@ -9,6 +9,9 @@ import store from '../common/services/store';
 import { getUserState } from '../common/services/userSlice';
 
 const Account = ({ data }) => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
   let userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const Home = () => {
