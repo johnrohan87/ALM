@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
-import {
-  Routes,
-  Route,
-  useParams,
-  Link,
-  Navigate,
-  BrowserRouter,
-} from 'react-router-dom';
+import { Routes, Route, Link, Navigate, BrowserRouter } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getUser, isLoggedIn } from '../common/services/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
@@ -17,8 +11,8 @@ class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: JSON.parse(localStorage.getItem('user')) || '',
-      user: JSON.parse(localStorage.getItem('userinfo')) || {},
+      token: window ? JSON.parse(localStorage.getItem('user')) || '' : null,
+      user: window ? JSON.parse(localStorage.getItem('userinfo')) || {} : null,
       redirect: false,
     };
   }
@@ -28,8 +22,6 @@ class Account extends React.Component {
       this.props.navigateFunction.navigate('/almlogin');
     }
   }
-
-  navigateFunction() {}
 
   render() {
     const Home = () => {
