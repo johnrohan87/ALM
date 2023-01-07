@@ -32,6 +32,9 @@ class Account extends React.Component {
   render() {
     const Home = () => {
       console.log(this.state);
+      if (typeof window !== 'undefined') {
+        return null;
+      }
       return (
         <>
           <h1>
