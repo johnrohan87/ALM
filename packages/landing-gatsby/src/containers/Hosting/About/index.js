@@ -70,10 +70,10 @@ const AboutSection = ({
                 <List key={`test-index-${index}`} >{info.address}</List>
                 <List key={`test-index-${index}`} >{info.phone}</List>*/}
 
-                  <List key={`test-index-${index}`}>
+                  <List key={`linkedin-index-${index}`}>
                     <a href={info.linkedin}>{info.linkedin}</a>
                   </List>
-                  <List key={`test-index-${index}`}>
+                  <List key={`github-index-${index}`}>
                     <a href={info.github}>{info.github}</a>
                   </List>
                 </ul>

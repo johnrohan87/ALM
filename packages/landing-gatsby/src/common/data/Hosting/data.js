@@ -138,6 +138,12 @@ export const MENU_ITEMS = [
     path: '#contact_section',
     offset: '70',
   },
+  {
+    label: 'Login',
+    path: '/almlogin',
+    offset: '70',
+    linked: '/almlogin',
+  },
 ];
 {
   /**{

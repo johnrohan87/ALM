@@ -57,8 +57,13 @@ const Footer = ({
                 <Heading content={'About Us'} {...titleStyle} />
                 <List>
                   <ListItem key={`footer-list-item-link`}>
-                    <Link as="a" href={'/about'} className="ListItem">
+                    <Link to={'/about'} className="ListItem">
                       {'About Us'}
+                    </Link>
+                  </ListItem>
+                  <ListItem>
+                    <Link to={'/almlogin'} className="ListItem">
+                      {'Login'}
                     </Link>
                   </ListItem>
                 </List>

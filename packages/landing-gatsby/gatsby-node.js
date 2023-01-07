@@ -20,6 +20,12 @@ exports.onCreatePage = async ({ page, actions }) => {
     // Update the page.
     createPage(page);
   }
+  if (page.path.match(/^\/almlogin/)) {
+    page.matchPath = '/almlogin/*';
+
+    // Update the page.
+    createPage(page);
+  }
 };
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
