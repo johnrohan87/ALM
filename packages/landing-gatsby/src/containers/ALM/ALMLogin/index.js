@@ -35,7 +35,7 @@ const ALMLogin = ({ state }) => {
     await dispatch(fetchLoginData({ email, password }));
     if (isLoggedIn()) {
       await dispatch(fetchUserData());
-      navigate('/almaccount/:home');
+      navigate('/almaccount/home', { data: store });
     }
   };
 
@@ -60,7 +60,7 @@ const ALMLogin = ({ state }) => {
 
   useEffect(() => {
     if (isLoggedIn()) {
-      navigate('/almaccount/:home');
+      navigate('/almaccount/home', { data: store });
     }
   }, [loggedIn]);
 
