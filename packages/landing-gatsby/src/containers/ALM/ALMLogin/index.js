@@ -25,17 +25,15 @@ const ALMLogin = ({ state }) => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [loading, setLoading] = useState(user.loading ? user.loading : false);
-  const [loggedIn, setLoggedIn] = useState(
-    user.logged_in ? user.logged_in : false
-  );
+  //const [loading, setLoading] = useState(user.loading ? user.loading : false);
+  //const [loggedIn, setLoggedIn] = useState(user.logged_in ? user.logged_in : false);
+  //const user = useSelector(state => state.user);
 
   const FetchToken = async ({ email, password }) => {
     await dispatch(fetchLoginData({ email, password }));
     if (isLoggedIn()) {
       await dispatch(fetchUserData());
-      navigate('/almaccount/home', { data: store });
+      navigate('/almaccount/home');
     }
   };
 
@@ -60,9 +58,9 @@ const ALMLogin = ({ state }) => {
 
   useEffect(() => {
     if (isLoggedIn()) {
-      navigate('/almaccount/home', { data: store });
+      navigate('/almaccount/home');
     }
-  }, [loggedIn]);
+  }, []);
 
   return (
     <>

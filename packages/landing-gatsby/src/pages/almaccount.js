@@ -6,13 +6,22 @@ import { getUser, isLoggedIn } from '../common/services/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
-import { getUserState } from '../common/services/userSlice';
+import { getUserState, fetchUserData } from '../common/services/userSlice';
 
-const Account = ({ data }) => {
+const Account = () => {
+  /**
+  let loginTest = isLoggedIn()
+  const dispatch = useDispatch();
+
+  if (loginTest){
+    dispatch(fetchUserData());
+  } else {
+    navigate('/');
+  }  */
+
   if (typeof window === 'undefined') {
     return null;
   }
-  let userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const Home = () => {
     //const user = useSelector((state) => state.user);
@@ -21,17 +30,21 @@ const Account = ({ data }) => {
         navigate('/');
       }
     }, []);
+
+    const user = useSelector((state) => state.user);
+
+    console.log(user);
     return (
       <>
         {!isLoggedIn() ? (
           <>Redirecting...</>
         ) : (
           <>
-            <h1>Hi, {userInfo.email ? userInfo.email : 'friend'}!</h1>
+            <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
             <h2>Your current user info</h2>
             <ul>User info here</ul>
-            <ul>ID {userInfo.id ? userInfo.id : 'none found'}</ul>
-            <ul>logged in as {userInfo.roles ? userInfo.roles : '0'}</ul>
+            <ul>ID {user.id ? user.id : 'none found'}</ul>
+            <ul>logged in as {user.roles ? user.roles : '0'}</ul>
           </>
         )}
       </>
@@ -69,6 +82,9 @@ const Account = ({ data }) => {
               href="#logout"
               onClick={(e) => {
                 e.preventDefault();
+                localStorage.removeItem('user');
+                localStorage.removeItem('userinfo');
+                navigate('/almlogin');
               }}
             >
               Log Out
