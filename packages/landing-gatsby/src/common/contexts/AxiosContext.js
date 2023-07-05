@@ -43,20 +43,6 @@ export async function getToken({ email, password }) {
         localStorage.setItem('user', JSON.stringify(response.data));
       }
     })
-    //Promise.resolve
-    //.finally(
-    //(response) => {
-    //console.log(
-    //'finally',
-    //localStorage.getItem('user'),
-    //'response',
-    //response
-    //);
-    //} //,
-    //() => {
-    //  return true;
-    //}
-    //)
     .catch((error) => {
       //console.error("axios response error - ",error);
       //console.error("axios response data - ",email,password);
@@ -83,4 +69,44 @@ export async function getCurrentUser() {
     console.error(error);
   }
   //return JSON.parse(localStorage.getItem('user'));
+}
+
+export async function addFeed({ feedURL, textFile }) {
+  let tmpDict = JSON.parse(localStorage.getItem('user'));
+  configHeaders['Authorization'] = 'Bearer ' + tmpDict['access_token'];
+  const ip = await axios({
+    method: 'get',
+    url: 'http://ipinfo.io',
+    timeout: 10000,
+  });
+  console.log('ip - ' + ip);
+  let feedData = {
+    url: feedURL,
+    person_id: tmpDict.id,
+    ip: ip,
+    update_feed: true,
+    textfile: textFile,
+  };
+
+  const response = await axios({
+    method: 'post',
+    url: process.env.GATSBY_HEROKU_BASEURL + '/textfile',
+    timeout: 10000,
+    headers: configHeaders,
+    body: { feedData },
+    data: { feedData },
+  })
+    .then((response) => {
+      if (response.data) {
+        console.log('axios response - ', response);
+        //localStorage.setItem('user', JSON.stringify(response.data));
+        return response;
+      }
+    })
+    .catch((error) => {
+      //console.error("axios response error - ",error);
+      //console.error("axios response data - ",email,password);
+      return error;
+      //console.log(error.response.request._response);
+    });
 }

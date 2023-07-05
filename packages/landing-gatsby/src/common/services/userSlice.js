@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCurrentUser, getToken } from '../../common/contexts/AxiosContext';
+import {
+  getCurrentUser,
+  getToken,
+  addFeed,
+} from '../../common/contexts/AxiosContext';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -89,6 +93,23 @@ export function fetchUserData() {
         let result = JSON.parse(localStorage.getItem('userinfo'));
         if (result != undefined) {
           dispatch(set_userinfo(result));
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+}
+
+export function submitFeedData({ feedURL, textFile }) {
+  return async (dispatch, getState) => {
+    try {
+      await addFeed({ feedURL, textFile }).then(() => {
+        let result = JSON.parse(localStorage.getItem('user'));
+        if (result != undefined) {
+          dispatch(set_token(result));
+          dispatch(toggle_logged_in());
         }
       });
     } catch (error) {

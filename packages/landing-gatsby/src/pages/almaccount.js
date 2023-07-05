@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { navigate } from 'gatsby';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -6,7 +6,11 @@ import { getUser, isLoggedIn } from '../common/services/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
-import { getUserState, fetchUserData } from '../common/services/userSlice';
+import {
+  getUserState,
+  fetchUserData,
+  submitFeedData,
+} from '../common/services/userSlice';
 
 const Account = () => {
   /**
@@ -33,7 +37,7 @@ const Account = () => {
 
     const user = useSelector((state) => state.user);
 
-    console.log(user);
+    //console.log(user);
     return (
       <>
         {!isLoggedIn() ? (
@@ -43,7 +47,7 @@ const Account = () => {
             <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
             <h2>Your current user info</h2>
             <ul>User info here</ul>
-            <ul>ID {user.id ? user.id : 'none found'}</ul>
+            <ul>ID {user.id ? user.id : '0'}</ul>
             <ul>logged in as {user.roles ? user.roles : '0'}</ul>
           </>
         )}
@@ -53,12 +57,73 @@ const Account = () => {
   const Settings = () => <p>Settings</p>;
   const Billing = () => <p>Billing</p>;
   const Admin = () => <p>Admin</p>;
-  const PullFeed = () => (
-    <>
-      <label>Enter Reed URL Here</label>
-      <text></text>
-    </>
-  );
+
+  const PullFeed = () => {
+    useEffect(() => {
+      if (!isLoggedIn()) {
+        navigate('/');
+      }
+    }, []);
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
+    const [feedURL, setfeedURL] = useState('');
+    const [textFile, settextFile] = useState('');
+    const [submitFeed, setsubmitFeed] = useState('');
+
+    dispatch(submitFeedData({ feedURL, textFile }));
+
+    return (
+      <>
+        {!isLoggedIn() ? (
+          <>Redirecting...</>
+        ) : (
+          <>
+            <div class="container-fluid card">
+              <div
+                class="card align-self-center"
+                style={{ minWidth: '75%', padding: '5rem 5rem' }}
+              >
+                <label>Enter Feed URL Here</label>
+                <label>{submitFeed}</label>
+                <input
+                  type="text"
+                  placeholder="http://"
+                  onChange={(e) => {
+                    setfeedURL(e.target.value);
+                  }}
+                  value={feedURL}
+                />
+                <input
+                  type="text"
+                  placeholder="textFile"
+                  onChange={(e) => {
+                    settextFile(e.target.value);
+                  }}
+                  value={textFile}
+                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onClick={() => {
+                    setsubmitFeed(
+                      'submitted - ' + feedURL + ' textFile - ' + textFile
+                    );
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
+            <h2>Your current user info</h2>
+            <ul>User info here</ul>
+            <ul>ID {user.id ? user.id : '0'}</ul>
+            <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+          </>
+        )}
+      </>
+    );
+  };
   const Redirect = () => (
     <>
       Redirecting...
