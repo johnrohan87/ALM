@@ -106,7 +106,7 @@ export async function addFeed({ feedURL, textFile }) {
     .catch((error) => {
       //console.error("axios response error - ",error);
       //console.error("axios response data - ",email,password);
-      return error;
+      return { error: error, feedData: feedData };
       //console.log(error.response.request._response);
     });
 }
