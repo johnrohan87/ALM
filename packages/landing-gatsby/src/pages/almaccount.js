@@ -62,15 +62,15 @@ const Account = () => {
     useEffect(() => {
       if (!isLoggedIn()) {
         navigate('/');
+      } else {
+        dispatch(submitFeedData({ feedURL, textFile }));
       }
-    }, []);
+    }, [submitFeed]);
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     const [feedURL, setfeedURL] = useState('');
     const [textFile, settextFile] = useState('');
     const [submitFeed, setsubmitFeed] = useState('');
-
-    dispatch(submitFeedData({ feedURL, textFile }));
 
     return (
       <>
@@ -115,6 +115,7 @@ const Account = () => {
               </div>
             </div>
             <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
+            <h1>Content Version 1.0</h1>
             <h2>Your current user info</h2>
             <ul>User info here</ul>
             <ul>ID {user.id ? user.id : '0'}</ul>
