@@ -62,8 +62,6 @@ const Account = () => {
     useEffect(() => {
       if (!isLoggedIn()) {
         navigate('/');
-      } else {
-        dispatch(submitFeedData({ feedURL, textFile }));
       }
     }, [submitFeed]);
     const dispatch = useDispatch();
@@ -72,6 +70,10 @@ const Account = () => {
     const [textFile, settextFile] = useState('');
     const [submitFeed, setsubmitFeed] = useState('');
 
+    if (submitFeed != '') {
+      dispatch(submitFeedData({ feedURL, textFile }));
+      console.log('dispatching');
+    }
     return (
       <>
         {!isLoggedIn() ? (
