@@ -76,7 +76,7 @@ export async function addFeed({ feedURL, textFile }) {
   configHeaders['Authorization'] = 'Bearer ' + tmpDict['access_token'];
   const ip = await axios({
     method: 'get',
-    url: 'http://ipinfo.io',
+    url: 'https://ipinfo.io',
     timeout: 10000,
   });
   console.log('ip - ' + ip);
