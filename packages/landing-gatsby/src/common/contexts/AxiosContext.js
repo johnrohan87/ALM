@@ -72,11 +72,12 @@ export async function getCurrentUser() {
 }
 
 export async function addFeed({ feedURL, textFile }) {
-  let tmpDict = JSON.parse(localStorage.getItem('user'));
-  configHeaders['Authorization'] = 'Bearer ' + tmpDict['access_token'];
+  let tmpUser = JSON.parse(localStorage.getItem('user'));
+  let tmpUserInfo = JSON.parse(localStorage.getItem('userinfo'));
+  configHeaders['Authorization'] = 'Bearer ' + tmpUser['access_token'];
   let feedData = {
     url: feedURL,
-    person_id: tmpDict.id,
+    person_id: tmpUserInfo.id,
     update_feed: true,
     textfile: textFile,
   };
