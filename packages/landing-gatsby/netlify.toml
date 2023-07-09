@@ -4,3 +4,7 @@
   status = 200
   [[plugins]]
   package = "@netlify/plugin-gatsby"
+[[headers]]
+   for = "/almaccount/*"
+   [headers.values]
+      Access-Control-Allow-Origin = "*"
