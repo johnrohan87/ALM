@@ -72,7 +72,7 @@ const Account = () => {
 
     if (submitFeed != '') {
       dispatch(submitFeedData({ feedURL, textFile }));
-      console.log('dispatching');
+      console.log('dispatching', feedURL, textFile);
       setsubmitFeed('');
     }
     return (
