@@ -77,7 +77,7 @@ export async function addFeed({ feedURL, textFile }) {
   configHeaders['Authorization'] = 'Bearer ' + tmpUser['access_token'];
   let feedData = {
     url: feedURL,
-    person_id: tmpUserInfo.id,
+    person_id: tmpUserInfo['id'],
     update_feed: true,
     textfile: textFile,
   };
