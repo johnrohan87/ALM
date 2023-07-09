@@ -5,8 +5,8 @@
   [[plugins]]
   package = "@netlify/plugin-gatsby"
 [[headers]]
-  from = "/*"
-  to = "flask-rest-alm-admin.herokuapp.com/*"
+  from = "/almaccount/pullfeed"
+  to = "https://flask-rest-alm-admin.herokuapp.com/textfile"
   status = 200
    [headers.values]
       Access-Control-Allow-Origin = "*"
