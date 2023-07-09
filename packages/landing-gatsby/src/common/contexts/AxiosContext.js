@@ -74,16 +74,9 @@ export async function getCurrentUser() {
 export async function addFeed({ feedURL, textFile }) {
   let tmpDict = JSON.parse(localStorage.getItem('user'));
   configHeaders['Authorization'] = 'Bearer ' + tmpDict['access_token'];
-  const ip = await axios({
-    method: 'get',
-    url: 'https://ipinfo.io',
-    timeout: 10000,
-  });
-  console.log('ip - ' + ip);
   let feedData = {
     url: feedURL,
     person_id: tmpDict.id,
-    ip: ip,
     update_feed: true,
     textfile: textFile,
   };
