@@ -63,7 +63,7 @@ const Account = () => {
       if (!isLoggedIn()) {
         navigate('/');
       }
-    }, [submitFeed]);
+    }, []);
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     const [feedURL, setfeedURL] = useState('');
