@@ -5,6 +5,8 @@
   [[plugins]]
   package = "@netlify/plugin-gatsby"
 [[headers]]
-   for = "/*"
+  from = "/*"
+  to = "flask-rest-alm-admin.herokuapp.com/*"
+  status = 200
    [headers.values]
       Access-Control-Allow-Origin = "*"
