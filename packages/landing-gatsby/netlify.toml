@@ -4,7 +4,7 @@
   status = 200
   [[plugins]]
   package = "@netlify/plugin-gatsby"
-[[headers]]
+[[redirects]]
   from = "/almaccount/pullfeed"
   to = "https://flask-rest-alm-admin.herokuapp.com/textfile"
   status = 200
