@@ -113,7 +113,7 @@ export function submitFeedData({ feedURL, textFile }) {
         }
       });
     } catch (error) {
-      console.log('submitFeedData', error);
+      console.log('submitFeedData', error.response.data);
       return error;
     }
   };
