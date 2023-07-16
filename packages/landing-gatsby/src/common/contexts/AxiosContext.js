@@ -78,7 +78,7 @@ export async function addFeed({ feedURL, textFile }) {
   let feedData = {
     url: feedURL,
     person_id: tmpUserInfo['id'],
-    update_feed: true,
+    update_feed: JSON.dumps(true),
     textfile: textFile,
   };
 
