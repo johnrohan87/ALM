@@ -75,7 +75,7 @@ export async function addFeed({ feedURL, textFile }) {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
   let tmpUserInfo = JSON.parse(localStorage.getItem('userinfo'));
   configHeaders['Authorization'] = 'Bearer ' + tmpUser['access_token'];
-  let feedData = {
+  let data = {
     url: feedURL,
     person_id: tmpUserInfo['id'],
     update_feed: true,
@@ -87,8 +87,8 @@ export async function addFeed({ feedURL, textFile }) {
     url: process.env.GATSBY_HEROKU_BASEURL + '/textfile',
     timeout: 10000,
     headers: configHeaders,
-    body: { feedData },
-    data: { feedData },
+    body: { data },
+    data: { data },
   })
     .then((response) => {
       if (response.data) {
@@ -100,7 +100,7 @@ export async function addFeed({ feedURL, textFile }) {
     .catch((error) => {
       //console.error("axios response error - ",error);
       //console.error("axios response data - ",email,password);
-      return { error: error, feedData: feedData };
+      return { error: error, data: data };
       //console.log(error.response.request._response);
     });
 }
