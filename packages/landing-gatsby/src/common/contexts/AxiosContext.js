@@ -78,10 +78,10 @@ export async function addFeed({ feedURL, textFile }) {
   let feedData = {
     url: feedURL,
     person_id: tmpUserInfo['id'],
-    update_feed: JSON.dumps(true),
+    update_feed: true,
     textfile: textFile,
   };
-
+  feedData = JSON.dumps(feedData);
   const response = await axios({
     method: 'post',
     url: process.env.GATSBY_HEROKU_BASEURL + '/textfile',
