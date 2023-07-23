@@ -110,14 +110,15 @@ export async function getFeed({ userID }) {
   let tmpUserInfo = JSON.parse(localStorage.getItem('userinfo'));
   configHeaders['Authorization'] = 'Bearer ' + tmpUser['access_token'];
 
+  let data = {};
   let checkUID = function (userID) {
     if (typeof userID === 'undefined' || userID === null) {
-      let data = {
+      data = {
         person_id: 'all',
       };
       return data;
     } else {
-      let data = {
+      data = {
         person_id: tmpUserInfo['id'],
       };
       return data;
