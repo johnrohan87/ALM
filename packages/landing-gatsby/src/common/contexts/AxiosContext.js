@@ -104,3 +104,43 @@ export async function addFeed({ feedURL, textFile }) {
       //console.log(error.response.request._response);
     });
 }
+
+export async function getFeed({ userID }) {
+  let tmpUser = JSON.parse(localStorage.getItem('user'));
+  let tmpUserInfo = JSON.parse(localStorage.getItem('userinfo'));
+  configHeaders['Authorization'] = 'Bearer ' + tmpUser['access_token'];
+
+  let checkUID = function (userID) {
+    if (typeof userID === 'undefined' || userID === null) {
+      let data = {
+        person_id: 'all',
+      };
+      return data;
+    } else {
+      let data = {
+        person_id: tmpUserInfo['id'],
+      };
+      return data;
+    }
+  };
+
+  checkUID(userID);
+
+  const response = await axios({
+    method: 'get',
+    url: process.env.GATSBY_HEROKU_BASEURL + '/textfile',
+    timeout: 10000,
+    headers: configHeaders,
+    body: { data },
+    data: { data },
+  })
+    .then((response) => {
+      if (response.data) {
+        console.log('axios response - ', response);
+        return response;
+      }
+    })
+    .catch((error) => {
+      return { error: error, data: data };
+    });
+}

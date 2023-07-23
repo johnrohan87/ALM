@@ -3,6 +3,7 @@ import {
   getCurrentUser,
   getToken,
   addFeed,
+  getFeed,
 } from '../../common/contexts/AxiosContext';
 
 export const userSlice = createSlice({
@@ -114,6 +115,23 @@ export function submitFeedData({ feedURL, textFile }) {
       });
     } catch (error) {
       console.log('submitFeedData', error.response.data);
+      return error;
+    }
+  };
+}
+
+export function getFeedData({ userID }) {
+  return async (dispatch, getState) => {
+    try {
+      await getFeed({ userID }).then(() => {
+        let result = JSON.parse(localStorage.getItem('user'));
+        if (result != undefined) {
+          dispatch(set_token(result));
+          dispatch(toggle_logged_in());
+        }
+      });
+    } catch (error) {
+      console.log('getFeedData', error.response.data);
       return error;
     }
   };

@@ -117,12 +117,25 @@ const Account = () => {
                 </button>
               </div>
             </div>
-            <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
-            <h1>Content Version 1.0</h1>
-            <h2>Your current user info</h2>
-            <ul>User info here</ul>
-            <ul>ID {user.id ? user.id : '0'}</ul>
-            <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+            <div class="container-fluid card">
+              <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
+              <h2>Your current user info</h2>
+              <ul>User info here</ul>
+              <ul>ID {user.id ? user.id : '0'}</ul>
+              <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={() => {
+                  dispatch(getFeedData({ userID: 'all' }));
+                  console.log('getFeedData dispatched');
+                }}
+              >
+                Submit
+              </button>
+            </div>
           </>
         )}
       </>
