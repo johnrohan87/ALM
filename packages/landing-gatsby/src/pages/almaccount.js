@@ -118,23 +118,36 @@ const Account = () => {
               </div>
             </div>
             <div class="container-fluid card">
-              <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
-              <h2>Your current user info</h2>
-              <ul>User info here</ul>
-              <ul>ID {user.id ? user.id : '0'}</ul>
-              <ul>logged in as {user.roles ? user.roles : '0'}</ul>
-            </div>
-            <div>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onClick={() => {
-                  dispatch(getFeedData({ userID: 'all' }));
-                  console.log('getFeedData dispatched');
-                }}
+              <div
+                class="card align-self-center"
+                style={{ minWidth: '75%', padding: '5rem 5rem' }}
               >
-                Submit
-              </button>
+                <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
+                <h2>Your current user info</h2>
+                <ul>User info here</ul>
+                <ul>ID {user.id ? user.id : '0'}</ul>
+                <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+              </div>
+            </div>
+            <div class="container-fluid card">
+              <div
+                class="card align-self-center"
+                style={{ minWidth: '75%', padding: '5rem 5rem' }}
+              >
+                <label>RSSFeed Table</label>
+                <label>Feeds</label>
+                <input type="text" placeholder="" />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onClick={() => {
+                    dispatch(getFeedData({ userID: 'all' }));
+                    console.log('getFeedData dispatched');
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </>
         )}
