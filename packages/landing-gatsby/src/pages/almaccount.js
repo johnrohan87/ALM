@@ -10,6 +10,7 @@ import {
   getUserState,
   fetchUserData,
   submitFeedData,
+  getFeedData,
 } from '../common/services/userSlice';
 
 const Account = () => {
