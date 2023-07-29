@@ -10,6 +10,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     token: null,
+    refresh_token: null,
     loading: false,
     logged_in: false,
     logged_in_as: null,
@@ -43,6 +44,7 @@ export const userSlice = createSlice({
       return {
         ...state,
         token: action.payload.access_token,
+        refresh_token: action.payload.refresh_token,
       };
     },
     set_userinfo: (state, action) => {
