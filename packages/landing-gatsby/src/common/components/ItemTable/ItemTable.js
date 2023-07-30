@@ -17,12 +17,14 @@ function ItemTable({ items }) {
       <tbody>
         {items
           ? Items.feed.forEach((element) => {
-              <td>{element['file text']}</td>;
-              <td>{element['ip']}</td>;
-              <td>{element['list position']}</td>;
-              <td>{element['persons id']}</td>;
-              <td>{element['update feed']}</td>;
-              <td>{element['url']}</td>;
+              <td key={element['list position']}>{element['file text']}</td>;
+              <td key={element['list position']}>{element['ip']}</td>;
+              <td key={element['list position']}>
+                {element['list position']}
+              </td>;
+              <td key={element['list position']}>{element['persons id']}</td>;
+              <td key={element['list position']}>{element['update feed']}</td>;
+              <td key={element['list position']}>{element['url']}</td>;
             })
           : ''}
       </tbody>
