@@ -129,10 +129,14 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
-                <div>
-                  <h1>Dictionary Table</h1>
-                  <DictionaryTable dictionary={user.feed} />
-                </div>
+                {user.feed ? (
+                  <div>
+                    <h1>Dictionary Table</h1>
+                    <DictionaryTable dictionary={user.feed} />
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
             <div class="container-fluid card">
