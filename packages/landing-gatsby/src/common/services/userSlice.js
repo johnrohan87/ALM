@@ -15,6 +15,7 @@ export const userSlice = createSlice({
     logged_in: false,
     logged_in_as: null,
     email: null,
+    feed: null,
   },
   reducers: {
     toggle_logged_in: (state) => {
@@ -57,7 +58,7 @@ export const userSlice = createSlice({
     set_feeds_toState: (state, action) => {
       return {
         ...state,
-        feeds: action.payload.feeds,
+        feed: action.payload.feeds,
       };
     },
   },
