@@ -126,6 +126,7 @@ export async function getFeed({ userID }) {
   };
 
   checkUID(userID);
+  console.log(userID, data);
 
   const response = await axios({
     method: 'get',
