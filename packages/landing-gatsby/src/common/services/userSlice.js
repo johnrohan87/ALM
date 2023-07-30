@@ -133,7 +133,7 @@ export function getFeedData({ userID }) {
   return async (dispatch, getState) => {
     try {
       await getFeed({ userID }).then(() => {
-        let result = JSON.parse(localStorage.getItem('userinfo'));
+        let result = JSON.parse(localStorage.getItem('userfeed'));
         if (result != undefined) {
           dispatch(set_feeds_toState(result));
         }

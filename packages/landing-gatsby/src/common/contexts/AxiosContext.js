@@ -139,8 +139,7 @@ export async function getFeed({ userID }) {
     .then((response) => {
       if (response.data) {
         console.log('axios response - ', response);
-        tmpUserInfo['feeds'].push(JSON.stringify(response.data));
-        localStorage.setItem('userinfo', tmpUserInfo);
+        localStorage.setItem('userfeeds', JSON.stringify(response.data));
         return JSON.stringify(response.data);
       }
     })
