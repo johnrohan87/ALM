@@ -54,6 +54,12 @@ export const userSlice = createSlice({
         logged_in_as: action.payload.roles,
       };
     },
+    set_feeds_toState: (state, action) => {
+      return {
+        ...state,
+        feeds: action.payload.feeds,
+      };
+    },
   },
 });
 
@@ -64,6 +70,7 @@ export const {
   set_email,
   set_token,
   set_userinfo,
+  set_feeds_toState,
 } = userSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
@@ -126,7 +133,7 @@ export function getFeedData({ userID }) {
   return async (dispatch, getState) => {
     try {
       await getFeed({ userID }).then(() => {
-        let result = JSON.parse(localStorage.getItem('user'));
+        let result = JSON.parse(localStorage.getItem('userinfo'));
         if (result != undefined) {
           dispatch(set_token(result));
           dispatch(toggle_logged_in());
