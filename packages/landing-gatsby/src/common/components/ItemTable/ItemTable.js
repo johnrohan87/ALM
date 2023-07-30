@@ -12,7 +12,7 @@ function ItemTable({ items }) {
         </tr>
       </thead>
       <tbody>
-        {items.feed
+        {items
           ? items.feed.forEach((element) => {
               <td>{element}</td>;
             })
