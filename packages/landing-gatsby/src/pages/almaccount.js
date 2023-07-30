@@ -6,7 +6,7 @@ import { getUser, isLoggedIn } from '../common/services/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
-import DictionaryTable from '../common/components/DictionaryTable/DictionaryTable.js';
+import ItemTable from '../common/components/ItemTable/ItemTable.js';
 import {
   getUserState,
   fetchUserData,
@@ -131,8 +131,8 @@ const Account = () => {
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
                 {user.feed ? (
                   <div>
-                    <h1>Dictionary Table</h1>
-                    <DictionaryTable dictionary={user.feed} />
+                    <h1>Item Table</h1>
+                    <ItemTable dictionary={user.feed} />
                   </div>
                 ) : (
                   ''
