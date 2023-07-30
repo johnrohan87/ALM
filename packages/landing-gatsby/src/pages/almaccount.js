@@ -129,13 +129,17 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
-                {user.feed
+                {user['feed']
                   ? () => (
                       <div>
                         <h1>Item Table</h1>
-                        <h2>{user.feed}</h2>
-                        {console.log('user.feed', user.feed)}
-                        {user.feed ? <ItemTable dictionary={user.feed} /> : ''}
+                        <h2>{user['feed']}</h2>
+                        {console.log('user.feed', user['feed'])}
+                        {user['feed'] ? (
+                          <ItemTable dictionary={user['feed']} />
+                        ) : (
+                          ''
+                        )}
                       </div>
                     )
                   : ''}
