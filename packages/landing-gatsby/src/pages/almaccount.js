@@ -129,20 +129,20 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
-                {user
-                  ? () => (
-                      <div>
-                        <h1>Item Table</h1>
-                        <h2>{user['feed']}</h2>
-                        {console.log('user.feed', user['feed'], 'user', user)}
-                        {user['feed'] ? (
-                          <ItemTable dictionary={user['feed']} />
-                        ) : (
-                          ''
-                        )}
-                      </div>
-                    )
-                  : ''}
+                {user ? (
+                  <div>
+                    <h1>Item Table</h1>
+                    <h2>{user['feed']}</h2>
+                    {console.log('user.feed', user['feed'], 'user', user)}
+                    {user['feed'] ? (
+                      <ItemTable dictionary={user['feed']} />
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
             <div class="container-fluid card">
