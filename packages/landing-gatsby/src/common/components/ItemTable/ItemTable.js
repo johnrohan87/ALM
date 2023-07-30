@@ -1,6 +1,7 @@
 import React from 'react';
 
 function ItemTable({ items }) {
+  console.log('items', items);
   return (
     <table>
       <thead>
@@ -11,9 +12,11 @@ function ItemTable({ items }) {
         </tr>
       </thead>
       <tbody>
-        {items.feed.forEach((element) => {
-          <td>{element}</td>;
-        })}
+        {items.feed
+          ? items.feed.forEach((element) => {
+              <td>{element}</td>;
+            })
+          : ''}
       </tbody>
     </table>
   );

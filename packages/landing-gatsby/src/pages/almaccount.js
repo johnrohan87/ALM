@@ -77,7 +77,6 @@ const Account = () => {
       console.log('dispatching', feedURL, textFile);
       setsubmitFeed('');
     }
-    console.log('user', user);
     return (
       <>
         {!isLoggedIn() ? (
@@ -133,7 +132,7 @@ const Account = () => {
                 {user.feed ? (
                   <div>
                     <h1>Item Table</h1>
-                    {/*<ItemTable dictionary={user.feed} />*/}
+                    <ItemTable dictionary={user.feed} />
                   </div>
                 ) : (
                   ''
