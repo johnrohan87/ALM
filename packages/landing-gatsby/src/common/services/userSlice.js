@@ -140,7 +140,7 @@ export function getFeedData({ userID }) {
         }
       });
     } catch (error) {
-      console.log('getFeedData', error.response.data);
+      console.log('getFeedData', error.response);
       return error;
     }
   };

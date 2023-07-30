@@ -17,7 +17,12 @@ function ItemTable({ items }) {
       <tbody>
         {items
           ? Items.feed.forEach((element) => {
-              <td>{element}</td>;
+              <td>{element['file text']}</td>;
+              <td>{element['ip']}</td>;
+              <td>{element['list position']}</td>;
+              <td>{element['persons id']}</td>;
+              <td>{element['update feed']}</td>;
+              <td>{element['url']}</td>;
             })
           : ''}
       </tbody>
