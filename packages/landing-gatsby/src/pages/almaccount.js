@@ -130,7 +130,7 @@ const Account = () => {
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
                 {() => {
-                  console.log(user);
+                  console.log('user', user);
                 }}
                 {user.feed ? (
                   <div>
