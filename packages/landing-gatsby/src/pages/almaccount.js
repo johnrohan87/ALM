@@ -136,9 +136,9 @@ const Account = () => {
                     {console.log('user.feed', user['feed'], 'user', user)}
                     {user['feed'] ? (
                       <ItemTable dictionary={user['feed']} />
-                    ) : (
-                      ''
-                    )}
+                      ) : (
+                        ''
+                        )}
                   </div>
                 ) : (
                   ''
