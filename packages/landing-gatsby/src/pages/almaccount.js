@@ -178,8 +178,7 @@ const Account = () => {
               href="#logout"
               onClick={(e) => {
                 e.preventDefault();
-                localStorage.removeItem('user');
-                localStorage.removeItem('userinfo');
+                localStorage.clear();
                 navigate('/almlogin');
               }}
             >
