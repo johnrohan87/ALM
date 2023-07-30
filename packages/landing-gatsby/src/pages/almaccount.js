@@ -129,10 +129,10 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
-                {user.feed ? (
+                {user ? (
                   <div>
                     <h1>Item Table</h1>
-                    <ItemTable dictionary={user.feed} />
+                    {user.feed ? <ItemTable dictionary={user.feed} /> : ''}
                   </div>
                 ) : (
                   ''

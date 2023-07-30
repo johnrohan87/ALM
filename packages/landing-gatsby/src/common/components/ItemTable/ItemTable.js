@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function ItemTable({ items }) {
-  console.log('items', items);
+  useEffect(() => {
+    console.log('items', items);
+  }, [items]);
   return (
     <table>
       <thead>
