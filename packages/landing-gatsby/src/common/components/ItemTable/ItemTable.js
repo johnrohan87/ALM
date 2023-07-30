@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function ItemTable({ items }) {
+  const [Items, setItems] = useState(items);
   useEffect(() => {
-    console.log('items', items);
+    console.log('Items', Items);
   }, [items]);
   return (
     <table>
@@ -15,7 +16,7 @@ function ItemTable({ items }) {
       </thead>
       <tbody>
         {items
-          ? items.feed.forEach((element) => {
+          ? Items.feed.forEach((element) => {
               <td>{element}</td>;
             })
           : ''}
