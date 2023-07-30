@@ -16,15 +16,18 @@ function ItemTable({ items }) {
       </thead>
       <tbody>
         {items
-          ? Items.feed.forEach((element) => {
-              <td key={element['list position']}>{element['file text']}</td>;
-              <td key={element['list position']}>{element['ip']}</td>;
-              <td key={element['list position']}>
-                {element['list position']}
-              </td>;
-              <td key={element['list position']}>{element['persons id']}</td>;
-              <td key={element['list position']}>{element['update feed']}</td>;
-              <td key={element['list position']}>{element['url']}</td>;
+          ? items.feed.map((element) => {
+              <>
+                <td key={element['list position']}>{element['file text']}</td>;
+                <td key={element['list position']}>{element['ip']}</td>;
+                <td key={element['list position']}>
+                  {element['list position']}
+                </td>
+                ;<td key={element['list position']}>{element['persons id']}</td>
+                ;
+                <td key={element['list position']}>{element['update feed']}</td>
+                ;<td key={element['list position']}>{element['url']}</td>;
+              </>;
             })
           : ''}
       </tbody>
