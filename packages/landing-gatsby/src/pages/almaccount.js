@@ -6,6 +6,7 @@ import { getUser, isLoggedIn } from '../common/services/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
+import DictionaryTable from '../common/components/DictionaryTable/DictionaryTable.js';
 import {
   getUserState,
   fetchUserData,
@@ -128,6 +129,10 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+                <div>
+                  <h1>Dictionary Table</h1>
+                  <DictionaryTable dictionary={user.feed} />
+                </div>
               </div>
             </div>
             <div class="container-fluid card">
