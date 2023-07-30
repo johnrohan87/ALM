@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 function ItemTable({ items }) {
   const [Items, setItems] = useState(items);
-  useEffect(() => {
-    console.log('Items', Items);
-  }, [items]);
   return (
     <table>
       <thead>
@@ -15,19 +12,25 @@ function ItemTable({ items }) {
         </tr>
       </thead>
       <tbody>
-        {items
-          ? items.feed.map((element) => {
-              <>
-                <td key={element['list position']}>{element['file text']}</td>;
-                <td key={element['list position']}>{element['ip']}</td>;
-                <td key={element['list position']}>
-                  {element['list position']}
-                </td>
-                ;<td key={element['list position']}>{element['persons id']}</td>
-                ;
-                <td key={element['list position']}>{element['update feed']}</td>
-                ;<td key={element['list position']}>{element['url']}</td>;
-              </>;
+        {Items
+          ? Items.feed.map((element) => {
+              console.log(element);
+              return (
+                <>
+                  <td key={element['list position']}>{element['file text']}</td>
+                  <td key={element['list position']}>{element['ip']}</td>
+                  <td key={element['list position']}>
+                    {element['list position']}
+                  </td>
+                  <td key={element['list position']}>
+                    {element['persons id']}
+                  </td>
+                  <td key={element['list position']}>
+                    {element['update feed']}
+                  </td>
+                  <td key={element['list position']}>{element['url']}</td>
+                </>
+              );
             })
           : ''}
       </tbody>
