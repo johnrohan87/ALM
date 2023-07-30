@@ -132,6 +132,8 @@ const Account = () => {
                 {user ? (
                   <div>
                     <h1>Item Table</h1>
+                    <h2>user</h2>
+                    {console.log('user', user)}
                     {user.feed ? <ItemTable dictionary={user.feed} /> : ''}
                   </div>
                 ) : (
