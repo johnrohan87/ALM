@@ -13,6 +13,7 @@ import {
   submitFeedData,
   getFeedData,
 } from '../common/services/userSlice';
+import { Table } from 'react-bootstrap';
 
 const Account = () => {
   /**
@@ -71,21 +72,31 @@ const Account = () => {
     const [feedURL, setfeedURL] = useState('');
     const [textFile, settextFile] = useState('');
     const [submitFeed, setsubmitFeed] = useState('');
+    const [feedData, setFeedData] = useState('');
 
     if (submitFeed != '') {
       dispatch(submitFeedData({ feedURL, textFile }));
       console.log('dispatching', feedURL, textFile);
       setsubmitFeed('');
     }
+
+    async function FeedDataHandler() {
+      await dispatch(getFeedData('all'));
+      const result = JSON.parse(localStorage.getItem('userfeed'));
+      console.log('result', result, 'feedData', feedData);
+      setFeedData(result);
+      return result;
+    }
+
     return (
       <>
         {!isLoggedIn() ? (
           <>Redirecting...</>
         ) : (
           <>
-            <div class="container-fluid card">
+            <div className="container-fluid card">
               <div
-                class="card align-self-center"
+                className="card align-self-center"
                 style={{ minWidth: '75%', padding: '5rem 5rem' }}
               >
                 <label>Enter Feed URL Here</label>
@@ -108,7 +119,7 @@ const Account = () => {
                 />
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => {
                     setsubmitFeed(
                       'submitted - ' + feedURL + ' textFile - ' + textFile
@@ -119,9 +130,9 @@ const Account = () => {
                 </button>
               </div>
             </div>
-            <div class="container-fluid card">
+            <div className="container-fluid card">
               <div
-                class="card align-self-center"
+                className="card align-self-center"
                 style={{ minWidth: '75%', padding: '5rem 5rem' }}
               >
                 <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
@@ -129,25 +140,61 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
-                {user ? (
+                {feedData ? (
                   <div>
                     <h1>Item Table</h1>
-                    <h2>{user['feed']}</h2>
-                    {console.log('user.feed', user['feed'], 'user', user)}
-                    {user['feed'] ? (
-                      <ItemTable dictionary={user['feed']} />
-                      ) : (
-                        ''
-                        )}
+                    <Table
+                      bordered
+                      style={{
+                        tableLayout: 'fixed',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      <tbody>
+                        {feedData.map((feed, index) => {
+                          return (
+                            <tr key={index}>
+                              {Object.entries(feed).map(([key, value], i) => {
+                                return (
+                                  <th
+                                    style={{
+                                      whiteSpace: 'nowrap',
+                                      textOverflow: 'ellipsis',
+                                      overflow: 'hidden',
+                                      width: 'auto',
+                                      maxWidth: '350px',
+                                      maxHeight: '100px',
+                                      overflow: 'auto',
+                                    }}
+                                  >
+                                    <th>{key}</th>
+                                    <td
+                                      style={{
+                                        textOverflow: 'ellipsis',
+                                        maxHeight: '500px',
+                                      }}
+                                    >
+                                      {value}
+                                    </td>
+                                  </th>
+                                );
+                              })}
+                            </tr>
+                          );
+                        })}
+                        )
+                      </tbody>
+                    </Table>
                   </div>
                 ) : (
                   ''
                 )}
               </div>
             </div>
-            <div class="container-fluid card">
+            <div className="container-fluid card">
               <div
-                class="card align-self-center"
+                className="card align-self-center"
                 style={{ minWidth: '75%', padding: '5rem 5rem' }}
               >
                 <label>RSSFeed Table</label>
@@ -155,10 +202,9 @@ const Account = () => {
                 <input type="text" placeholder="" />
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => {
-                    dispatch(getFeedData({ userID: 'all' }));
-                    console.log('getFeedData dispatched');
+                    let tmpresult = FeedDataHandler();
                   }}
                 >
                   Submit

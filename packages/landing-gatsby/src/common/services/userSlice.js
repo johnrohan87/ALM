@@ -136,7 +136,9 @@ export function getFeedData({ userID }) {
       await getFeed({ userID }).then(() => {
         let result = JSON.parse(localStorage.getItem('userfeed'));
         if (result != undefined) {
-          dispatch(set_feed_toState(result));
+          //console.log(result)
+          //dispatch(set_feed_toState(JSON.stringify(result)));
+          return result;
         }
       });
     } catch (error) {

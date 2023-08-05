@@ -12,9 +12,9 @@ function ItemTable({ items }) {
         </tr>
       </thead>
       <tbody>
-        {Items
-          ? Items.feed.map((element) => {
-              console.log(element);
+        {console.log('items', items)}
+        {items
+          ? items['feed'].map((element) => {
               return (
                 <>
                   <td key={element['list position']}>{element['file text']}</td>
