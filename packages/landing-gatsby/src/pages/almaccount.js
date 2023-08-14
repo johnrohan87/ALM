@@ -6,14 +6,13 @@ import { getUser, isLoggedIn } from '../common/services/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
-import ItemTable from '../common/components/ItemTable/ItemTable.js';
 import {
   getUserState,
   fetchUserData,
   submitFeedData,
   getFeedData,
 } from '../common/services/userSlice';
-import { Table } from 'react-bootstrap';
+//import { Table } from 'react-bootstrap';
 
 const Account = () => {
   /**
@@ -72,7 +71,8 @@ const Account = () => {
     const [feedURL, setfeedURL] = useState('');
     const [textFile, settextFile] = useState('');
     const [submitFeed, setsubmitFeed] = useState('');
-    const [feedData, setFeedData] = useState('');
+    const [feedData, setFeedData] = useState(null);
+    const [feedHeader, setFeedHeader] = useState('');
 
     if (submitFeed != '') {
       dispatch(submitFeedData({ feedURL, textFile }));
@@ -140,52 +140,66 @@ const Account = () => {
                 <ul>User info here</ul>
                 <ul>ID {user.id ? user.id : '0'}</ul>
                 <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+                {/*feedData?<DataGrid title={"Feed List"}
+                  data={feedData}
+                  />:""*/}
                 {feedData ? (
                   <div>
                     <h1>Item Table</h1>
-                    <Table
-                      bordered
+                    <table
+                      className="table table-responsive table-bordered"
                       style={{
                         tableLayout: 'fixed',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                       }}
                     >
+                      <thead>
+                        <tr>
+                          {Object.entries(feedData[0]).map(([key, value]) => {
+                            return (
+                              <th>
+                                <td className="w-auto">{key}</td>
+                              </th>
+                            );
+                          })}
+                        </tr>
+                      </thead>
                       <tbody>
                         {feedData.map((feed, index) => {
                           return (
                             <tr key={index}>
                               {Object.entries(feed).map(([key, value], i) => {
                                 return (
-                                  <th
+                                  <td
                                     style={{
                                       whiteSpace: 'nowrap',
                                       textOverflow: 'ellipsis',
-                                      overflow: 'hidden',
+                                      overflowX: 'hidden',
                                       width: 'auto',
                                       maxWidth: '350px',
                                       maxHeight: '100px',
-                                      overflow: 'auto',
+                                      overflow: 'scroll',
                                     }}
                                   >
-                                    <th>{key}</th>
                                     <td
                                       style={{
                                         textOverflow: 'ellipsis',
                                         maxHeight: '500px',
+                                        height: '5vw',
+                                        width: 'auto',
                                       }}
                                     >
                                       {value}
                                     </td>
-                                  </th>
+                                  </td>
                                 );
                               })}
                             </tr>
                           );
                         })}
-                        )
                       </tbody>
-                    </Table>
+                    </table>
                   </div>
                 ) : (
                   ''
