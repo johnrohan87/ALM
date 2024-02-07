@@ -154,6 +154,8 @@ export const List = styled.li`
   margin-top: 17px;
   li {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     font-size: 17px;
     font-weight: 400;
@@ -172,7 +174,8 @@ export const HeaderList = styled.ul`
     border-bottom: 5px solid black;
     padding-bottom: 12px;
     li {
-      display: inline-block;
+      display: flex;
+      justify-content: center;
       font-size: 17px;
       font-weight: 400;
       color: #0f2137;

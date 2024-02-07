@@ -26,7 +26,7 @@ function TodoApp() {
   };
 
   return (
-    <div>
+    <HeaderList>
       <h1>ToDo List</h1>
       <input
         type="text"
@@ -43,7 +43,7 @@ function TodoApp() {
           </List>
         ))}
       </HeaderList>
-    </div>
+    </HeaderList>
   );
 }
 
