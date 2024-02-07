@@ -26,7 +26,7 @@ function TodoApp() {
   };
 
   return (
-    <div>
+    <List>
       <h1>ToDo List</h1>
       <input
         type="text"
@@ -35,15 +35,15 @@ function TodoApp() {
         placeholder="Enter a new task"
       />
       <button onClick={addTodo}>Add Task</button>
-      <ul>
+      <List>
         {todos.map((todo, index) => (
           <List key={index}>
             {todo}
             <button onClick={() => removeTodo(index)}>Remove</button>
           </List>
         ))}
-      </ul>
-    </div>
+      </List>
+    </List>
   );
 }
 
