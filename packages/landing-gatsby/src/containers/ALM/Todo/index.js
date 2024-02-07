@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import BannerWrapper, {
+  AboutWrapper,
   //SearchWrapper,
   List,
   //DiscountWrapper,
@@ -11,12 +12,13 @@ import BannerWrapper, {
 
 function TodoApp() {
   const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const inputRef = useRef(null);
 
   const addTodo = () => {
-    if (inputValue.trim() !== '') {
+    const inputValue = inputRef.current.value.trim();
+    if (inputValue !== '') {
       setTodos([...todos, inputValue]);
-      setInputValue('');
+      inputRef.current.value = '';
     }
   };
 
@@ -26,14 +28,9 @@ function TodoApp() {
   };
 
   return (
-    <HeaderList>
+    <List>
       <h1>ToDo List</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Enter a new task"
-      />
+      <input type="text" ref={inputRef} placeholder="Enter a new task" />
       <button onClick={addTodo}>Add Task</button>
       <HeaderList>
         {todos.map((todo, index) => (
@@ -43,7 +40,7 @@ function TodoApp() {
           </List>
         ))}
       </HeaderList>
-    </HeaderList>
+    </List>
   );
 }
 

@@ -161,6 +161,10 @@ export const List = styled.li`
     font-weight: 400;
     color: #0f2137;
     padding: 8px 12px;
+    button {
+      width: auto;
+      margin: auto;
+    }
     }
   }
 `;
