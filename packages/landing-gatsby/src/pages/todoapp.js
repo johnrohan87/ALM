@@ -9,7 +9,7 @@ import Navbar from 'containers/Hosting/Navbar_About';
 //import Box from 'common/components/Box';
 //import Text from 'common/components/Text';
 //import Container from 'common/components/UI/Container';
-import ToDoApp from 'containers/Todo/todoapp.js';
+import TodoApp from 'containers/Todo/todoapp.js';
 
 //import Layout from 'components/layout';
 //import { DrawerProvider } from 'common/contexts/DrawerContext';
@@ -23,7 +23,7 @@ const AboutMe = () => (
       <GlobalStyle />
       <Navbar />
       <SEO title="ToDoApp" />
-      <ToDoApp />
+      <TodoApp />
       {/*<Link to="/">Go back to the homepage</Link>*/}
     </ParallaxProvider>
   </ThemeProvider>
