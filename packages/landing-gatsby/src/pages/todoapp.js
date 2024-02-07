@@ -9,14 +9,14 @@ import Navbar from 'containers/Hosting/Navbar_About';
 //import Box from 'common/components/Box';
 //import Text from 'common/components/Text';
 //import Container from 'common/components/UI/Container';
-import TodoApp from 'containers/ALM/ToDo';
+import TodoApp from 'containers/ALM/Todo';
 
 //import Layout from 'components/layout';
 //import { DrawerProvider } from 'common/contexts/DrawerContext';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import SEO from 'components/seo';
 
-const AboutMe = () => (
+const ToDoApp = () => (
   <ThemeProvider theme={hostingTheme}>
     <ParallaxProvider>
       <ResetCSS />
@@ -29,4 +29,4 @@ const AboutMe = () => (
   </ThemeProvider>
 );
 
-export default AboutMe;
+export default ToDoApp;
