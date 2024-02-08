@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { navigate } from 'gatsby';
 //import { Link } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 //import Sticky from 'react-stickynode';
@@ -16,17 +17,27 @@ import TodoApp from '../containers/ALM/Todo/index.js';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import SEO from 'components/seo';
 
-const ToDoApp = () => (
-  <ThemeProvider theme={hostingTheme}>
-    <ParallaxProvider>
-      <ResetCSS />
-      <GlobalStyle />
-      <Navbar />
-      <SEO title="ToDoApp" />
-      <TodoApp />
-      {/*<Link to="/">Go back to the homepage</Link>*/}
-    </ParallaxProvider>
-  </ThemeProvider>
-);
+import { getUser, isLoggedIn } from '../common/services/auth';
+
+const ToDoApp = () => {
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      navigate('/');
+    }
+  }, []);
+
+  return (
+    <ThemeProvider theme={hostingTheme}>
+      <ParallaxProvider>
+        <ResetCSS />
+        <GlobalStyle />
+        <Navbar />
+        <SEO title="ToDoApp" />
+        <TodoApp />
+        {/*<Link to="/">Go back to the homepage</Link>*/}
+      </ParallaxProvider>
+    </ThemeProvider>
+  );
+};
 
 export default ToDoApp;

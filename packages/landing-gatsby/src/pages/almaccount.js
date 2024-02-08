@@ -51,6 +51,13 @@ const Account = () => {
             <ul>User info here</ul>
             <ul>ID {user.id ? user.id : '0'}</ul>
             <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+            <br />
+            <button
+              className="btn btn-primary btn-login text-uppercase fw-bold"
+              onClick={() => navigate('/todoapp')}
+            >
+              Test ToDo app
+            </button>
           </>
         )}
       </>

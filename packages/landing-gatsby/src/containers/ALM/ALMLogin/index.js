@@ -1,5 +1,5 @@
-import { navigate } from 'gatsby';
 import React, { useState, useEffect, useContext } from 'react';
+import { navigate } from 'gatsby';
 import {
   getCurrentUser,
   getToken,
@@ -120,13 +120,6 @@ const ALMLogin = ({ state }) => {
                         onClick={() => handleClick(email, password)}
                       >
                         Sign in
-                      </button>
-                      <br />
-                      <button
-                        className="btn btn-primary btn-login text-uppercase fw-bold"
-                        onClick={() => navigate('/todoapp')}
-                      >
-                        Test ToDo app
                       </button>
                     </div>
                   </div>
