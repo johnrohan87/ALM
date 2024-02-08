@@ -8,6 +8,9 @@ import {
   return_logged_in,
 } from '../services/userSlice';
 
+// todoActions.js
+import { TODO_ERROR } from './ActionTypes';
+
 let configHeaders = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -147,3 +150,67 @@ export async function getFeed({ userID }) {
       return { error: error, data: data };
     });
 }
+
+//todo actions
+
+// Action creator for handling errors
+export const todoError = (error) => ({
+  type: TODO_ERROR,
+  payload: error,
+});
+
+// Action creators for fetching todos
+export const fetchTodos = () => {
+  return (dispatch) => {
+    axios
+      .get(process.env.GATSBY_HEROKU_BASEURL + '/api/todos')
+      .then((response) => {
+        dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch(todoError(error.message));
+      });
+  };
+};
+
+// Action creators for adding a todo
+export const addTodo = (todoData) => {
+  return (dispatch) => {
+    axios
+      .post(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', todoData)
+      .then((response) => {
+        dispatch({ type: 'ADD_TODO_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch(todoError(error.message));
+      });
+  };
+};
+
+// Action creators for updating a todo
+export const updateTodo = (id, updatedData) => {
+  return (dispatch) => {
+    axios
+      .put(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, updatedData)
+      .then(() => {
+        dispatch({ type: 'UPDATE_TODO_SUCCESS', payload: { id, updatedData } });
+      })
+      .catch((error) => {
+        dispatch(todoError(error.message));
+      });
+  };
+};
+
+// Action creators for deleting a todo
+export const deleteTodo = (id) => {
+  return (dispatch) => {
+    axios
+      .delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`)
+      .then(() => {
+        dispatch({ type: 'DELETE_TODO_SUCCESS', payload: id });
+      })
+      .catch((error) => {
+        dispatch(todoError(error.message));
+      });
+  };
+};

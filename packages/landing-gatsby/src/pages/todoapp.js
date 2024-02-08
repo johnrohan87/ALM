@@ -18,6 +18,8 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import SEO from 'components/seo';
 
 import { getUser, isLoggedIn } from '../common/services/auth';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import store from '../common/services/store.js';
 
 const ToDoApp = () => {
   useEffect(() => {
@@ -28,14 +30,16 @@ const ToDoApp = () => {
 
   return (
     <ThemeProvider theme={hostingTheme}>
-      <ParallaxProvider>
-        <ResetCSS />
-        <GlobalStyle />
-        <Navbar />
-        <SEO title="ToDoApp" />
-        <TodoApp />
-        {/*<Link to="/">Go back to the homepage</Link>*/}
-      </ParallaxProvider>
+      <Provider store={store}>
+        <ParallaxProvider>
+          <ResetCSS />
+          <GlobalStyle />
+          <Navbar />
+          <SEO title="ToDoApp" />
+          <TodoApp />
+          {/*<Link to="/">Go back to the homepage</Link>*/}
+        </ParallaxProvider>
+      </Provider>
     </ThemeProvider>
   );
 };

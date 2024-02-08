@@ -1,4 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import {
+  fetchTodos,
+  addTodo,
+  updateTodo,
+  deleteTodo,
+} from '../../../common/contexts/AxiosContext';
 
 import BannerWrapper, {
   AboutWrapper,
@@ -10,38 +17,67 @@ import BannerWrapper, {
   Expierence_Projects_Block,
 } from './about.style';
 
-function TodoApp() {
-  const [todos, setTodos] = useState([]);
-  const inputRef = useRef(null);
+function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
+  useEffect(() => {
+    // Fetch todos on component mount
+    fetchTodos();
+  }, [fetchTodos]);
 
-  const addTodo = () => {
-    const inputValue = inputRef.current.value.trim();
-    if (inputValue !== '') {
-      setTodos([...todos, inputValue]);
-      inputRef.current.value = '';
+  const [newTodoText, setNewTodoText] = useState('');
+
+  const handleAddTodo = () => {
+    if (newTodoText.trim() !== '') {
+      addTodo({ text: newTodoText });
+      setNewTodoText('');
     }
   };
 
-  const removeTodo = (index) => {
-    const updatedTodos = todos.filter((_, i) => i !== index);
-    setTodos(updatedTodos);
+  const handleUpdateTodo = (id, newText) => {
+    updateTodo(id, { text: newText });
+  };
+
+  const handleDeleteTodo = (id) => {
+    deleteTodo(id);
   };
 
   return (
-    <List>
+    <div>
       <h1>ToDo List</h1>
-      <input type="text" ref={inputRef} placeholder="Enter a new task" />
-      <button onClick={addTodo}>Add Task</button>
-      <HeaderList>
-        {todos.map((todo, index) => (
-          <List key={index}>
-            {todo}
-            <button onClick={() => removeTodo(index)}>Remove</button>
-          </List>
-        ))}
-      </HeaderList>
-    </List>
+      <ul>
+        {todos ? (
+          todos.map((todo) => (
+            <li key={todo.id}>
+              {todo.text}
+              <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+              <button onClick={() => handleUpdateTodo(todo.id, 'Updated Text')}>
+                Update
+              </button>
+            </li>
+          ))
+        ) : (
+          <div>No todos found</div>
+        )}
+      </ul>
+      <input
+        type="text"
+        value={newTodoText}
+        onChange={(e) => setNewTodoText(e.target.value)}
+        placeholder="Enter new task"
+      />
+      <button onClick={handleAddTodo}>Add Task</button>
+    </div>
   );
 }
 
-export default TodoApp;
+const mapStateToProps = (state) => ({
+  todos: state.todos,
+});
+
+const mapDispatchToProps = {
+  fetchTodos,
+  addTodo,
+  updateTodo,
+  deleteTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
