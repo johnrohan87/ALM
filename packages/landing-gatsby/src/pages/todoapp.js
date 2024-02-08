@@ -27,7 +27,9 @@ const ToDoApp = () => {
       navigate('/');
     }
   }, []);
-
+  if (typeof window === 'undefined') {
+    return null;
+  }
   return (
     <ThemeProvider theme={hostingTheme}>
       <Provider store={store}>
