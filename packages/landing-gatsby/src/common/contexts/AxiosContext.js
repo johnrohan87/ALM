@@ -161,9 +161,14 @@ export const todoError = (error) => ({
 
 // Action creators for fetching todos
 export const fetchTodos = () => {
+  let tmpUser = JSON.parse(localStorage.getItem('user'));
   return (dispatch) => {
     axios
-      .get(process.env.GATSBY_HEROKU_BASEURL + '/api/todos')
+      .get(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', {
+        headers: {
+          Authorization: 'Bearer ' + tmpUser['access_token'],
+        },
+      })
       .then((response) => {
         dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: response.data });
       })
