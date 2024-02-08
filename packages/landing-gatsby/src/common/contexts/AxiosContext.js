@@ -164,7 +164,7 @@ export const todoError = (error) => ({
 export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
 
-  const response = await axios.get('/api/todos', {
+  const response = await axios.get('/api/todos/', {
     headers: {
       Authorization: 'Bearer ' + tmpUser['access_token'],
     },
