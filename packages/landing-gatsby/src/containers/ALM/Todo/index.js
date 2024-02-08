@@ -45,7 +45,7 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
       <h1>ToDo List</h1>
       <ul>
         {todos ? (
-          todos.map((todo) => (
+          Array(todos).map((todo) => (
             <li key={todo.id}>
               {todo.text}
               <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
