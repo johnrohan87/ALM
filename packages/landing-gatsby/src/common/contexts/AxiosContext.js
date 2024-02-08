@@ -163,7 +163,7 @@ export const todoError = (error) => ({
 export const fetchTodos = () => {
   return (dispatch) => {
     axios
-      .get(process.env.GATSBY_HEROKU_BASEURL + '/api/todos/')
+      .get(process.env.GATSBY_HEROKU_BASEURL + '/api/todos')
       .then((response) => {
         dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: response.data });
       })
@@ -177,7 +177,7 @@ export const fetchTodos = () => {
 export const addTodo = (todoData) => {
   return (dispatch) => {
     axios
-      .post(process.env.GATSBY_HEROKU_BASEURL + '/api/todos/', todoData)
+      .post(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', todoData)
       .then((response) => {
         dispatch({ type: 'ADD_TODO_SUCCESS', payload: response.data });
       })
