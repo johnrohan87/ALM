@@ -180,9 +180,14 @@ export const fetchTodos = () => {
 
 // Action creators for adding a todo
 export const addTodo = (todoData) => {
+  let tmpUser = JSON.parse(localStorage.getItem('user'));
   return (dispatch) => {
     axios
-      .post(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', todoData)
+      .post(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', todoData, {
+        headers: {
+          Authorization: 'Bearer ' + tmpUser['access_token'],
+        },
+      })
       .then((response) => {
         dispatch({ type: 'ADD_TODO_SUCCESS', payload: response.data });
       })
@@ -194,9 +199,18 @@ export const addTodo = (todoData) => {
 
 // Action creators for updating a todo
 export const updateTodo = (id, updatedData) => {
+  let tmpUser = JSON.parse(localStorage.getItem('user'));
   return (dispatch) => {
     axios
-      .put(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, updatedData)
+      .put(
+        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: 'Bearer ' + tmpUser['access_token'],
+          },
+        }
+      )
       .then(() => {
         dispatch({ type: 'UPDATE_TODO_SUCCESS', payload: { id, updatedData } });
       })
@@ -208,9 +222,14 @@ export const updateTodo = (id, updatedData) => {
 
 // Action creators for deleting a todo
 export const deleteTodo = (id) => {
+  let tmpUser = JSON.parse(localStorage.getItem('user'));
   return (dispatch) => {
     axios
-      .delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`)
+      .delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
+        headers: {
+          Authorization: 'Bearer ' + tmpUser['access_token'],
+        },
+      })
       .then(() => {
         dispatch({ type: 'DELETE_TODO_SUCCESS', payload: id });
       })
