@@ -41,18 +41,18 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   return (
-    <div>
+    <HeaderList>
       <h1>ToDo List</h1>
       <ul>
-        {todos.length ? (
-          todos.map((todo) => (
-            <li key={todo.id}>
+        {todos ? (
+          todos.todos.map((todo) => (
+            <List key={todo.id}>
               {todo.text}
               <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
               <button onClick={() => handleUpdateTodo(todo.id, 'Updated Text')}>
                 Update
               </button>
-            </li>
+            </List>
           ))
         ) : (
           <div>No todos found</div>
@@ -65,7 +65,7 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
         placeholder="Enter new task"
       />
       <button onClick={handleAddTodo}>Add Task</button>
-    </div>
+    </HeaderList>
   );
 }
 
