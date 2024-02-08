@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTodos } from '../contexts/AxiosContext';
+import {
+  fetchTodos,
+  addTodo,
+  updateTodo,
+  deleteTodo,
+} from '../contexts/AxiosContext';
 
 const initialState = {
   todos: [],
@@ -11,7 +16,20 @@ const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    // Add reducers for other actions if needed
+    todoAdded(state, action) {
+      state.todos.push(action.payload);
+    },
+    todoUpdated(state, action) {
+      const { id, updatedData } = action.payload;
+      const todoIndex = state.todos.findIndex((todo) => todo.id === id);
+      if (todoIndex !== -1) {
+        state.todos[todoIndex] = { ...state.todos[todoIndex], ...updatedData };
+      }
+    },
+    todoDeleted(state, action) {
+      const id = action.payload;
+      state.todos = state.todos.filter((todo) => todo.id !== id);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -30,5 +48,7 @@ const todoSlice = createSlice({
       });
   },
 });
+
+export const { todoAdded, todoUpdated, todoDeleted } = todoSlice.actions;
 
 export default todoSlice.reducer;

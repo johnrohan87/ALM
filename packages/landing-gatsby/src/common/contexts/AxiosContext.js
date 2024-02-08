@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { resolveConfig } from 'prettier';
 import { useSelector, useDispatch } from 'react-redux';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   toggle_logged_in,
   set_logged_in_as,
@@ -159,24 +160,17 @@ export const todoError = (error) => ({
   payload: error,
 });
 
-// Action creators for fetching todos
-export const fetchTodos = () => {
+// Action creator for fetching todos
+export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
-  return (dispatch) => {
-    axios
-      .get(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', {
-        headers: {
-          Authorization: 'Bearer ' + tmpUser['access_token'],
-        },
-      })
-      .then((response) => {
-        dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: response.data });
-      })
-      .catch((error) => {
-        dispatch(todoError(error.message));
-      });
-  };
-};
+
+  const response = await axios.get('/api/todos', {
+    headers: {
+      Authorization: 'Bearer ' + tmpUser['access_token'],
+    },
+  });
+  return response.data;
+});
 
 // Action creators for adding a todo
 export const addTodo = (todoData) => {
