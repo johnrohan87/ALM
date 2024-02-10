@@ -175,63 +175,52 @@ export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   return response.data;
 });
 
-// Action creators for adding a todo
-export const addTodo = (todoData) => {
+// Action creator for adding a todo
+export const addTodo = createAsyncThunk('todos/addTodo', async (todoData) => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
-  return (dispatch) => {
-    axios
-      .post(process.env.GATSBY_HEROKU_BASEURL + '/api/todos', todoData, {
+
+  const response = await axios.post(
+    process.env.GATSBY_HEROKU_BASEURL + '/api/todos',
+    todoData,
+    {
+      headers: {
+        Authorization: 'Bearer ' + tmpUser['access_token'],
+      },
+    }
+  );
+  return response.data;
+});
+
+// Action creator for updating a todo
+export const updateTodo = createAsyncThunk(
+  'todos/updateTodo',
+  async ({ id, updatedData }) => {
+    let tmpUser = JSON.parse(localStorage.getItem('user'));
+
+    await axios.put(
+      process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
+      updatedData,
+      {
         headers: {
           Authorization: 'Bearer ' + tmpUser['access_token'],
         },
-      })
-      .then((response) => {
-        dispatch({ type: 'ADD_TODO_SUCCESS', payload: response.data });
-      })
-      .catch((error) => {
-        dispatch(todoError(error.message));
-      });
-  };
-};
+      }
+    );
+    return { id, updatedData };
+  }
+);
 
-// Action creators for updating a todo
-export const updateTodo = (id, updatedData) => {
+// Action creator for deleting a todo
+export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id) => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
-  return (dispatch) => {
-    axios
-      .put(
-        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
-        updatedData,
-        {
-          headers: {
-            Authorization: 'Bearer ' + tmpUser['access_token'],
-          },
-        }
-      )
-      .then(() => {
-        dispatch({ type: 'UPDATE_TODO_SUCCESS', payload: { id, updatedData } });
-      })
-      .catch((error) => {
-        dispatch(todoError(error.message));
-      });
-  };
-};
 
-// Action creators for deleting a todo
-export const deleteTodo = (id) => {
-  let tmpUser = JSON.parse(localStorage.getItem('user'));
-  return (dispatch) => {
-    axios
-      .delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
-        headers: {
-          Authorization: 'Bearer ' + tmpUser['access_token'],
-        },
-      })
-      .then(() => {
-        dispatch({ type: 'DELETE_TODO_SUCCESS', payload: id });
-      })
-      .catch((error) => {
-        dispatch(todoError(error.message));
-      });
-  };
-};
+  const response = await axios.delete(
+    process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
+    {
+      headers: {
+        Authorization: 'Bearer ' + tmpUser['access_token'],
+      },
+    }
+  );
+  return id, response;
+});

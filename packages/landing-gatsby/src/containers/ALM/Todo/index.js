@@ -37,7 +37,8 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleDeleteTodo = (id) => {
-    deleteTodo(id);
+    let response = deleteTodo(id);
+    console.log(response);
   };
 
   return (

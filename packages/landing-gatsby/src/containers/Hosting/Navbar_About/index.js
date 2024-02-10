@@ -58,6 +58,19 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
                 <Link fade to="/">
                   Home
                 </Link>
+                <Link fade to="/almaccount">
+                  ALM Account
+                </Link>
+                <a
+                  href="#logout"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    localStorage.clear();
+                    navigate('/almlogin');
+                  }}
+                >
+                  Log Out
+                </a>
               </li>
             </ul>
             {/*<ScrollSpyMenu
