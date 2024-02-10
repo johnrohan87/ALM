@@ -214,13 +214,17 @@ export const updateTodo = createAsyncThunk(
 export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id) => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
 
-  const response = await axios.delete(
-    process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
-    {
+  const response = await axios
+    .delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
       headers: {
         Authorization: 'Bearer ' + tmpUser['access_token'],
       },
-    }
-  );
-  return id, response;
+    })
+    .then((response, id) => {
+      return true, response, id;
+    })
+    .catch(() => {
+      return false, response, id;
+    });
+  //return id, response;
 });
