@@ -1,5 +1,5 @@
 import React from 'react'; //, { useContext }
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 //import { useStaticQuery, graphql } from 'gatsby';
 import NavbarWrapper from 'common/components/Navbar';
@@ -58,9 +58,11 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
                 <Link fade to="/">
                   Home
                 </Link>
+                <br />
                 <Link fade to="/almaccount">
                   ALM Account
                 </Link>
+                <br />
                 <a
                   href="#logout"
                   onClick={(e) => {
