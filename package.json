@@ -47,7 +47,6 @@
     "bootstrap": "^5.2.0",
     "css-loader": "^6.7.1",
     "gatsby-plugin-global-context": "^1.0.0",
-    "gatsby-plugin-netlify": "^5.1.1",
     "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-source-facebook": "^2.0.1",
     "gsap": "^3.7.0",
