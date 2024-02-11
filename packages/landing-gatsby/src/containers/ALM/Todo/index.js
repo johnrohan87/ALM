@@ -37,7 +37,13 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleDeleteTodo = (id) => {
-    deleteTodo(id);
+    deleteTodo(id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error('Error deleting todo:', error);
+      });
   };
 
   return (
