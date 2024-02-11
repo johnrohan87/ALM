@@ -28,8 +28,10 @@ const todoSlice = createSlice({
     },
     todoDeleted(state, action) {
       const { id } = action.payload;
-      console.log(id);
-      state.todos = state.todos.filter((todo) => todo.id !== id);
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== id),
+      };
     },
   },
   extraReducers: (builder) => {
