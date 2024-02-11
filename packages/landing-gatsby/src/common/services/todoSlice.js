@@ -17,8 +17,9 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     todoAdded(state, action) {
+      console.log('State before todoAdded reducer:', state);
       state.todos.push(action.payload);
-      console.log('state should update', action.payload);
+      console.log('State after todoAdded reducer:', state);
     },
     todoUpdated(state, action) {
       const { id, updatedData } = action.payload;
