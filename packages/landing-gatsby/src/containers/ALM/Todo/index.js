@@ -25,10 +25,6 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
 
   const [newTodoText, setNewTodoText] = useState('');
 
-  useEffect(() => {
-    console.log('Todos state changed:', todos);
-  }, [todos]);
-
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
       addTodo({ text: newTodoText });

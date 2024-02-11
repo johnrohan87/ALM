@@ -27,7 +27,7 @@ const todoSlice = createSlice({
       }
     },
     todoDeleted(state, action) {
-      const id = action.payload;
+      const { id } = action.payload;
       state.todos = state.todos.filter((todo) => todo.id !== id);
     },
   },
