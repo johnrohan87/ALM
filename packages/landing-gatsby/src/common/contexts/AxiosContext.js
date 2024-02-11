@@ -219,5 +219,5 @@ export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id) => {
       Authorization: 'Bearer ' + tmpUser['access_token'],
     },
   });
-  return id, response;
+  return id;
 });
