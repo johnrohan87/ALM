@@ -21,7 +21,7 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
   useEffect(() => {
     // Fetch todos on component mount
     fetchTodos();
-  }, [fetchTodos]);
+  }, [fetchTodos, todos]);
 
   const [newTodoText, setNewTodoText] = useState('');
 
