@@ -17,9 +17,7 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     todoAdded(state, action) {
-      console.log('State before todoAdded reducer:', state);
       state.todos.push(action.payload);
-      console.log('State after todoAdded reducer:', state);
     },
     todoUpdated(state, action) {
       const { id, updatedData } = action.payload;
@@ -30,10 +28,8 @@ const todoSlice = createSlice({
     },
     todoDeleted(state, action) {
       const { id } = action.payload;
-      return {
-        ...state,
-        todos: state.todos.filter((todo) => todo.id !== id),
-      };
+      state.todos = state.todos.filter((todo) => todo.id !== id);
+      console.log('Todo deleted. Updated state:', state); // Log the updated state
     },
   },
   extraReducers: (builder) => {
@@ -54,7 +50,7 @@ const todoSlice = createSlice({
       .addCase(addTodo.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.todos.push(action.payload); // Push the new todo to the todos array
+        state.todos.push(action.payload);
       });
   },
 });

@@ -213,11 +213,15 @@ export const updateTodo = createAsyncThunk(
 // Action creator for deleting a todo
 export const deleteTodo = createAsyncThunk('todos/todoDeleted', async (id) => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
-
-  await axios.delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
-    headers: {
-      Authorization: 'Bearer ' + tmpUser['access_token'],
-    },
-  });
-  return id;
+  await axios
+    .delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
+      headers: {
+        Authorization: 'Bearer ' + tmpUser['access_token'],
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      return response.arg;
+    });
+  //return id;
 });

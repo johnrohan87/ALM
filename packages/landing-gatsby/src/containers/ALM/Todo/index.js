@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import {
   fetchTodos,
   addTodo,
@@ -17,7 +17,9 @@ import BannerWrapper, {
   Expierence_Projects_Block,
 } from './about.style';
 
-function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
+function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos);
   useEffect(() => {
     // Fetch todos on component mount
     fetchTodos();
@@ -37,13 +39,7 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleDeleteTodo = (id) => {
-    deleteTodo(id)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error('Error deleting todo:', error);
-      });
+    console.log(deleteTodo(id));
   };
 
   return (
@@ -54,7 +50,13 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
           todos.todos.map((todo) => (
             <List key={todo.id}>
               {todo.text}
-              <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+              <button
+                onClick={() => {
+                  handleDeleteTodo(todo.id);
+                }}
+              >
+                Delete {todo.id}
+              </button>
               <button onClick={() => handleUpdateTodo(todo.id, 'Updated Text')}>
                 Update
               </button>
