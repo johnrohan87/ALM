@@ -220,11 +220,8 @@ export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id) => {
         Authorization: 'Bearer ' + tmpUser['access_token'],
       },
     })
-    .then((response, id) => {
-      return true, response, id;
-    })
-    .catch(() => {
-      return false, response, id;
+    .then(function (response) {
+      console.log(response.status);
     });
   //return id, response;
 });
