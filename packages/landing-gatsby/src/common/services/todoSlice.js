@@ -50,6 +50,11 @@ const todoSlice = createSlice({
       .addCase(fetchTodos.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(addTodo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.todos.push(action.payload); // Push the new todo to the todos array
       });
   },
 });
