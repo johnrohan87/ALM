@@ -176,7 +176,7 @@ export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
 });
 
 // Action creator for adding a todo
-export const addTodo = createAsyncThunk('todos/addTodo', async (todoData) => {
+export const addTodo = createAsyncThunk('todos/todoAdded', async (todoData) => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
 
   const response = await axios.post(
@@ -211,7 +211,7 @@ export const updateTodo = createAsyncThunk(
 );
 
 // Action creator for deleting a todo
-export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id) => {
+export const deleteTodo = createAsyncThunk('todos/todoDeleted', async (id) => {
   let tmpUser = JSON.parse(localStorage.getItem('user'));
 
   await axios.delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
