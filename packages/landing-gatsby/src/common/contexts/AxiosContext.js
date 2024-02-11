@@ -193,12 +193,12 @@ export const addTodo = createAsyncThunk('todos/todoAdded', async (todoData) => {
 
 export const updateTodo = createAsyncThunk(
   'todos/updateTodo',
-  async ({ id, updatedData }) => {
+  async ({ id, updatedText }) => {
     try {
       let tmpUser = JSON.parse(localStorage.getItem('user'));
-
+      const updatedData = { text: updatedText };
       await axios.put(
-        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
+        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}/${updatedText}`,
         updatedData,
         {
           headers: {
@@ -206,7 +206,7 @@ export const updateTodo = createAsyncThunk(
           },
         }
       );
-      return { id, updatedData };
+      return { id, updatedText };
     } catch (error) {
       console.error('Error updating todo:', error);
       throw error;
