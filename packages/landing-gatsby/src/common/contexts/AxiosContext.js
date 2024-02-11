@@ -206,7 +206,11 @@ export const updateTodo = createAsyncThunk(
           },
         }
       );
-      return { id, updatedText };
+      if (response.status === 200) {
+        return { id, updatedText };
+      } else {
+        return thunkAPI.rejectWithValue('Failed to delete todo');
+      }
     } catch (error) {
       console.error('Error updating todo:', error);
       throw error;
