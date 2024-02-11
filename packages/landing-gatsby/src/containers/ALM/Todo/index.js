@@ -49,16 +49,23 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
         {todos ? (
           todos.todos.map((todo) => (
             <List key={todo.id}>
-              {todo.text}
+              <input
+                type="text"
+                value={todo.text}
+                onChange={(e) =>
+                  handleUpdateTodo(
+                    todo.id,
+                    e.target.value,
+                    console.log(todo.id, e.target.value)
+                  )
+                }
+              />
               <button
                 onClick={() => {
                   handleDeleteTodo(todo.id);
                 }}
               >
-                Delete {todo.id}
-              </button>
-              <button onClick={() => handleUpdateTodo(todo.id, 'Updated Text')}>
-                Update
+                Delete
               </button>
             </List>
           ))

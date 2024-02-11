@@ -20,10 +20,10 @@ const todoSlice = createSlice({
       state.todos.push(action.payload);
     },
     todoUpdated(state, action) {
-      const { id, updatedData } = action.payload;
+      const { id, updatedText } = action.payload;
       const todoIndex = state.todos.findIndex((todo) => todo.id === id);
       if (todoIndex !== -1) {
-        state.todos[todoIndex] = { ...state.todos[todoIndex], ...updatedData };
+        state.todos[todoIndex].text = updatedText;
       }
     },
     todoDeleted(state, action) {
@@ -51,11 +51,7 @@ const todoSlice = createSlice({
         state.error = null;
         state.todos.push(action.payload);
       })
-      .addCase(deleteTodo.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(deleteTodo.fulfilled, (state, action, payload) => {
+      .addCase(deleteTodo.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         const id = action.payload;

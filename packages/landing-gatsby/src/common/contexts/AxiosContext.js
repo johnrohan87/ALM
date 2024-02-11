@@ -191,22 +191,26 @@ export const addTodo = createAsyncThunk('todos/todoAdded', async (todoData) => {
   return response.data;
 });
 
-// Action creator for updating a todo
 export const updateTodo = createAsyncThunk(
   'todos/updateTodo',
   async ({ id, updatedData }) => {
-    let tmpUser = JSON.parse(localStorage.getItem('user'));
+    try {
+      let tmpUser = JSON.parse(localStorage.getItem('user'));
 
-    await axios.put(
-      process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
-      updatedData,
-      {
-        headers: {
-          Authorization: 'Bearer ' + tmpUser['access_token'],
-        },
-      }
-    );
-    return { id, updatedData };
+      await axios.put(
+        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: 'Bearer ' + tmpUser['access_token'],
+          },
+        }
+      );
+      return { id, updatedData };
+    } catch (error) {
+      console.error('Error updating todo:', error);
+      throw error;
+    }
   }
 );
 
@@ -215,7 +219,6 @@ export const deleteTodo = createAsyncThunk(
   async (id, thunkAPI) => {
     let tmpUser = JSON.parse(localStorage.getItem('user'));
     try {
-      // Make delete request to server
       const response = await axios.delete(
         process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
         {
@@ -224,17 +227,12 @@ export const deleteTodo = createAsyncThunk(
           },
         }
       );
-
-      // Check if response status is success
       if (response.status === 200) {
-        // If successful, return the ID
         return id;
       } else {
-        // If response status is not success, reject the action with an error
         return thunkAPI.rejectWithValue('Failed to delete todo');
       }
     } catch (error) {
-      // If request fails, handle the error
       return thunkAPI.rejectWithValue(error.message);
     }
   }
