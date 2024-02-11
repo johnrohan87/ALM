@@ -21,9 +21,13 @@ function TodoApp({ todos, fetchTodos, addTodo, updateTodo, deleteTodo }) {
   useEffect(() => {
     // Fetch todos on component mount
     fetchTodos();
-  }, [fetchTodos, deleteTodo]);
+  }, [fetchTodos]);
 
   const [newTodoText, setNewTodoText] = useState('');
+
+  useEffect(() => {
+    console.log('Todos state changed:', todos);
+  }, [todos]);
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
