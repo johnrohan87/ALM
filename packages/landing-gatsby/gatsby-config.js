@@ -11,7 +11,7 @@ module.exports = {
         minify: false, // Breaks styles if not set to false
       },
     },
-
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-transition-link`,
     {
