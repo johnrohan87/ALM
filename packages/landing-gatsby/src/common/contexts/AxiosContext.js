@@ -210,13 +210,32 @@ export const updateTodo = createAsyncThunk(
   }
 );
 
-// Action creator for deleting a todo
-export const deleteTodo = createAsyncThunk('todos/todoDeleted', async (id) => {
-  let tmpUser = JSON.parse(localStorage.getItem('user'));
-  await axios.delete(process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`, {
-    headers: {
-      Authorization: 'Bearer ' + tmpUser['access_token'],
-    },
-  });
-  return id;
-});
+export const deleteTodo = createAsyncThunk(
+  'todos/todoDeleted',
+  async (id, thunkAPI) => {
+    let tmpUser = JSON.parse(localStorage.getItem('user'));
+    try {
+      // Make delete request to server
+      const response = await axios.delete(
+        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + tmpUser['access_token'],
+          },
+        }
+      );
+
+      // Check if response status is success
+      if (response.status === 200) {
+        // If successful, return the ID
+        return id;
+      } else {
+        // If response status is not success, reject the action with an error
+        return thunkAPI.rejectWithValue('Failed to delete todo');
+      }
+    } catch (error) {
+      // If request fails, handle the error
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

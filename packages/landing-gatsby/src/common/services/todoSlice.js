@@ -27,9 +27,8 @@ const todoSlice = createSlice({
       }
     },
     todoDeleted(state, action) {
-      const { id } = action.payload;
+      const id = action.payload;
       state.todos = state.todos.filter((todo) => todo.id !== id);
-      console.log('Todo deleted. Updated state:', state); // Log the updated state
     },
   },
   extraReducers: (builder) => {
@@ -51,6 +50,20 @@ const todoSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.todos.push(action.payload);
+      })
+      .addCase(deleteTodo.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteTodo.fulfilled, (state, action, payload) => {
+        state.loading = false;
+        state.error = null;
+        const id = action.payload;
+        state.todos = state.todos.filter((todo) => todo.id !== id);
+      })
+      .addCase(deleteTodo.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });

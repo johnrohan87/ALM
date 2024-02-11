@@ -23,7 +23,7 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   useEffect(() => {
     // Fetch todos on component mount
     fetchTodos();
-  }, [fetchTodos]);
+  }, [fetchTodos, deleteTodo]);
 
   const [newTodoText, setNewTodoText] = useState('');
 
@@ -39,7 +39,7 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleDeleteTodo = (id) => {
-    console.log(deleteTodo(id));
+    deleteTodo(id);
   };
 
   return (
