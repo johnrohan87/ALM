@@ -20,14 +20,13 @@ import BannerWrapper, {
 function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
-  useEffect(() => {
-    // Fetch todos on component mount
-    fetchTodos();
-  }, [fetchTodos, deleteTodo]);
-
   const [newTodoText, setNewTodoText] = useState('');
   const [updatedTodoText, setUpdatedNewTodoText] = useState('');
   const [updatedTodoId, setUpdatedTodoId] = useState(null);
+
+  useEffect(() => {
+    fetchTodos();
+  }, [fetchTodos, deleteTodo]);
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
@@ -37,8 +36,14 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleUpdateTodo = (id, newText) => {
+    updateTodo(id, { text: newText });
+    setUpdatedTodoText('');
+    setUpdatedTodoId(null);
+  };
+
+  const handleEditTodo = (id, text) => {
     setUpdatedTodoId(id);
-    setUpdatedTodoText(newText);
+    setUpdatedTodoText(text);
   };
 
   const handleDeleteTodo = (id) => {
@@ -54,23 +59,22 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
             <List key={todo.id}>
               <input
                 type="text"
-                value={todo.id === updatedTodoId ? updatedTodoText : todo.text}
-                onChange={(e) => setUpdatedNewTodoText(e.target.value)}
+                value={updatedTodoId === todo.id ? updatedTodoText : todo.text}
+                onChange={(e) => setUpdatedTodoText(e.target.value)}
+                disabled={updatedTodoId !== todo.id} // Disable the input if not being edited
               />
-              <button
-                onClick={() => {
-                  handleDeleteTodo(todo.id);
-                }}
-              >
-                Delete
-              </button>
-              <button
-                onClick={(e) => {
-                  handleUpdateTodo(todo.id, updatedTodoText);
-                }}
-              >
-                Update
-              </button>
+              <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+              {updatedTodoId === todo.id ? (
+                <button
+                  onClick={() => handleUpdateTodo(todo.id, updatedTodoText)}
+                >
+                  Save
+                </button>
+              ) : (
+                <button onClick={() => handleEditTodo(todo.id, todo.text)}>
+                  Edit
+                </button>
+              )}
             </List>
           ))
         ) : (
