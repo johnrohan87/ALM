@@ -55,7 +55,9 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
             <List key={todo.id}>
               <input
                 type="text"
-                value={editingTodos[todo.id] ? todo.text : todo.text}
+                value={
+                  editingTodos[todo.id] ? editingTodos[todo.id] : todo.text
+                }
                 onChange={(e) => {
                   const { value } = e.target;
                   setEditingTodos({ ...editingTodos, [todo.id]: value });
