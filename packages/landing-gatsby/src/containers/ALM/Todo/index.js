@@ -26,6 +26,8 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   }, [fetchTodos, deleteTodo]);
 
   const [newTodoText, setNewTodoText] = useState('');
+  const [updatedTodoText, setUpdatedNewTodoText] = useState('');
+  const [updatedTodoId, setUpdatedTodoId] = useState(null);
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
@@ -35,7 +37,8 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleUpdateTodo = (id, newText) => {
-    updateTodo(id, { text: newText });
+    setUpdatedTodoId(id);
+    setUpdatedTodoText(newText);
   };
 
   const handleDeleteTodo = (id) => {
@@ -51,14 +54,8 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
             <List key={todo.id}>
               <input
                 type="text"
-                value={todo.text}
-                onChange={(e) =>
-                  handleUpdateTodo(
-                    todo.id,
-                    e.target.value,
-                    console.log(todo.id, e.target.value)
-                  )
-                }
+                value={todo.id === updatedTodoId ? updatedTodoText : todo.text}
+                onChange={(e) => setUpdatedNewTodoText(e.target.value)}
               />
               <button
                 onClick={() => {
@@ -66,6 +63,13 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
                 }}
               >
                 Delete
+              </button>
+              <button
+                onClick={(e) => {
+                  handleUpdateTodo(todo.id, updatedTodoText);
+                }}
+              >
+                Update
               </button>
             </List>
           ))

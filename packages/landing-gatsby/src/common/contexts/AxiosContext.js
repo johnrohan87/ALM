@@ -197,8 +197,8 @@ export const updateTodo = createAsyncThunk(
     try {
       let tmpUser = JSON.parse(localStorage.getItem('user'));
       const updatedData = { text: updatedText };
-      await axios.put(
-        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}/${updatedText}`,
+      const response = await axios.put(
+        process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
         updatedData,
         {
           headers: {
@@ -209,7 +209,8 @@ export const updateTodo = createAsyncThunk(
       if (response.status === 200) {
         return { id, updatedText };
       } else {
-        return thunkAPI.rejectWithValue('Failed to delete todo');
+        console.error('Failed to delete todo');
+        return false;
       }
     } catch (error) {
       console.error('Error updating todo:', error);
