@@ -60,7 +60,10 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
                 }
                 onChange={(e) => {
                   const { value } = e.target;
-                  setEditingTodos({ ...editingTodos, [todo.id]: value });
+                  setEditingTodos({
+                    ...editingTodos,
+                    [todo.id]: { ...editingTodos[todo.id], text: value },
+                  });
                 }}
                 disabled={!editingTodos[todo.id]}
               />
