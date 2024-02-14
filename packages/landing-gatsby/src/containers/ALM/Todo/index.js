@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import {
   fetchTodos,
   addTodo,
@@ -18,13 +18,9 @@ import BannerWrapper, {
 } from './about.style';
 
 function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
-  const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   const [newTodoText, setNewTodoText] = useState('');
-  const [updatedTodoText, setUpdatedNewTodoText] = useState('');
-  const [updatedTodoId, setUpdatedTodoId] = useState(null);
-  const [editingTodoId, setEditingTodoId] = useState(null);
-  const [editingTodoText, setEditingTodoText] = useState('');
+  const [editingTodos, setEditingTodos] = useState({});
 
   useEffect(() => {
     fetchTodos();
@@ -39,13 +35,11 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
 
   const handleUpdateTodo = (id, newText) => {
     updateTodo(id, { text: newText });
-    setUpdatedTodoText('');
-    setUpdatedTodoId(null);
+    setEditingTodos({ ...editingTodos, [id]: false });
   };
 
   const handleEditTodo = (id, text) => {
-    setEditingTodoId(id);
-    setEditingTodoText(text);
+    setEditingTodos({ ...editingTodos, [id]: true });
   };
 
   const handleDeleteTodo = (id) => {
@@ -61,14 +55,19 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
             <List key={todo.id}>
               <input
                 type="text"
-                value={editingTodoId === todo.id ? editingTodoText : todo.text}
-                onChange={(e) => setEditingTodoText(e.target.value)}
-                disabled={editingTodoId !== todo.id}
+                value={editingTodos[todo.id] ? todo.text : todo.text}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  setEditingTodos({ ...editingTodos, [todo.id]: value });
+                }}
+                disabled={!editingTodos[todo.id]}
               />
               <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
-              {editingTodoId === todo.id ? (
+              {editingTodos[todo.id] ? (
                 <button
-                  onClick={() => handleUpdateTodo(todo.id, editingTodoText)}
+                  onClick={() =>
+                    handleUpdateTodo(todo.id, editingTodos[todo.id])
+                  }
                 >
                   Save
                 </button>
