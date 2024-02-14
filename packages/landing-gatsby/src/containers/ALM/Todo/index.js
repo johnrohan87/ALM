@@ -23,6 +23,8 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   const [newTodoText, setNewTodoText] = useState('');
   const [updatedTodoText, setUpdatedNewTodoText] = useState('');
   const [updatedTodoId, setUpdatedTodoId] = useState(null);
+  const [editingTodoId, setEditingTodoId] = useState(null);
+  const [editingTodoText, setEditingTodoText] = useState('');
 
   useEffect(() => {
     fetchTodos();
@@ -42,8 +44,8 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleEditTodo = (id, text) => {
-    setUpdatedTodoId(id);
-    setUpdatedTodoText(text);
+    setEditingTodoId(id);
+    setEditingTodoText(text);
   };
 
   const handleDeleteTodo = (id) => {
@@ -59,14 +61,14 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
             <List key={todo.id}>
               <input
                 type="text"
-                value={updatedTodoId === todo.id ? updatedTodoText : todo.text}
-                onChange={(e) => setUpdatedTodoText(e.target.value)}
-                disabled={updatedTodoId !== todo.id} // Disable the input if not being edited
+                value={editingTodoId === todo.id ? editingTodoText : todo.text}
+                onChange={(e) => setEditingTodoText(e.target.value)}
+                disabled={editingTodoId !== todo.id}
               />
               <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
-              {updatedTodoId === todo.id ? (
+              {editingTodoId === todo.id ? (
                 <button
-                  onClick={() => handleUpdateTodo(todo.id, updatedTodoText)}
+                  onClick={() => handleUpdateTodo(todo.id, editingTodoText)}
                 >
                   Save
                 </button>
