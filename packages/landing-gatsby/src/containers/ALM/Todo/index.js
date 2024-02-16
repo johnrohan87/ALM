@@ -18,9 +18,10 @@ import BannerWrapper, {
 } from './about.style';
 
 function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos.todos);
   const [newTodoText, setNewTodoText] = useState('');
   const [editingTodos, setEditingTodos] = useState({});
+  const [updatedTexts, setUpdatedTexts] = useState({});
 
   useEffect(() => {
     fetchTodos();
@@ -34,36 +35,70 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   const handleUpdateTodo = (id, newText) => {
-    updateTodo(id, { text: newText });
-    setEditingTodos({ ...editingTodos, [id]: false });
+    console.log('Updated text:', newText);
+    if (typeof newText !== 'string') {
+      console.error('newText should be a string');
+      return;
+    }
+    console.log('Updating todo with id:', id);
+    console.log('Updating todo with new text:', newText);
+
+    updateTodo({ id, updatedText: newText }).then(() => {
+      fetchTodos();
+      setUpdatedTexts((prevUpdatedTexts) => ({
+        ...prevUpdatedTexts,
+        [id]: newText,
+      }));
+      setEditingTodos((prevEditingTodos) => ({
+        ...prevEditingTodos,
+        [id]: false,
+      }));
+    });
   };
 
   const handleEditTodo = (id, text) => {
-    setEditingTodos({ ...editingTodos, [id]: true });
+    setEditingTodos((prevEditingTodos) => ({
+      ...prevEditingTodos,
+      [id]: text,
+    }));
   };
 
   const handleDeleteTodo = (id) => {
     deleteTodo(id);
   };
 
+  const displayStateContents = () => {
+    console.log('Current todos state:', todos);
+    console.log('Current newTodoText state:', newTodoText);
+    console.log('Current editingTodos state:', editingTodos);
+    console.log('Current updatedTexts state:', updatedTexts);
+  };
+
   return (
     <HeaderList>
       <h1>ToDo List</h1>
+      <button onClick={displayStateContents}>Display State Contents</button>
       <ul>
-        {todos ? (
-          todos.todos.map((todo) => (
+        {Array.isArray(todos) ? (
+          todos.map((todo) => (
             <List key={todo.id}>
+              {todo.id}
+              <br />
+              {todo.text}
+              <br />
               <input
                 type="text"
                 value={
-                  editingTodos[todo.id] ? editingTodos[todo.id] : todo.text
+                  editingTodos[todo.id]
+                    ? editingTodos[todo.id]
+                    : updatedTexts[todo.id] || todo.text
                 }
                 onChange={(e) => {
                   const { value } = e.target;
-                  setEditingTodos({
-                    ...editingTodos,
-                    [todo.id]: { ...editingTodos[todo.id], text: value },
-                  });
+                  setEditingTodos((prevEditingTodos) => ({
+                    ...prevEditingTodos,
+                    [todo.id]: value,
+                  }));
                 }}
                 disabled={!editingTodos[todo.id]}
               />
@@ -99,7 +134,7 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
 }
 
 const mapStateToProps = (state) => ({
-  todos: state.todos,
+  todos: state.todos.todos,
 });
 
 const mapDispatchToProps = {

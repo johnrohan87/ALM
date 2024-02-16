@@ -197,6 +197,7 @@ export const updateTodo = createAsyncThunk(
     try {
       let tmpUser = JSON.parse(localStorage.getItem('user'));
       const updatedData = { text: updatedText };
+      console.log('Updating todo with id:', id, 'and text:', updatedText);
       const response = await axios.put(
         process.env.GATSBY_HEROKU_BASEURL + `/api/todos/${id}`,
         updatedData,
