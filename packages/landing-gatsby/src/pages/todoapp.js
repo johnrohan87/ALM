@@ -38,7 +38,10 @@ const ToDoApp = () => {
           <GlobalStyle />
           <Navbar />
           <SEO title="ToDoApp" />
-          <TodoApp />
+          <TodoApp
+            className="custom-class"
+            style={{ backgroundColor: 'white', color: 'darkblue' }}
+          />
           {/*<Link to="/">Go back to the homepage</Link>*/}
         </ParallaxProvider>
       </Provider>

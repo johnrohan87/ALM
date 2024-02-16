@@ -7,17 +7,16 @@ import {
   deleteTodo,
 } from '../../../common/contexts/AxiosContext';
 
-import BannerWrapper, {
-  AboutWrapper,
-  //SearchWrapper,
-  List,
-  //DiscountWrapper,
-  //DiscountLabel,
-  HeaderList,
-  Expierence_Projects_Block,
-} from './about.style';
+import { HeaderList, List, TodoInput, TodoButton } from './about.style';
 
-function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
+function TodoApp({
+  fetchTodos,
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  className,
+  style,
+}) {
   const todos = useSelector((state) => state.todos.todos);
   const [newTodoText, setNewTodoText] = useState('');
   const [editingTodos, setEditingTodos] = useState({});
@@ -75,18 +74,17 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
   };
 
   return (
-    <HeaderList>
+    <HeaderList className={className} style={style}>
       <h1>ToDo List</h1>
-      <button onClick={displayStateContents}>Display State Contents</button>
+      {/*<button onClick={displayStateContents}>Display State Contents</button>*/}
       <ul>
         {Array.isArray(todos) ? (
           todos.map((todo) => (
             <List key={todo.id}>
-              {todo.id}
-              <br />
-              {todo.text}
-              <br />
-              <input
+              <span>
+                {todo.id}: {todo.text}
+              </span>
+              <TodoInput
                 type="text"
                 value={
                   editingTodos[todo.id]
@@ -102,19 +100,21 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
                 }}
                 disabled={!editingTodos[todo.id]}
               />
-              <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+              <TodoButton onClick={() => handleDeleteTodo(todo.id)}>
+                Delete
+              </TodoButton>
               {editingTodos[todo.id] ? (
-                <button
+                <TodoButton
                   onClick={() =>
                     handleUpdateTodo(todo.id, editingTodos[todo.id])
                   }
                 >
                   Save
-                </button>
+                </TodoButton>
               ) : (
-                <button onClick={() => handleEditTodo(todo.id, todo.text)}>
+                <TodoButton onClick={() => handleEditTodo(todo.id, todo.text)}>
                   Edit
-                </button>
+                </TodoButton>
               )}
             </List>
           ))
@@ -122,13 +122,13 @@ function TodoApp({ fetchTodos, addTodo, updateTodo, deleteTodo }) {
           <div>No todos found</div>
         )}
       </ul>
-      <input
+      <TodoInput
         type="text"
         value={newTodoText}
         onChange={(e) => setNewTodoText(e.target.value)}
         placeholder="Enter new task"
       />
-      <button onClick={handleAddTodo}>Add Task</button>
+      <TodoButton onClick={handleAddTodo}>Add Task</TodoButton>
     </HeaderList>
   );
 }
