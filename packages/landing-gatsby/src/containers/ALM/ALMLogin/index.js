@@ -38,29 +38,8 @@ const ALMLogin = ({ state }) => {
   };
 
   const handleClick = (email, password) => {
-    {
-      /**
-    if (dispatch(fetchLoginData({email,password}))){
-      if (isLoggedIn()){
-        console.log(dispatch(return_logged_in))
-        dispatch(toggle_logged_in)
-        console.log('navigating')
-        navigate('/almaccount/:home');
-      }
-      else {
-        LoginFunction({email,password})
-        console.log('user = ',user)
-      }
-    } */
-    }
     FetchToken({ email, password });
   };
-
-  useEffect(() => {
-    if (isLoggedIn()) {
-      navigate('/almaccount/home');
-    }
-  }, []);
 
   return (
     <>

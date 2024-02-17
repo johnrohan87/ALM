@@ -25,8 +25,12 @@ const setUser = (user) =>
 
 export const isLoggedIn = () => {
   const user = getUser();
-
   return !!user.access_token;
+};
+
+export const getUserTokens = () => {
+  const user = getUser();
+  return user;
 };
 
 export const logout = (callback) => {

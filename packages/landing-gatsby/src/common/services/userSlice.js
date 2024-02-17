@@ -6,11 +6,12 @@ import {
   addFeed,
   getFeed,
 } from '../../common/contexts/AxiosContext';
+import { getUser, isLoggedIn, getUserTokens } from './auth';
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    token: null,
+    access_token: null,
     refresh_token: null,
     loading: false,
     logged_in: false,
@@ -20,10 +21,6 @@ export const userSlice = createSlice({
   },
   reducers: {
     toggle_logged_in: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       return {
         ...state,
         logged_in: !state.logged_in.value,
@@ -45,7 +42,7 @@ export const userSlice = createSlice({
     set_token: (state, action) => {
       return {
         ...state,
-        token: action.payload.access_token,
+        access_token: action.payload.access_token,
         refresh_token: action.payload.refresh_token,
       };
     },
@@ -85,19 +82,33 @@ export const getUserState = (state) => state;
 export function fetchLoginData({ email, password }) {
   return async (dispatch, getState) => {
     try {
-      await getToken({ email, password }).then(() => {
-        let result = JSON.parse(localStorage.getItem('user'));
-        if (result != undefined) {
-          dispatch(set_token(result));
-          dispatch(toggle_logged_in());
-        }
-      });
+      let storedToken = getUser();
+
+      if (storedToken.access_token) {
+        dispatch(
+          set_token({
+            access_token: storedToken.access_token,
+            refresh_token: storedToken.refresh_token,
+          })
+        );
+        dispatch(toggle_logged_in());
+      } else {
+        await getToken({ email, password }).then(() => {
+          let result = JSON.parse(localStorage.getItem('user'));
+
+          if (result != undefined) {
+            dispatch(set_token(result));
+            dispatch(toggle_logged_in());
+          }
+        });
+      }
     } catch (error) {
       console.log(error);
       return error;
     }
   };
 }
+
 export function fetchUserData() {
   return async (dispatch, getState) => {
     try {

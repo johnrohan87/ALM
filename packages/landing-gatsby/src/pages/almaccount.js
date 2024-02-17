@@ -33,7 +33,7 @@ const Account = () => {
     //const user = useSelector((state) => state.user);
     useEffect(() => {
       if (!isLoggedIn()) {
-        navigate('/');
+        navigate('/almlogin');
       }
     }, []);
 
@@ -70,7 +70,7 @@ const Account = () => {
   const PullFeed = () => {
     useEffect(() => {
       if (!isLoggedIn()) {
-        navigate('/');
+        navigate('/almlogin');
       }
     }, [user]);
     const dispatch = useDispatch();
@@ -240,7 +240,7 @@ const Account = () => {
   const Redirect = () => (
     <>
       Redirecting...
-      {isLoggedIn() ? navigate('/almaccount/home') : navigate('/')}
+      {isLoggedIn() ? navigate('/almaccount/home') : navigate('/almlogin')}
     </>
   );
 
@@ -248,7 +248,7 @@ const Account = () => {
     <BrowserRouter>
       <Provider store={store}>
         {!isLoggedIn() ? (
-          <>{navigate('/')}</>
+          <>{navigate('/almlogin')}</>
         ) : (
           <nav>
             <Link to="/almaccount/home">Account Home</Link>{' '}
@@ -260,7 +260,7 @@ const Account = () => {
               href="#logout"
               onClick={(e) => {
                 e.preventDefault();
-                localStorage.clear();
+                //localStorage.clear();
                 navigate('/almlogin');
               }}
             >

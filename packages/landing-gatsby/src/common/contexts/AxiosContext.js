@@ -57,22 +57,33 @@ export async function getToken({ email, password }) {
 
 export async function getCurrentUser() {
   try {
-    let tmpDict = JSON.parse(localStorage.getItem('user'));
-    configHeaders['Authorization'] = 'Bearer ' + tmpDict['access_token'];
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedToken = storedUser?.access_token;
 
-    const response = await axios({
-      method: 'get',
-      url: process.env.GATSBY_HEROKU_BASEURL + '/protected',
-      timeout: 5000,
-      headers: configHeaders,
-    });
-    //console.log(response);
+    if (!storedToken) {
+      throw new Error('Token not found in local storage');
+    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${storedToken}`,
+    };
+
+    const response = await axios.get(
+      `${process.env.GATSBY_HEROKU_BASEURL}/protected`,
+      {
+        headers,
+        timeout: 5000,
+      }
+    );
+
     localStorage.setItem('userinfo', JSON.stringify(response.data));
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error('Error getting current user:', error);
+    throw error;
   }
-  //return JSON.parse(localStorage.getItem('user'));
 }
 
 export async function addFeed({ feedURL, textFile }) {
