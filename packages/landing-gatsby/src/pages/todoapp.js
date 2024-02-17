@@ -24,7 +24,7 @@ import store from '../common/services/store.js';
 const ToDoApp = () => {
   useEffect(() => {
     if (!isLoggedIn()) {
-      navigate('/');
+      navigate('/almlogin');
     }
   }, []);
   if (typeof window === 'undefined') {

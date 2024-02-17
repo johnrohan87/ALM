@@ -67,7 +67,7 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
                   href="#logout"
                   onClick={(e) => {
                     e.preventDefault();
-                    localStorage.clear();
+                    //localStorage.clear();
                     navigate('/almlogin');
                   }}
                 >
