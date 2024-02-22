@@ -8,6 +8,7 @@ import {
   set_email,
   return_logged_in,
 } from '../services/userSlice';
+import { getUserTokens, setUser } from '../services/auth';
 
 // todoActions.js
 import { TODO_ERROR } from './ActionTypes';
@@ -48,12 +49,68 @@ export async function getToken({ email, password }) {
       }
     })
     .catch((error) => {
-      //console.error("axios response error - ",error);
-      //console.error("axios response data - ",email,password);
       return false;
-      //console.log(error.response.request._response);
     });
 }
+
+export const isTokenFresh = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.GATSBY_HEROKU_BASEURL}/protected`,
+      { headers: { Authorization: `Bearer ${getUserTokens().access_token}` } }
+    );
+    console.log('isTokenFresh response =', response);
+    return true;
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      return false;
+    } else {
+      throw error;
+    }
+  }
+};
+
+export const refreshToken = async () => {
+  try {
+    console.log(
+      'getUserTokens().access_token',
+      getUserTokens().access_token,
+      'refresh_token',
+      getUserTokens().refresh_token,
+      'expires_in',
+      getUserTokens().expires_in
+    );
+
+    const response = await axios.post(
+      `${process.env.GATSBY_HEROKU_BASEURL}/refresh`,
+      { refresh_token: getUserTokens().refresh_token },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getUserTokens().refresh_token}`,
+        },
+      }
+    );
+    console.log('refreshToken post response', response);
+    const { access_token } = response.data;
+    let refresh_token = getUserTokens().access_token;
+    let user = window.localStorage.getItem('user');
+    console.log('user', user, 'refreshToken', refreshToken);
+
+    window.localStorage.setItem(
+      'user',
+      JSON.stringify({
+        access_token,
+        refresh_token,
+        expires_in: user.expires_in,
+      })
+    );
+    return { access_token, refresh_token };
+  } catch (error) {
+    console.error('Error refreshing token:', error);
+    throw error;
+  }
+};
 
 export async function getCurrentUser() {
   try {

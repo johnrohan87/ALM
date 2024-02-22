@@ -3,6 +3,7 @@ import { navigate } from 'gatsby';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getUser, isLoggedIn } from '../common/services/auth';
+import { isTokenFresh, refreshToken } from '../common/contexts/AxiosContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
@@ -11,33 +12,24 @@ import {
   fetchUserData,
   submitFeedData,
   getFeedData,
+  set_userinfo,
 } from '../common/services/userSlice';
-//import { Table } from 'react-bootstrap';
 
 const Account = () => {
-  /**
-  let loginTest = isLoggedIn()
-  const dispatch = useDispatch();
-
-  if (loginTest){
-    dispatch(fetchUserData());
-  } else {
-    navigate('/');
-  }  */
-
   if (typeof window === 'undefined') {
     return null;
   }
 
   const Home = () => {
     //const user = useSelector((state) => state.user);
-    useEffect(() => {
-      if (!isLoggedIn()) {
-        navigate('/almlogin');
-      }
-    }, []);
-
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
+    if (!isLoggedIn()) {
+      console.log(isLoggedIn());
+      navigate('/almlogin');
+    } else {
+      console.log(isLoggedIn());
+    }
 
     //console.log(user);
     return (
@@ -49,8 +41,8 @@ const Account = () => {
             <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
             <h2>Your current user info</h2>
             <ul>User info here</ul>
-            <ul>ID {user.id ? user.id : '0'}</ul>
-            <ul>logged in as {user.roles ? user.roles : '0'}</ul>
+            <ul>ID {user.logged_in_as ? user.logged_in_as : '0'}</ul>
+            <ul>feed {user.feed ? user.feed : 'null'}</ul>
             <br />
             <button
               className="btn btn-primary btn-login text-uppercase fw-bold"

@@ -5,23 +5,9 @@ export const getUser = () =>
     ? JSON.parse(window.localStorage.getItem('user'))
     : {};
 
-const setUser = (user) =>
+const setUser = (user) => {
   window.localStorage.setItem('user', JSON.stringify(user));
-
-{
-  /** export const handleLogin = ({ username, password }) => {
-  if (username === `john` && password === `pass`) {
-    return setUser({
-      username: `john`,
-      name: `Johnny`,
-      email: `johnny@example.org`,
-    });
-  }
-
-  return false;
 };
-**/
-}
 
 export const isLoggedIn = () => {
   const user = getUser();

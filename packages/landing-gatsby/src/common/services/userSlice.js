@@ -13,6 +13,7 @@ export const userSlice = createSlice({
   initialState: {
     access_token: null,
     refresh_token: null,
+    expires_in: null,
     loading: false,
     logged_in: false,
     logged_in_as: null,
@@ -44,6 +45,7 @@ export const userSlice = createSlice({
         ...state,
         access_token: action.payload.access_token,
         refresh_token: action.payload.refresh_token,
+        expires_in: action.payload.expires_in,
       };
     },
     set_userinfo: (state, action) => {
@@ -89,6 +91,7 @@ export function fetchLoginData({ email, password }) {
           set_token({
             access_token: storedToken.access_token,
             refresh_token: storedToken.refresh_token,
+            expires_in: storedToken.expires_in,
           })
         );
         dispatch(toggle_logged_in());

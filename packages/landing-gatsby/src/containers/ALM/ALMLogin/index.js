@@ -3,6 +3,8 @@ import { navigate } from 'gatsby';
 import {
   getCurrentUser,
   getToken,
+  isTokenFresh,
+  refreshToken,
 } from '../../../common/contexts/AxiosContext';
 import { getUser, isLoggedIn } from '../../../common/services/auth';
 import { Provider, useSelector, useDispatch } from 'react-redux';
@@ -32,6 +34,22 @@ const ALMLogin = ({ state }) => {
   const FetchToken = async ({ email, password }) => {
     await dispatch(fetchLoginData({ email, password }));
     if (isLoggedIn()) {
+      let isFresh = false;
+      try {
+        isFresh = await isTokenFresh();
+      } catch (error) {
+        console.error('Error checking token freshness:', error);
+      }
+      if (!isFresh) {
+        try {
+          const newTokens = await refreshToken();
+          dispatch(set_userinfo(newTokens));
+          console.error('token refreshed', newTokens);
+        } catch (error) {
+          console.error('Error refreshing token:', error);
+          return;
+        }
+      }
       await dispatch(fetchUserData());
       navigate('/almaccount/home');
     }
