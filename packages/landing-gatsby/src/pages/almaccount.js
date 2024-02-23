@@ -1,31 +1,31 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { navigate } from 'gatsby';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from '../common/services/store';
 import { Home } from './protected/Home';
 import { PullFeed } from './protected/PullFeed';
 import { Settings } from './protected/Settings';
 import { Billing } from './protected/Billing';
 import { Admin } from './protected/Admin';
-
-import { getUser, isLoggedIn } from '../common/services/auth';
-
-import { fetchUserData } from '../common/services/userSlice';
+import {
+  isLoggedIn,
+  logout,
+  getUser,
+  getUserInfo,
+} from '../common/services/auth';
+import { navigate } from 'gatsby';
 
 const Account = () => {
   const [user, setUser] = useState({});
   const [userinfo, setUserInfo] = useState({});
-  //const dispatch = useDispatch();
 
   useEffect(() => {
-    setUser(localStorage.getItem('user'));
-    setUserInfo(localStorage.getItem('userinfo'));
+    setUser(getUser());
+    setUserInfo(getUserInfo());
+    console.log(user, userinfo);
+
     if (!isLoggedIn()) {
       navigate('/almlogin');
-    } else {
-      //dispatch(fetchUserData());
     }
   }, []);
 
@@ -37,7 +37,9 @@ const Account = () => {
   );
 
   const handleLogout = () => {
-    navigate('/almlogin');
+    logout(() => {
+      navigate('/almlogin');
+    });
   };
 
   return (

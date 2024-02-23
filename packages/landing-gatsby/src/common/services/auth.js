@@ -4,6 +4,10 @@ export const getUser = () =>
   isBrowser() && window.localStorage.getItem('user')
     ? JSON.parse(window.localStorage.getItem('user'))
     : {};
+export const getUserInfo = () =>
+  isBrowser() && window.localStorage.getItem('userinfo')
+    ? JSON.parse(window.localStorage.getItem('userinfo'))
+    : {};
 
 const setUser = (user) => {
   window.localStorage.setItem('user', JSON.stringify(user));

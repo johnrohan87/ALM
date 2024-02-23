@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { navigate } from 'gatsby';
-const Home = ({ user, userinfo }) => {
-  //const user = useSelector((state) => state.user);
-  //const dispatch = useDispatch();
-  //const user = useSelector((state) => state.user);
 
-  //console.log(user);
+const Home = ({ user, userinfo }) => {
   return (
     <>
-      <h1>Hi, {user.email ? user.email : 'friend'}!</h1>
+      <h1>Hi, {userinfo?.email ? userinfo.email : 'friend'}!</h1>
       <h2>Your current user info</h2>
       <ul>User info here</ul>
-      <ul>ID {user.logged_in_as ? user.logged_in_as : '0'}</ul>
-      <ul>feed {user.feed ? user.feed : 'null'}</ul>
+      <ul>ID {userinfo?.id ? userinfo.id : '0'}</ul>
+      <ul>Roles {userinfo?.roles ? userinfo.roles : 'null'}</ul>
       <br />
-      {user}
+      <div>
+        <div>Access Token: {user?.access_token}</div>
+        <div>Refresh Token: {user?.refresh_token}</div>
+        <div>Expires In: {user?.expires_in}</div>
+      </div>
       <button
         className="btn btn-primary btn-login text-uppercase fw-bold"
         onClick={() => navigate('/todoapp')}
@@ -25,4 +25,5 @@ const Home = ({ user, userinfo }) => {
     </>
   );
 };
+
 export { Home };
