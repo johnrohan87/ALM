@@ -6,7 +6,7 @@ import { Home } from './protected/Home';
 import { PullFeed } from './protected/PullFeed';
 import { Settings } from './protected/Settings';
 import { Billing } from './protected/Billing';
-import { Admin } from './protected/Admin';
+import Admin from './protected/Admin';
 import TodoApp from '../containers/ALM/Todo';
 import {
   isLoggedIn,
