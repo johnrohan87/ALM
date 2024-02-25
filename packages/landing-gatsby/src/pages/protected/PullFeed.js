@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { submitFeedData, getFeedData } from '../../common/services/userSlice';
 
 const PullFeed = () => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   //const user = useSelector((state) => state.user);
   const [feedURL, setFeedURL] = useState('');
   const [textFile, setTextFile] = useState('');
@@ -11,13 +11,13 @@ const PullFeed = () => {
   const [feedData, setFeedData] = useState(null);
 
   const submitHandler = () => {
-    dispatch(submitFeedData({ feedURL, textFile }));
+    //dispatch(submitFeedData({ feedURL, textFile }));
     console.log('dispatching', feedURL, textFile);
     setSubmitFeed('submitted - ' + feedURL + ' textFile - ' + textFile);
   };
 
   const feedDataHandler = async () => {
-    await dispatch(getFeedData('all'));
+    //await dispatch(getFeedData('all'));
     const result = JSON.parse(localStorage.getItem('userfeed'));
     console.log('result', result, 'feedData', feedData);
     setFeedData(result);
