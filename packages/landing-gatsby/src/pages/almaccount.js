@@ -62,7 +62,7 @@ const Account = () => {
     //});
   };
 
-  ReactDOM.render(
+  return (
     <Provider store={store}>
       <BrowserRouter>
         <nav>
