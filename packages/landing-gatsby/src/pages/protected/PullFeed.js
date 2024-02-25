@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { submitFeedData, getFeedData } from '../../common/services/userSlice';
 
 const PullFeed = () => {
-  useEffect(() => {}, [user]);
+  //useEffect(() => {}, [user]);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
