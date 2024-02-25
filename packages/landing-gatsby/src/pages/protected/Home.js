@@ -1,6 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { navigate } from 'gatsby';
 
 const Home = ({ user, userinfo }) => {
   return (
@@ -26,4 +24,4 @@ const Home = ({ user, userinfo }) => {
   );
 };
 
-export { Home };
+export default Home;
