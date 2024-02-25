@@ -164,4 +164,4 @@ const PullFeed = () => {
   );
 };
 
-export { PullFeed };
+export default PullFeed;

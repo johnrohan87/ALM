@@ -49,4 +49,4 @@ const ToDoApp = () => {
   );
 };
 
-export { ToDoApp };
+export default ToDoApp;
