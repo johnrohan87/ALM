@@ -1,26 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { navigate } from 'gatsby';
 import {
-  getCurrentUser,
-  getToken,
   isTokenFresh,
   refreshToken,
 } from '../../../common/contexts/AxiosContext';
 import { getUser, isLoggedIn } from '../../../common/services/auth';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import {
-  toggle_logged_in,
-  toggle_loading,
-  set_logged_in_as,
-  set_email,
-  return_logged_in,
-  return_loading,
   fetchLoginData,
   fetchUserData,
   set_userinfo,
 } from '../../../common/services/userSlice';
 import store from '../../../common/services/store';
-import thunk from 'redux-thunk';
+//import thunk from 'redux-thunk';
 
 const ALMLogin = ({ state }) => {
   const [email, setEmail] = useState('');
