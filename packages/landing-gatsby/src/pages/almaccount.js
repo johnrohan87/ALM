@@ -7,25 +7,42 @@ import { PullFeed } from './protected/PullFeed';
 import { Settings } from './protected/Settings';
 import { Billing } from './protected/Billing';
 import { Admin } from './protected/Admin';
+import TodoApp from '../containers/ALM/Todo';
 import {
   isLoggedIn,
   logout,
   getUser,
   getUserInfo,
+  getRemainingSecondsUntilExpiry,
 } from '../common/services/auth';
 import { navigate } from 'gatsby';
+import {
+  refreshProvidedToken,
+  refreshToken,
+} from '../common/contexts/AxiosContext';
 
 const Account = () => {
   const [user, setUser] = useState({});
   const [userinfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    setUser(getUser());
-    setUserInfo(getUserInfo());
-    console.log(user, userinfo);
+    const userFromLocalStorage = getUser();
+    const userinfoFromLocalStorage = getUserInfo();
+
+    setUser(userFromLocalStorage);
+    setUserInfo(userinfoFromLocalStorage);
 
     if (!isLoggedIn()) {
       navigate('/almlogin');
+    } else {
+      const remainingSeconds = getRemainingSecondsUntilExpiry(
+        userFromLocalStorage.access_token
+      );
+      console.log(remainingSeconds);
+      if (remainingSeconds < 300) {
+        console.log('refreshing token');
+        refreshProvidedToken(userFromLocalStorage);
+      }
     }
   }, []);
 
@@ -37,9 +54,9 @@ const Account = () => {
   );
 
   const handleLogout = () => {
-    logout(() => {
-      navigate('/almlogin');
-    });
+    //logout(() => {
+    navigate('/almlogin');
+    //});
   };
 
   return (
@@ -51,6 +68,7 @@ const Account = () => {
           <Link to="/almaccount/billing">Billing</Link>{' '}
           <Link to="/almaccount/admin">Admin</Link>{' '}
           <Link to="/almaccount/pullfeed">PullFeed</Link>{' '}
+          <Link to="/almaccount/todoapp">ToDoApp</Link>{' '}
           <a href="#logout" onClick={handleLogout}>
             Logout
           </a>
@@ -66,6 +84,7 @@ const Account = () => {
           <Route path="/almaccount/billing" element={<Billing />} />
           <Route path="/almaccount/admin" element={<Admin />} />
           <Route path="/almaccount/pullfeed" element={<PullFeed />} />
+          <Route path="/almaccount/todoapp" element={<TodoApp />} />
           <Route exact path="/almaccount" element={<Redirect />} />
           <Route path="*" element={() => navigate('/')} />
         </Routes>

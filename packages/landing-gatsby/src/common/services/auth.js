@@ -27,3 +27,11 @@ export const logout = (callback) => {
   setUser({});
   callback();
 };
+
+export function getRemainingSecondsUntilExpiry(token) {
+  const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+  const expirationTime = tokenPayload.exp;
+  const currentTime = Math.floor(Date.now() / 1000);
+  const remainingSeconds = expirationTime - currentTime;
+  return remainingSeconds;
+}

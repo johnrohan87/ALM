@@ -10,16 +10,16 @@ import Navbar from 'containers/Hosting/Navbar_About';
 //import Box from 'common/components/Box';
 //import Text from 'common/components/Text';
 //import Container from 'common/components/UI/Container';
-import TodoApp from '../containers/ALM/Todo/index.js';
+import TodoApp from '../../containers/ALM/Todo/index.js';
 
 //import Layout from 'components/layout';
 //import { DrawerProvider } from 'common/contexts/DrawerContext';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import SEO from 'components/seo';
 
-import { getUser, isLoggedIn } from '../common/services/auth';
+import { getUser, isLoggedIn } from '../../common/services/auth.js';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import store from '../common/services/store.js';
+import store from '../../common/services/store.js';
 
 const ToDoApp = () => {
   useEffect(() => {
@@ -49,4 +49,4 @@ const ToDoApp = () => {
   );
 };
 
-export default ToDoApp;
+export { ToDoApp };

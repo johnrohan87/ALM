@@ -16,12 +16,12 @@ const Home = ({ user, userinfo }) => {
         <div>Refresh Token: {user?.refresh_token}</div>
         <div>Expires In: {user?.expires_in}</div>
       </div>
-      <button
+      {/*<button
         className="btn btn-primary btn-login text-uppercase fw-bold"
         onClick={() => navigate('/todoapp')}
       >
         Test ToDo app
-      </button>
+        </button>*/}
     </>
   );
 };

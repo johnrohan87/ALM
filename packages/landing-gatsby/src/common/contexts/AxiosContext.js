@@ -73,6 +73,7 @@ export const isTokenFresh = async () => {
 export const refreshToken = async () => {
   try {
     console.log(
+      'refrestToken',
       'getUserTokens().access_token',
       getUserTokens().access_token,
       'refresh_token',
@@ -106,6 +107,52 @@ export const refreshToken = async () => {
       })
     );
     return { access_token, refresh_token };
+  } catch (error) {
+    console.error('Error refreshing token:', error);
+    throw error;
+  }
+};
+
+export const refreshProvidedToken = async ({
+  access_token,
+  refresh_token,
+  expires_in,
+}) => {
+  try {
+    console.log(
+      'refreshProvidedToken - ',
+      'access_token',
+      access_token,
+      'refresh_token',
+      refresh_token,
+      'expires_in',
+      expires_in
+    );
+
+    const response = await axios.post(
+      `${process.env.GATSBY_HEROKU_BASEURL}/refresh`,
+      { refresh_token: refresh_token },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${refresh_token}`,
+        },
+      }
+    );
+    console.log('refreshToken post response', response);
+    const data = response.data;
+    //let user = window.localStorage.getItem('user');
+    //console.log('user', user, 'refreshToken', refreshToken);
+
+    window.localStorage.setItem(
+      'user',
+      JSON.stringify({
+        access_token: data.access_token,
+        refresh_token: refresh_token,
+        expires_in: expires_in,
+      })
+    );
+    return { access_token, refresh_token, expires_in };
   } catch (error) {
     console.error('Error refreshing token:', error);
     throw error;
