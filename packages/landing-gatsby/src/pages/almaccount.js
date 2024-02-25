@@ -44,7 +44,7 @@ const Account = () => {
         refreshProvidedToken(userFromLocalStorage);
       }
     }
-  }, []);
+  }, [getUser, getUserInfo]);
   if (typeof window === 'undefined') {
     return null;
   }
