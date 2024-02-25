@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../common/services/store';
-import { Home } from './protected/Home';
-import { PullFeed } from './protected/PullFeed';
-import { Settings } from './protected/Settings';
-import { Billing } from './protected/Billing';
+import Home from './protected/Home';
+import PullFeed from './protected/PullFeed';
+import Settings from './protected/Settings';
+import Billing from './protected/Billing';
 import Admin from './protected/Admin';
 import TodoApp from '../containers/ALM/Todo';
 import {
