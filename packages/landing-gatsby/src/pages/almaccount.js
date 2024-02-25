@@ -26,6 +26,9 @@ const Account = () => {
   const [userinfo, setUserInfo] = useState({});
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return null;
+    }
     const userFromLocalStorage = getUser();
     const userinfoFromLocalStorage = getUserInfo();
 
