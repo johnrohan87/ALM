@@ -4,7 +4,7 @@ import { submitFeedData, getFeedData } from '../../common/services/userSlice';
 
 const PullFeed = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  //const user = useSelector((state) => state.user);
   const [feedURL, setFeedURL] = useState('');
   const [textFile, setTextFile] = useState('');
   const [submitFeed, setSubmitFeed] = useState('');
