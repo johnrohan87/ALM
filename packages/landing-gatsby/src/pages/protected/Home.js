@@ -11,10 +11,7 @@ const Home = ({ user, userinfo }) => {
       <br />
       <div>
         {/*<div>Access Token: {user?.access_token}</div>*/}
-        <div>
-          Access Token:{' '}
-          {user.access_token ? user.access_token.split('.')[1] : ''}
-        </div>
+        <div>Access Token: {user?.access_token}</div>
         <div>Refresh Token: {user?.refresh_token}</div>
         <div>Expires In: {user?.expires_in}</div>
       </div>
