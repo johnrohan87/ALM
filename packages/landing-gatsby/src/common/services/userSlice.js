@@ -5,8 +5,14 @@ import {
   getToken,
   addFeed,
   getFeed,
+  refreshProvidedToken,
 } from '../../common/contexts/AxiosContext';
-import { getUser, isLoggedIn, getUserTokens } from './auth';
+import {
+  getUser,
+  isLoggedIn,
+  getUserTokens,
+  getRemainingSecondsUntilExpiry,
+} from './auth';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -84,17 +90,35 @@ export const getUserState = (state) => state;
 export function fetchLoginData({ email, password }) {
   return async (dispatch, getState) => {
     try {
+      //test for existing token
       let storedToken = getUser();
-
       if (storedToken.access_token) {
-        dispatch(
-          set_token({
+        //check for freshness
+        let remainingFreshness = getRemainingSecondsUntilExpiry(
+          storedToken.access_token
+        );
+        console.log('remainingFreshness', remainingFreshness);
+
+        //determine if token is fresh or needs refreshing
+        if (remainingFreshness > 0) {
+          //Token is fresh
+          dispatch(
+            set_token({
+              access_token: storedToken.access_token,
+              refresh_token: storedToken.refresh_token,
+              expires_in: storedToken.expires_in,
+            })
+          );
+          dispatch(toggle_logged_in());
+        } else {
+          //Token need refreshing
+          console.log('Token need refreshing ', storedToken);
+          refreshProvidedToken({
             access_token: storedToken.access_token,
             refresh_token: storedToken.refresh_token,
             expires_in: storedToken.expires_in,
-          })
-        );
-        dispatch(toggle_logged_in());
+          });
+        }
       } else {
         await getToken({ email, password }).then(() => {
           let result = JSON.parse(localStorage.getItem('user'));

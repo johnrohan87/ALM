@@ -21,6 +21,7 @@ const ALMLogin = ({ state }) => {
   const isLoggedIn = useSelector((state) => state.user.logged_in);
 
   const fetchToken = async ({ email, password }) => {
+    //check for user and password
     await dispatch(fetchLoginData({ email, password }));
     if (isLoggedIn) {
       let isFresh = false;
@@ -39,6 +40,7 @@ const ALMLogin = ({ state }) => {
           return;
         }
       }
+      //console.log('fetchUserData', fetchUserData())
       await dispatch(fetchUserData());
       navigate('/almaccount/home');
     }

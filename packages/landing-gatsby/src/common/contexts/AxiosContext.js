@@ -96,14 +96,24 @@ export const refreshToken = async () => {
     const { access_token } = response.data;
     let refresh_token = getUserTokens().access_token;
     let user = window.localStorage.getItem('user');
-    console.log('user', user, 'refreshToken', refreshToken);
+    let expires_in = user.expires_in;
+    console.log(
+      'user',
+      user,
+      'refresh_token',
+      refresh_token,
+      'access_token',
+      access_token,
+      'expires_in',
+      expires_in
+    );
 
     window.localStorage.setItem(
       'user',
       JSON.stringify({
         access_token,
         refresh_token,
-        expires_in: user.expires_in,
+        expires_in: expires_in,
       })
     );
     return { access_token, refresh_token };
