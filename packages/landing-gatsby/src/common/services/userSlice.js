@@ -6,6 +6,7 @@ import {
   addFeed,
   getFeed,
   refreshProvidedToken,
+  verifyUser,
 } from '../../common/contexts/AxiosContext';
 import {
   getUser,
@@ -41,10 +42,16 @@ export const userSlice = createSlice({
       };
     },
     set_logged_in_as: (state, action) => {
-      state.user.logged_in_as += action.payload;
+      return {
+        ...state,
+        logged_in_as: action.payload,
+      };
     },
     set_email: (state, action) => {
-      state.user.email += action.payload;
+      return {
+        ...state,
+        email: action.payload,
+      };
     },
     set_token: (state, action) => {
       return {
@@ -122,11 +129,18 @@ export function fetchLoginData({ email, password }) {
       } else {
         await getToken({ email, password }).then(() => {
           let result = JSON.parse(localStorage.getItem('user'));
-
+          console.log('getToken result', result);
           if (result != undefined) {
             dispatch(set_token(result));
             dispatch(toggle_logged_in());
           }
+        });
+        let token = getUser().access_token;
+        await verifyUser({ token }).then(() => {
+          let result = JSON.parse(localStorage.getItem('userinfo'));
+          console.log('verifyUser result -', result);
+          dispatch(set_logged_in_as(result.current_identity));
+          dispatch(set_email(result.email));
         });
       }
     } catch (error) {

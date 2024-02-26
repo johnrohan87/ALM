@@ -11,18 +11,21 @@ import store from '../../../common/services/store';
 import {
   isTokenFresh,
   refreshToken,
+  getToken,
 } from '../../../common/contexts/AxiosContext';
+import { isLoggedIn } from '../../../common/services/auth';
 
 const ALMLogin = ({ state }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.user.logged_in);
+  //const isLoggedIn = useSelector((state) => state.user.logged_in);
 
   const fetchToken = async ({ email, password }) => {
     //check for user and password
     await dispatch(fetchLoginData({ email, password }));
+    //console.log('isLoggedIn', isLoggedIn)
     if (isLoggedIn) {
       let isFresh = false;
       try {
@@ -32,7 +35,7 @@ const ALMLogin = ({ state }) => {
       }
       if (!isFresh) {
         try {
-          const newTokens = await refreshToken();
+          const newTokens = await getToken({ email, password });
           dispatch(set_userinfo(newTokens));
           console.error('token refreshed', newTokens);
         } catch (error) {
@@ -42,6 +45,7 @@ const ALMLogin = ({ state }) => {
       }
       //console.log('fetchUserData', fetchUserData())
       await dispatch(fetchUserData());
+      console.log('navigating');
       navigate('/almaccount/home');
     }
   };

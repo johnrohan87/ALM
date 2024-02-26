@@ -24,10 +24,14 @@ export async function verifyUser({ token }) {
       method: 'get',
       url: process.env.GATSBY_HEROKU_BASEURL + '/protected',
       timeout: 5000,
-      headers: configHeaders,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       data: { token: token.token },
     });
     console.log(response);
+    localStorage.setItem('userinfo', JSON.stringify(response.data));
   } catch (error) {
     console.error(error);
   }
