@@ -23,7 +23,7 @@ export async function verifyUser({ token }) {
     const response = await axios({
       method: 'get',
       url: process.env.GATSBY_HEROKU_BASEURL + '/protected',
-      timeout: 5000,
+      timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -192,7 +192,7 @@ export async function getCurrentUser() {
       `${process.env.GATSBY_HEROKU_BASEURL}/protected`,
       {
         headers,
-        timeout: 5000,
+        timeout: 10000,
       }
     );
 

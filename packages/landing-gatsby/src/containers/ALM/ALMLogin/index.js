@@ -29,6 +29,7 @@ const ALMLogin = ({ state }) => {
     if (isLoggedIn) {
       let isFresh = false;
       try {
+        //need to add self fresh check as token should be fresh here
         isFresh = await isTokenFresh();
       } catch (error) {
         console.error('Error checking token freshness:', error);
