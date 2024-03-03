@@ -58,9 +58,9 @@ const Account = () => {
   );
 
   const handleLogout = () => {
-    //logout(() => {
-    navigate('/almlogin');
-    //});
+    logout(() => {
+      navigate('/almlogin');
+    });
   };
 
   return (

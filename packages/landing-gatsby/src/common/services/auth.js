@@ -12,6 +12,9 @@ export const getUserInfo = () =>
 const setUser = (user) => {
   window.localStorage.setItem('user', JSON.stringify(user));
 };
+const setUserInfo = (userInfo) => {
+  window.localStorage.setItem('userinfo', JSON.stringify(userInfo));
+};
 
 export const isLoggedIn = () => {
   const user = getUser();
@@ -24,6 +27,7 @@ export const getUserTokens = () => {
 };
 
 export const logout = (callback) => {
+  setUserInfo({});
   setUser({});
   callback();
 };
