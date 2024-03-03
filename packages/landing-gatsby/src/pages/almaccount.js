@@ -8,6 +8,7 @@ import Settings from './protected/Settings';
 import Billing from './protected/Billing';
 import Admin from './protected/Admin';
 import TodoApp from '../containers/ALM/Todo';
+import TokenCountdown from '../containers/ALM/ALM_Components/TokenCountdown';
 import {
   isLoggedIn,
   logout,
@@ -72,6 +73,7 @@ const Account = () => {
           <Link to="/almaccount/admin">Admin</Link>{' '}
           <Link to="/almaccount/pullfeed">PullFeed</Link>{' '}
           <Link to="/almaccount/todoapp">ToDoApp</Link>{' '}
+          <TokenCountdown accessToken={user} />
           <a href="#logout" onClick={handleLogout}>
             Logout
           </a>

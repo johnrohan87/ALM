@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {
+  Container,
+  Heading,
+  SubHeading,
+  UserInfoList,
+  TokenInfoContainer,
+} from '../../containers/ALM/CSS/home.styles';
 
 const Home = ({ user, userinfo }) => {
   return (
-    <>
-      <h1>Hi, {userinfo?.email ? userinfo.email : 'friend'}!</h1>
-      <h2>Your current user info</h2>
-      <ul>User info here</ul>
-      <ul>ID {userinfo?.id ? userinfo.id : '0'}</ul>
-      <ul>Roles {userinfo?.roles ? userinfo.roles : 'null'}</ul>
+    <Container>
+      <Heading>Hi, {userinfo?.email ? userinfo.email : 'friend'}!</Heading>
+      <SubHeading>Your current user info</SubHeading>
+      <UserInfoList>
+        <li>ID: {userinfo?.id ? userinfo.id : '0'}</li>
+        <li>Roles: {userinfo?.roles ? userinfo.roles : 'null'}</li>
+      </UserInfoList>
       <br />
-      <div>
-        {/*<div>Access Token: {user?.access_token}</div>*/}
+      <TokenInfoContainer>
         <div>Access Token: {user?.access_token}</div>
+        <br />
         <div>Refresh Token: {user?.refresh_token}</div>
+        <br />
         <div>Expires In: {user?.expires_in}</div>
-      </div>
-      {/*<button
-        className="btn btn-primary btn-login text-uppercase fw-bold"
-        onClick={() => navigate('/todoapp')}
-      >
-        Test ToDo app
-        </button>*/}
-    </>
+      </TokenInfoContainer>
+    </Container>
   );
 };
 
